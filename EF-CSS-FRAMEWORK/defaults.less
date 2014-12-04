@@ -1,0 +1,102 @@
+/*------------------------------------*\
+    1.$DEFAULTS
+\*------------------------------------*/
+
+@debug-mode:        true;
+@global-border-box: true;
+
+/*------------------------------------*\
+    2.$BASE
+\*------------------------------------*/
+
+@base-font-size:    16;
+@base-line-height:  24;
+@base-ui-color:     #ccc;
+
+@link-color:        #000;
+
+@body-bg:           #fff;
+@text-color:        #333;
+
+@brand-color--primary:  	#ec008c;
+@brand-color--secondary:    #003f5f;
+
+@brand-round:               4px;
+
+/*------------------------------------*\
+    3.$TYPOGRAPHY
+\*------------------------------------*/
+
+@font-family-base:        @font-family-sans-serif; // font set on <html> tag
+
+@font-family-sans-serif:  Arial, sans-serif;
+@font-family-serif:       Georgia, "Times New Roman", Times, serif;
+
+@headings-font-family:    @font-family-base;
+
+// Headings
+// -------------------------
+
+@giga-size:         96;
+@mega-size:         60;
+@kilo-size:         48;
+
+@h1-size:           36; // .alpha
+@h1-font:      		@headings-font-family;
+
+@h2-size:           20; // .beta
+@h2-font: 			@headings-font-family; 
+
+@h3-size:           20; // .gamma
+@h3-font: 			@headings-font-family;
+
+@h4-size:           18; // .delta
+@h4-font: 			@headings-font-family;
+
+@h5-size:           16; // .epsilon
+@h5-font: 			@headings-font-family;
+
+@h6-size:           14; // .zeta
+@h6-font: 			@headings-font-family;
+
+@milli-size:        12;
+@micro-size:        10;
+
+
+/*------------------------------------*\
+    4.$OBJECTS
+\*------------------------------------*/
+
+@use-arrows:        false;
+@use-buttons:       false;
+@use-helpers:       false;
+@use-forms:         false;
+@use-grids:         false;
+	@grids-gutter:  10;
+@use-media:         false;
+@use-sprite:        false;
+
+/*------------------------------------*\
+    5.$DESIGN EXTENSIONS
+\*------------------------------------*/
+
+@use-gud25:         false;
+@use-gud30:         false;
+@use-gud31:         false; // Better font support
+
+// USED FOR SIMPLE 3 COLUMN LAYOUTS
+// -------------------------
+@use-simple-page:   false;
+@simple-page-width: 978; // px (.page)
+@simple-page-leftcol: 250; // px (.leftCol)
+@simple-page-rightcol: 300; // px (.rightCol)
+
+
+/*------------------------------------*\
+    6.$FRAMEWORK
+\*------------------------------------*/
+
+@base-spacing-unit: @base-line-height;
+@half-spacing-unit: @base-spacing-unit / 2;
+@line-height-ratio: (@base-line-height/@base-font-size);
+

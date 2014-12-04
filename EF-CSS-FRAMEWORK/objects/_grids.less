@@ -1,0 +1,109 @@
+.set-grids() when (@use-grids = false) {}
+.set-grids() when (@use-grids = true) {
+
+/*
+CSS Name:   CSS grids. 
+Description:  Can be used to break any space into fractions, they can be nested.
+Notes:      This is a EF version of the original OOCSS grids. 
+URL:      http://oocss.org/grids_docs.html
+Author:     Yacine Belarbi
+Created:    2012-04-11
+*/
+
+/* ------- DO NOT MODIFY THIS FILE, INSTEAD OVERRIDE PROPERTYS IN YOUR PAGE SPECIFIC STYLESHEET OR CREATE YOUR OWN CSS FILE ------- */
+
+/* = GRIDS
+---------------------------------------------------*/
+
+.line:after{clear:both;display:block;visibility:hidden;overflow:hidden;height:0 !important;line-height:0;font-size:xx-large;content:" x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x ";}
+.row:before,.row:after{content:"";display:table;}
+.row:after{clear:both;}
+.row{*zoom:1;margin: 0 -@grids-gutter*1px;}
+.unit{float:left;position:relative;min-height: 1px;}
+.size1of1{float:none;}
+.size1of2{width:50%;}
+.size1of3{width:33.33333%;}
+.size2of3{width:66.66666%;}
+.size1of4{width:25%;}
+.size3of4{width:75%;}
+.size1of5{width:20%;}
+.size2of5{width:40%;}
+.size3of5{width:60%;}
+.size4of5{width:80%;}
+.size1of6{width:16.66667%;}
+.size5of6{width:83.333333%}
+.ie7 .lastUnit{display:table-cell;float:none;width:auto;*display:block;*zoom:1;_position:relative;_left:-3px;_margin-right:-3px;}
+
+/* 12column grid */
+.span1{width:8.33%;}
+.span2{width:16.66%;}
+.span3{width:25%;}
+.span4{width:33.33%;}
+.span5{width:41.66%;}
+.span6{width:50%;}
+.span7{width:58.33%;}
+.span8{width:66.66%;}
+.span9{width:75%;}
+.span10{width:83.33%;}
+.span11{width:91.66%;}
+.span12{width:100%;}
+
+.no-boxsizing .unit-inner,
+.unit {padding:0 @grids-gutter*1px;}
+.no-boxsizing .unit {padding:0;}
+
+/* ---- prefix ---- */
+.prefix1of2 {margin-left:50%}
+.prefix1of3 {margin-left:33.333333%}
+.prefix2of3 {margin-left:66.666666%}
+.prefix1of4 {margin-left:25%}
+.prefix3of4 {margin-left:75%}
+.prefix1of5 {margin-left:20%}
+.prefix2of5 {margin-left:40%}
+.prefix3of5 {margin-left:60%}
+.prefix4of5 {margin-left:80%}
+.prefix1of6 {margin-left:16.666667%}
+.prefix5of6 {margin-left:83.333333%}
+
+/* ---- suffix ---- */
+.suffix1of2 {margin-right:50%}
+.suffix1of3 {margin-right:33.333333%}
+.suffix2of3 {margin-right:66.666666%}
+.suffix1of4 {margin-right:25%}
+.suffix3of4 {margin-right:75%}
+.suffix1of5 {margin-right:20%}
+.suffix2of5 {margin-right:40%}
+.suffix3of5 {margin-right:60%}
+.suffix4of5 {margin-right:80%}
+.suffix1of6 {margin-right:16.666667%}
+.suffix5of6 {margin-right:83.333333%}
+
+/* ---- push ---- */
+.push1of2 {left:50%}
+.push1of3 {left:33.333333%}
+.push2of3 {left:66.666666%}
+.push1of4 {left:25%}
+.push3of4 {left:75%}
+.push1of5 {left:20%}
+.push2of5 {left:40%}
+.push3of5 {left:60%}
+.push4of5 {left:80%}
+.push1of6 {left:16.666667%}
+.push5of6 {left:83.333333%}
+
+/* ---- pull ---- */
+.pull1of2 {left:-50%}
+.pull1of3 {left:-33.333333%}
+.pull2of3 {left:-66.666666%}
+.pull1of4 {left:-25%}
+.pull3of4 {left:-75%}
+.pull1of5 {left:-20%}
+.pull2of5 {left:-40%}
+.pull3of5 {left:-60%}
+.pull4of5 {left:-80%}
+.pull1of6 {left:-16.666667%}
+.pull5of6 {left:-83.333333%}
+
+} // use-grids=true mixin
+
+.set-grids();

@@ -1,0 +1,133 @@
+﻿.set-forms() when (@use-forms = false) {}
+.set-forms() when (@use-forms = true) {
+
+/*
+CSS Name:		CSS form 
+Description:	form
+Author:			Yacine Belarbi
+Created:		2012-04-11
+*/
+
+/* ------- DO NOT MODIFY THIS FILE, INSTEAD OVERRIDE PROPERTYS IN YOUR PAGE SPECIFIC STYLESHEET OR CREATE YOUR OWN CSS FILE ------- */
+
+
+legend,
+label												{ font-size: 93%; font-weight: bold; display: block; padding-top: 3px; }
+
+label[class="required"]:after						{ content: "*"; color: #E27976; }
+
+input[type="text"],
+input[type="email"],
+input[type="url"], 
+input[type="number"],
+textarea { 
+													width: 100%; 
+													padding: 4px; 
+													border: 1px solid @base-ui-color; 
+
+													-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+													-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+													box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+													-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+													-moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+													-ms-transition: border linear 0.2s, box-shadow linear 0.2s;
+													-o-transition: border linear 0.2s, box-shadow linear 0.2s;
+													transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+
+input:focus, 
+textarea:focus {
+													border-color: rgba(82, 168, 236, 0.8);
+													-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+													-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+													box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+													outline: 0;
+													outline: thin dotted 1px;
+}
+
+
+input[type="checkbox"], 
+input[type="radio"] {
+													width: auto;
+													height: auto;
+													padding: 0;
+													margin: 3px 0;
+													line-height: normal;
+													cursor: pointer;
+													background-color: transparent;
+													border: 0 1px;
+													-webkit-border-radius: 0;
+													-moz-border-radius: 0;
+													border-radius: 0;
+}
+
+input[type="radio"]:focus, 
+input[type="checkbox"]:focus, 
+select:focus {
+													outline: thin dotted #333;
+													outline: 5px auto -webkit-focus-ring-color;
+													outline-offset: -2px;
+													-webkit-box-shadow: none;
+													-moz-box-shadow: none;
+													box-shadow: none;
+		}
+
+.radio, 
+.checkbox 											{ min-height: 22px; padding-left: 18px; font-weight: normal; }
+
+.radio span, 
+.checkbox span 										{ line-height: 22px; }		
+
+.radio input[type="radio"], 
+.checkbox input[type="checkbox"]{ 
+													float: left; 
+													margin-left: -18px; 
+}
+
+select 												{ padding: 4px; border: 1px solid @base-ui-color; height: 26px; display: block; }
+select.fullwidth									{ width: 100%; }
+
+button												{ font-weight: bold; }
+
+/* Disabled input fields */
+input[disabled], 
+select[disabled], 
+textarea[disabled], 
+input[readonly], 
+select[readonly], 
+textarea[readonly] {
+													cursor: not-allowed;
+													background-color: #EEE;
+													border-color: #DDD;
+}
+
+/* Inline input fields */
+input[type="text"].inline,
+input[type="email"].inline,
+input[type="url"].inline, 
+input[type="number"].inline,
+textarea.inline,
+select.inline										{ width: auto; margin: 0 18px 0 0; }
+
+select.inline 										{ display: inline; }
+
+label.inline,
+legend.inline 										{ display: inline-block; vertical-align: middle; margin: 0 18px 0 0; }
+
+input[type="text"].valid,
+input[type="email"].valid,
+input[type="url"].valid, 
+input[type="number"].valid,
+textarea.valid										{ color: #000; }
+
+/* Form error */
+input[type="text"].error,
+input[type="email"].error,
+input[type="url"].error, 
+input[type="number"].error,
+select.error,
+textarea.error										{ background: #FEDBDB; border-color: #FDC4C4; box-shadow: none; }
+
+} // use-forms=true mixin
+
+.set-forms();

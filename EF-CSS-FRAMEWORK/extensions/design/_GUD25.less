@@ -1,0 +1,114 @@
+﻿.set-gud25() when (@use-gud25 = false) {}
+.set-gud25() when (@use-gud25 = true) {
+
+/*------------------------------------*\
+    $GUD 2.5
+\*------------------------------------*/
+
+.button-textcolor--cta,
+.button-textcolor--cta:active,
+.button-textcolor--cta:visited,
+.button-textcolor--cta:hover    						{ color: @brand-color; }						
+
+.button-textcolor--white,
+.button-textcolor--white:active,
+.button-textcolor--white:visited,
+.button-textcolor--white:hover							{ color: #fff; text-shadow: 1px 1px 1px #8D0254; }	
+
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* Button background colors */
+
+
+.button--white											{ background: #fff; }
+
+.button--cta,
+.button--cta:visited								{
+														background: @brand-color;
+														background: -moz-linear-gradient(top,#eb008b 0,#e4028c 27%,#ca0078 100%);
+														background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,@brand-color),color-stop(27%,darken(@brand-color, 4%)),color-stop(100%,darken(@brand-color, 6%)));
+														background: -webkit-linear-gradient(top,@brand-color 0,darken(@brand-color, 4%) 27%,darken(@brand-color, 6%) 100%);
+														background: -o-linear-gradient(top,@brand-color 0,darken(@brand-color, 4%) 27%,darken(@brand-color, 6%) 100%);
+														background: -ms-linear-gradient(top,@brand-color 0,darken(@brand-color, 4%) 27%,darken(@brand-color, 6%) 100%);
+														background: linear-gradient(top,@brand-color 0,darken(@brand-color, 4%) 27%,darken(@brand-color, 6%) 100%);
+														filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@brand-color',endColorstr='darken(@brand-color, 4%)',GradientType=0);
+														box-shadow: 0 1px 0 #898089;
+}
+
+.button--cta:hover,
+.button--cta:active {
+														background: #fd50b7;
+														background: -moz-linear-gradient(top,#fd50b7 0,#fe32ae 27%,#e20086 100%);
+														background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#fd50b7),color-stop(27%,#fe32ae),color-stop(100%,#e20086));
+														background: -webkit-linear-gradient(top,#fd50b7 0,#fe32ae 27%,#e20086 100%);
+														background: -o-linear-gradient(top,#fd50b7 0,#fe32ae 27%,#e20086 100%);
+														background: -ms-linear-gradient(top,#fd50b7 0,#fe32ae 27%,#e20086 100%);
+														background: linear-gradient(top,#fd50b7 0,#fe32ae 27%,#e20086 100%);
+														filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fd50b7',endColorstr='#e20086',GradientType=0);
+}
+
+.button--grey,
+.button--grey:visited,
+.button--grey:hover										{
+														background: #d6d6d6;
+														background: -moz-linear-gradient(top,#d6d6d6 0%,#d5d5d5 15%,#c9c9c9 73%,#c6c6c6 100%);
+														background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#d6d6d6),color-stop(15%,#d5d5d5),color-stop(73%,#c9c9c9),color-stop(100%,#c6c6c6));
+														background: -webkit-linear-gradient(top,#d6d6d6 0%,#d5d5d5 15%,#c9c9c9 73%,#c6c6c6 100%);
+														background: -o-linear-gradient(top,#d6d6d6 0%,#d5d5d5 15%,#c9c9c9 73%,#c6c6c6 100%);
+														background: -ms-linear-gradient(top,#d6d6d6 0%,#d5d5d5 15%,#c9c9c9 73%,#c6c6c6 100%);
+														background: linear-gradient(to bottom,#d6d6d6 0%,#d5d5d5 15%,#c9c9c9 73%,#c6c6c6 100%);
+														filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d6d6d6',endColorstr='#c6c6c6',GradientType=0);
+}
+
+.button--grey.active									{ color: #fff; text-shadow: 1px 1px 1px #aaa; }
+
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* LINKS */
+
+a[class^=link__] .icon-image 							{ margin-left: 5px; margin-right: 5px; vertical-align: middle; }
+
+.link__with-icon span + .icon-image						{ margin: 0 0 0 5px; }
+
+.link__normal,
+.link__normal:visited									{ color: @brand-color--secondary; font-weight: bold; background: none; border: none; padding: 0; text-decoration: none; }  
+.link__normal:hover                                     { text-decoration: none; }
+
+.link__forward											{ .main-title(13); letter-spacing: 0; position: relative; text-decoration: none; }		
+.link__forward:hover									{ text-decoration: none; }
+.link__forward::after									{ content: "»"; font-size:23px; margin-left: 10px; }
+
+.link__expand											{ position: relative; }
+.link__expand:hover 									{ text-decoration: none; border-bottom: 1px solid @brand-color--secondary;  }
+.link__expand::after									{ content: "+"; margin-left: 10px; }
+.link__expand--false::after								{ content: "-"; }					
+
+.link--cta,
+.link--cta:visited									    { color: @brand-color; }
+.link--cta:hover									    { border-bottom: 1px solid @brand-color; }
+
+.link--blue,
+.link--blue:visited										{ color: #003F5F; }
+
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------------ */
+/* ICONS */
+
+
+
+.icon-CTA-magenta										{ width: 10px; height: 10px; background-image: url(http://media.ef.com/sitecore/__~/media/efcom/universal/sprites/sprite-gud3.png); background-position: -10px -120px; }
+.icon-arrowRight										{ width: 10px; height: 10px; background-image: url(http://media.ef.com/sitecore/__~/media/efcom/universal/sprites/sprite-gud3.png); background-position: 3px -120px; }
+.icon-online											{ background-image: url(http://media.ef.com/sitecore/__/2012/_images/cssSprite_global.png); background-position: -60px -298px ; width: 19px; height: 22px;}
+.icon-location											{ background-image: url(http://media.ef.com/sitecore/__/2012/_images/cssSprite_global.png); background-position: -106px -295px; width: 15px; height: 23px;}
+
+.icon__arrow-right										{ width: 7px; height: 7px; margin-left: 10px; vertical-align: middle; background-image: url(http://media.ef.com/sitecore/__~/media/efcom/universal/sprites/sprite-gud3.png); background-position: -40px -120px;}
+.icon__arrow-right--magenta								{ background-position: -10px -120px; height: 9px; }
+
+} // use-brand=true mixin
+
+.set-gud25();
+
+

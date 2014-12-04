@@ -1,0 +1,125 @@
+﻿.set-gud31() when (@use-gud31 = false) {}
+.set-gud31() when (@use-gud31 = true) {
+/*------------------------------------*\
+    $GUD 3.1
+\*------------------------------------*/
+
+    @import "../../extensions/design/fontello/fontello";
+  
+
+	* 								{ -webkit-font-smoothing: antialiased; }
+
+	/* HEADERS */
+	h1,.alpha,
+	h2,.beta,
+	h3,.gamma,
+	h4,.delta,
+	h5,.epsilon,
+	h6,.zeta 						{ text-transform: uppercase; }
+
+	h4,.delta						{ text-transform: none; font-weight: normal; }
+	h5,.epsilon						{ text-transform: none; }
+
+	h1,h2							{ letter-spacing: -1px; }
+
+	/* BUTTONS */
+	.button 						{ 
+									border-radius: 0; 
+									text-transform: uppercase;
+									min-width: 180px;
+									padding-top: 5px;
+									padding-bottom: 5px;
+									text-align: center;
+									font-weight: bold;
+									text-decoration: none;
+									font-size: 93%;
+	}
+
+	.button + .button				{ margin-left: 20px; }
+
+	.button--magenta 				{ 
+		background: @brand-color--primary; 
+		color: #fff; 
+		&:hover {
+			background: rgba(236, 0, 140, 0.7);
+			color: #fff;
+		}
+	}
+
+	.button--magenta-outline		{ 
+		border: 1px solid #fff;
+		background: none; 
+		&:hover {
+			background: #fff; 
+			background: rgba(255, 255, 255, 0.1);
+		}
+	}
+
+	.button--black { 
+		background: #000; 
+		color: #fff; 
+		&:hover {
+			background: #000; background: rgba(0,0,0,0.8);
+			color: #fff; 
+		}
+	}
+
+	.button--black-outline { 
+		border: 1px solid #000; 
+		background: none; 
+		color: #000; 
+		&:hover {
+			background: rgba(0,0,0,0.3);
+			color: #000; 
+		}
+	}
+
+	.button--white { 
+		background: #fff; 
+		&:hover {
+			background: #fff; background: rgba(255,255,255,0.8);
+		}
+	}	
+
+	.button--white-outline { 
+		border: 1px solid #fff; 
+		background: none; 
+		color: #fff; 
+		&:hover {
+			background: rgba(0,0,0,0.1); 
+			color: #fff; 
+		}
+	}
+
+	.button--blue { 
+		background: #003f5f; 
+		&:hover {
+			background: rgba(255,255,255,0.8);
+		}
+	}	
+	
+	.button--blue-outline			{ 
+		border: 1px solid #003f5f; 
+		background: none; 
+		color: #003f5f; 
+		&:hover {
+			background: rgba(0,0,0,0.1); 
+			color: #003f5f; 
+		}
+	}
+
+	/* INLINE LINKS */
+	a 								{ text-decoration: underline; }
+	a:hover 						{ text-decoration: none; }
+
+	/* LINK BUTTONS */
+	.link__normal 					{ text-transform: uppercase; font-weight: bold; font-size: 93%; text-decoration: none; }
+	.link__normal:hover 			{ text-decoration: underline; }
+
+	.link__normal--magenta			{ color: #ec2d9e; }
+
+} // use-gud31=true mixin
+
+.set-gud31();
+
+

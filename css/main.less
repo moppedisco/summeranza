@@ -1,0 +1,354 @@
+﻿@charset "UTF-8";
+
+/* Framework =================================================================================================== */
+/* ============================================================================================================  */
+/* ============================================================================================================  */
+@import "../EF-CSS-FRAMEWORK/defaults";				// Get framework defaults
+@import "_vars.less";									// Override framework defaults with your own styles
+@import "../EF-CSS-FRAMEWORK/init";					// Load framework based on your preferences in _vars
+
+@desktop:   ~"only screen and (min-width: 990px)"; // We use
+@tablet:    ~"only screen and (min-width: 720px) and (max-width: 989px)";
+@mobile:    ~"only screen and (min-width: 1px) and (max-width: 719px)";
+
+/* Basic helpers ==================================== */
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+.vert-align {
+	display:table;
+	width:80%;
+	height:100%;
+	position:relative;
+	z-index:99999;
+	margin:0 auto;
+	overflow: visible;
+}
+
+.vert-align__inner {
+	display:table-cell;
+	vertical-align:middle;
+	text-align:center;	
+}
+
+/* Global =========================================== */
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+
+html,body {
+	// width: 100%;
+	// height: 100%;
+}
+
+.site-navigation {
+	position: absolute;
+	left: 0;
+	top: 180px;
+	z-index: 10;
+	width: 200px;
+	padding-left: 30px;
+	padding-right: 30px;
+
+	&.fixed {
+		position: fixed;
+		top: 180px;
+	}
+}
+
+.site-navigation__link {
+	display: block;
+	font-weight: bold;
+	text-decoration: none;
+	
+	& span {
+		border-bottom: 2px solid transparent;
+	}
+
+	&.active span {
+		border-bottom: 2px solid #000;
+	}
+
+}
+
+body {
+	-o-transition: background .5s ease-in-out;
+	-moz-transition: background .5s ease-in-out;
+	-webkit-transition: background .5s ease-in-out;
+	transition: background .5s ease-in-out;
+}
+
+.bg2 {
+	background: green;
+}
+
+.bg3 {
+	background: orange;
+}
+
+/* INTRO ============================================ */
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+.intro-text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
+	z-index: 9;
+	color: #fff;
+	text-align: center;
+
+	h1 {
+		margin: 0;
+		font-size: 105px;
+	}
+
+	i {
+		font-family: georgia;
+		font-size: 22px;
+	}
+}
+
+.videoPlayer {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	height: auto;
+	width: auto;
+	z-index: 1;
+	top: 0;
+	left: 0;
+}
+
+.watch-video {
+	.button;
+	.button--white-outline;
+}
+
+// svg {
+// 	width: 900px;
+// 	height: 500px;
+// 	font-size: 200px;
+// 	position: absolute;
+// 	top: 50%;
+// 	left: 50%;
+// 	transform: translateY(-50%) translateX(-50%);
+// 	z-index: 9999;
+// 	display: none;
+// }
+
+// .text--line {
+// 	font-size: .5em;
+// }
+
+// .text-copy {
+// 	fill: none;
+// 	stroke: white;
+// 	stroke-dasharray: 7% 28%;
+// 	stroke-width: 3px;
+// 	-webkit-animation: stroke-offset 5s 1 ease-out;
+// 	      animation: stroke-offset 5s 1 ease-out;
+// 	display: none;
+// }
+// .text-copy:nth-child(1) {
+// 	stroke: #360745;
+// 	stroke-dashoffset: 7%;
+// }
+// .text-copy:nth-child(2) {
+// 	stroke: #D61C59;
+// 	stroke-dashoffset: 14%;
+// }
+// .text-copy:nth-child(3) {
+// 	stroke: #E7D84B;
+// 	stroke-dashoffset: 21%;
+// }
+// .text-copy:nth-child(4) {
+// 	stroke: #EFEAC5;
+// 	stroke-dashoffset: 28%;
+// }
+// .text-copy:nth-child(5) {
+// 	stroke: #1B8798;
+// 	stroke-dashoffset: 35%;
+// }
+
+// @-webkit-keyframes stroke-offset {
+// 	0% {
+// 		stroke-dashoffset: 35%;
+// 		stroke-dasharray: 0 87.5%;
+// 	}
+// }
+
+.section--full-screen-video {
+	width: 100%;
+	height: 100%;
+	background: #ccc;
+	position: relative;
+	overflow: hidden;
+}
+
+.videoPlayer__cover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url("http://andershede.com/wp-content/uploads/2014/08/NorthSide.svg");
+	z-index: 1;
+	background-size: cover;
+	opacity: 0.4;	
+	// display: none;
+}
+
+.arrow-down {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
+	z-index: 1;
+	opacity: 0.4;
+	cursor: pointer;
+}
+
+/* Content sections ================================= */
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+.wrapper {
+	position: relative;
+}
+
+.page-section {
+	padding: 0 10% 0 200px;
+	position: relative;
+}
+
+.page-section--footer {
+	height: 800px;
+	background: #000;
+	color: #fff;
+}
+
+.section--small {
+	text-align: center;
+	font-family: georgia;
+	padding: 80px 0 0;
+	font-size: 33px;
+	line-height: 130%;
+}
+
+.page-section__header {
+	float: left;
+	width: 28%;
+	padding-top: 180px;
+	opacity: 0;
+	position: fixed;
+	top: 0;
+	transition: opacity 0.4s;
+	z-index: 2;
+
+	.page-section.active & {
+		opacity: 1;
+	}
+
+	.page-section.static & {
+		position: absolute;
+		opacity: 1;
+	}
+
+	.page-section.static.active & {
+		position: fixed;
+		opacity: 1;
+	}
+}
+
+.page-section__header h2 {
+	line-height: 44px;
+}
+
+.page-section__header__body {
+	font-family: @font-family-serif;
+	font-size: 20px;
+}
+
+.page-section__body {
+	float: right;
+	width: 50%;
+	padding-top: 180px;
+	padding-bottom: 180px;
+	opacity: 0;
+	transition: opacity 0.4s;
+	position: relative;
+	z-index: 2;
+
+	.first & {
+		opacity: 1;
+	}
+
+	.active & {
+		opacity: 1;
+	}
+}
+
+
+.page-section--form .page-section__body {
+	opacity: 1;
+	padding-top: 0;
+	padding-bottom: 240px;
+}
+
+.bg-image {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: block;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" 0 ")";
+	filter: alpha(opacity=0);
+	-o-opacity: 0;
+	-ms-opacity: 0;
+	-webkit-opacity: 0;
+	opacity: 0;
+	-o-transition: opacity .3s linear;
+	-moz-transition: opacity .3s linear;
+	-webkit-transition: opacity .3s linear;
+	transition: opacity .3s linear;	
+	background: url("http://www.ef.com/Campaign/2014/summeranza/img/bg-getticket.jpg") no-repeat;
+	z-index: 1;
+	background-size: cover;
+	.bg4 & {
+		opacity: 1;
+	}
+}
+
+/* TEMP FORM FIXES ================================== */
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+
+fieldset {
+	border: none;
+}
+
+input[type="text"], 
+input[type="email"],
+select {
+	width: 100%;
+	border-color: #000;
+}
+
+.button--submit {
+	.button;
+	.button--magenta;
+	width: 100%;
+}
+
+

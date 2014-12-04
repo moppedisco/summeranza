@@ -1,0 +1,87 @@
+/*------------------------------------*\
+    1.$DEFAULTS
+\*------------------------------------*/
+
+@debug-mode:        false;
+@global-border-box: true;
+
+/*------------------------------------*\
+    2.$BASE
+\*------------------------------------*/
+
+@base-font-size:    16;
+@base-line-height:  26;
+@base-ui-color:     #ccc;
+
+@link-color:        #202020;
+
+@body-bg:           #fff;
+@text-color:        #000;
+
+@brand-color--primary:  	#ec008c;
+@brand-color--secondary:	#003f5f;
+
+// -------------------------
+@use-simple-page:   true;
+@simple-page-width: 1200; // px (.page)
+@inner-page-width:	960;
+
+/*------------------------------------*\
+    3.$TYPOGRAPHY
+\*------------------------------------*/
+
+@font-family-base:        @font-family-sans-serif; // font set on <html> tag
+
+@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-serif:       Georgia, "Times New Roman", Times, serif;
+
+@headings-font-family:    "Roboto Condensed", sans-serif;
+
+// Headings
+// -------------------------
+
+@giga-size:         96;
+@mega-size:         60;
+@kilo-size:         50;
+
+@h1-size:           50; // .alpha
+@h1-font:      		@headings-font-family;
+
+@h2-size:           40; // .beta
+@h2-font: 			@headings-font-family; 
+
+@h3-size:           30; // .gamma
+@h3-font: 			@headings-font-family;
+
+@h4-size:           20; // .delta
+@h4-font: 			@font-family-sans-serif;
+
+@h5-size:           16; // .epsilon
+@h5-font: 			@font-family-sans-serif;
+
+@h6-size:           @base-font-size; // .zeta
+@h6-font: 			@font-family-sans-serif;
+
+@milli-size:        12;
+@micro-size:        10;
+
+/*------------------------------------*\
+    4.$OBJECTS
+\*------------------------------------*/
+
+@use-arrows:        true;
+@use-buttons:       true;
+@use-helpers:       true;
+@use-forms:         true;
+@use-grids:         true;
+	@grids-gutter:  15;
+@use-media:         true;
+@use-sprite:        true;
+
+/*------------------------------------*\
+    5.$DESIGN EXTENSIONS
+\*------------------------------------*/
+
+@use-gud25:         false;
+@use-gud30:         false;
+@use-gud31:         true;
