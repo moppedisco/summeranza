@@ -11,32 +11,7 @@
 </head>
 <body>
 <section class="section--full-screen-video">
-	<video id="mainVideo" class="videoPlayer" poster="" muted autoplay src="Coachella 2014-360.mp4"></video>
-	<svg viewBox="0 0 1500 600">
-	  <symbol id="s-text">
-	    <text text-anchor="middle"
-	          x="50%"
-	          y="68%"
-	          class="text--line2"
-	          >
-	      Summeranza
-	    </text>
-	    
-	  </symbol>
-	  
-	  <g class="g-ants">
-	    <use xlink:href="#s-text"
-	      class="text-copy"></use>     
-	    <use xlink:href="#s-text"
-	      class="text-copy"></use>     
-	    <use xlink:href="#s-text"
-	      class="text-copy"></use>     
-	    <use xlink:href="#s-text"
-	      class="text-copy"></use>     
-	    <use xlink:href="#s-text"
-	      class="text-copy"></use>     
-	  </g>
-	</svg>
+	<video id="mainVideo" class="videoPlayer" poster="" muted loop autoplay src="Coachella 2014-360.mp4"></video>
 	<article class="intro-text">
 		<h1>Summeranza</h1>
 		<p><i>The ultimate student festival</i></p>
@@ -53,6 +28,15 @@
 </section>
 <!-- /.section--small -->
 <section class="wrapper">
+	<nav class="site-navigation">
+		<span class="site-navigation__link"><img src="http://www.ef.com/sitecore/__~/media/A2E821EF87C64F91BDB813DBE6E0E7B5.ashx/" alt="" width="80" /></span><br />
+		<a class="site-navigation__link active"><span>Party</span></a>
+		<a class="site-navigation__link"><span>Artist</span></a>
+		<a class="site-navigation__link"><span>The venue</span></a>
+		<a class="site-navigation__link"><span>Get your ticket</span></a>
+		<a class="site-navigation__link"><span>Book your spot</span></a>
+	</nav>
+	<!-- /.site-navigation -->	
 	<article class="page-section first">
 		<div class="line">
 			<header class="page-section__header">
@@ -162,15 +146,7 @@
 		</div><!-- /.line -->
 	</article>
 	<!-- /.page-section -->
-	<nav class="site-navigation">
-		<span class="site-navigation__link"><img src="http://www.ef.com/sitecore/__~/media/A2E821EF87C64F91BDB813DBE6E0E7B5.ashx/" alt="" width="80" /></span><br />
-		<a class="site-navigation__link active"><span>Party</span></a>
-		<a class="site-navigation__link"><span>Artist</span></a>
-		<a class="site-navigation__link"><span>The venue</span></a>
-		<a class="site-navigation__link"><span>Get your ticket</span></a>
-		<a class="site-navigation__link"><span>Book your spot</span></a>
-	</nav>
-	<!-- /.site-navigation -->	
+
 </section><!-- /.wrapper -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script type="text/javascript" src="js/fastClick.js"></script>
@@ -179,46 +155,70 @@
 <script>
 (function(window){
 
-	function init(){
-
-		adjustVideoPositioning("#mainVideo");
-
-		var backgroundColors = [
+	var body = document.body, 
+		docElem = window.document.documentElement,
+		backgroundColors = [
 			"bg1",
 			"bg2",
 			"bg3",
 			"bg4",
 			"bg5"
-		];
+		],
+		$intro = $('.section--full-screen-video');
+
+	function init(){
+		adjustVideoPositioning("#mainVideo");
+		reSizeVideoWrapper();
+
+		// if(!Modernizr.touch){
+			createWaypoint();
+		// }
 
 		$(".watch-video").on("click",function(){
-			$(".intro-text").fadeOut(800,function(){
-				document.getElementById("mainVideo").muted = false;
-				document.getElementById("mainVideo").currentTime = 0;
-			})
+			// if(scrollY()>0){
+			// 	$("body").animate({
+			// 		scrollTop: 0
+			// 	},400,function(){
+			// 		// $(".wrapper,.section--small").hide();
+			// 		$(".intro-text").fadeOut(800,function(){
+			// 			document.getElementById("mainVideo").muted = false;
+			// 			document.getElementById("mainVideo").loop = false;
+			// 			document.getElementById("mainVideo").currentTime = 0;
+			// 			document.getElementById("mainVideo").controls = true;
+			// 		});
+			// 	});
+			// } else {
+				// $(".wrapper,.section--small").hide();
+				$(".intro-text").fadeOut(800,function(){
+					document.getElementById("mainVideo").muted = false;
+					document.getElementById("mainVideo").loop = false;
+					document.getElementById("mainVideo").currentTime = 0;
+					document.getElementById("mainVideo").controls = true;
+				});				
+			// }
 		});
 
 		$(window).resize(function() {
-			adjustVideoPositioning("#mainVideo");
-			reSizeVideoWrapper();
+			if(!Modernizr.touch){
+				adjustVideoPositioning("#mainVideo");
+				reSizeVideoWrapper();
+			}
 		});
+	}
 
-		reSizeVideoWrapper();
-
+	function createWaypoint(){
 		$('.page-section:eq(0)').addClass("static");
 		$('.page-section').waypoint({
 			handler: function(direction) {
-				var currentIndex = $(this).index();
+				var currentIndex = $(".page-section").index(this);
 					prevIndex = currentIndex-1;
-				console.log($(this).index());
-
-
+				console.log(currentIndex);
 
 				if(direction === "down"){
 					console.log(direction);
 					$("body").attr("class","").addClass(backgroundColors[currentIndex]);
 
-					if($(this).index() === 0){
+					if(currentIndex === 0){
 						return false
 					}
 
@@ -246,7 +246,6 @@
 			},
 			offset: "50%"
 		});
-
 		$('.page-section.first').waypoint({
 			handler: function(direction) {
 				if(direction === "down"){
@@ -264,11 +263,7 @@
 	}
 
 	function reSizeVideoWrapper(){
-		var vHeight = $(window).height(),
-			vWidth = $(window).width(),
-			cover = $('.section--full-screen-video');
-
-		cover.css({"height":vHeight,"width":vWidth});		
+		$intro.css({"height":getViewportH(),"width":getViewportW()});	
 	}
 
 	function adjustVideoPositioning(element) {
@@ -303,6 +298,21 @@
 				.css('width',windowW)
 				.css('height',windowW/mediaAspect);
 		}
+	}
+
+	function getViewportW() {
+		var client = docElem['clientWidth'], inner = window['innerWidth'];
+		return client < inner ? inner : client;
+	}
+	function getViewportH() {
+		var client = docElem['clientHeight'], inner = window['innerHeight'];
+		return client < inner ? inner : client;
+	}
+	function scrollX() { 
+		return window.pageXOffset || docElem.scrollLeft; 
+	}
+	function scrollY() { 
+		return window.pageYOffset || docElem.scrollTop; 
 	}
 
 	window.Application = {
