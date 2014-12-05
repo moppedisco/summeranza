@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'fontello';
-  src: url('/EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.eot?93955932');
-  src: url('/EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.eot?93955932#iefix') format('embedded-opentype'), url('/EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.woff?93955932') format('woff'), url('/EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.ttf?93955932') format('truetype'), url('/EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.svg?93955932#fontello') format('svg');
+  src: url('summeranza/EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.eot?93955932');
+  src: url('summeranza/EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.eot?93955932#iefix') format('embedded-opentype'), url('summeranza/EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.woff?93955932') format('woff'), url('summeranza/EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.ttf?93955932') format('truetype'), url('summeranza/EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.svg?93955932#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }

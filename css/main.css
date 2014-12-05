@@ -1390,77 +1390,6 @@ Created:    2012-04-11
 .media .bd > :last-child {
   margin-bottom: 0;
 }
-/*------------------------------------*\
-    $SPRITE
-\*------------------------------------*/
-.sprite,
-.icon {
-  display: inline-block;
-  line-height: 1;
-  position: relative;
-  vertical-align: middle;
-  zoom: 1;
-  /**
-     * So using `.icon` on certain elements doesn’t make a visual difference.
-     */
-
-  font-style: normal;
-  font-weight: normal;
-  /**
-     * So icons added using `.icon` sit in the centre of the element.
-     */
-
-  text-align: center;
-}
-.sprite {
-  /**
-     * The typical size of most icons. Override in your theme stylesheet.
-     */
-
-  width: 16px;
-  height: 16px;
-  top: -1px;
-  /*
-     * H5BP method image replacement:
-     * github.com/h5bp/html5-boilerplate/commit/adecc5da035d6d76b77e3fa95c6abde841073da2
-     */
-
-  overflow: hidden;
-  *text-indent: -9999px;
-}
-.sprite:before {
-  content: "";
-  display: block;
-  width: 0;
-  height: 100%;
-}
-/**
- * Set up icon font
- */
-.icon {
-  font-size: 16px;
-  /**
-     * Place the icon in a box the exact same dimensions as the icon itself.
-     */
-
-  width: 1em;
-  height: 1em;
-}
-.icon:before {
-  content: attr(data-icon);
-}
-/**
- * Icon size modifiers.
- */
-.icon--large {
-  font-size: 32px;
-}
-.icon--huge {
-  font-size: 64px;
-}
-.icon--natural {
-  font-size: inherit;
-}
 /**
  * Design includes
  */
@@ -1469,8 +1398,8 @@ Created:    2012-04-11
 \*------------------------------------*/
 @font-face {
   font-family: 'fontello';
-  src: url('/EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.eot?93955932');
-  src: url('/EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.eot?93955932#iefix') format('embedded-opentype'), url('/EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.woff?93955932') format('woff'), url('/EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.ttf?93955932') format('truetype'), url('/EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.svg?93955932#fontello') format('svg');
+  src: url('EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.eot?93955932');
+  src: url('EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.eot?93955932#iefix') format('embedded-opentype'), url('EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.woff?93955932') format('woff'), url('EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.ttf?93955932') format('truetype'), url('EF-CSS-FRAMEWORK/extensions/design/fontello/fontello.svg?93955932#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -2832,102 +2761,10 @@ a:hover {
   vertical-align: middle;
   text-align: center;
 }
-/* Global =========================================== */
+/* Buttons & icons ================================== */
 /* ================================================== */
 /* ================================================== */
 /* ================================================== */
-.site-navigation {
-  position: absolute;
-  left: 0;
-  top: 180px;
-  z-index: 10;
-  width: 200px;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-.no-touch .site-navigation.fixed {
-  position: fixed;
-  top: 180px;
-}
-@media only screen and (min-width: 1px) and (max-width: 719px) {
-  .site-navigation {
-    position: -webkit-sticky;
-    position: -moz-sticky;
-    position: -ms-sticky;
-    position: -o-sticky;
-    top: 0;
-    width: 100%;
-    padding: 0 20px;
-    white-space: nowrap;
-    overflow: hidden;
-    display: block;
-    background: rgba(255, 255, 255, 0.9);
-  }
-}
-.site-navigation__link {
-  display: block;
-  font-weight: bold;
-  text-decoration: none;
-}
-@media only screen and (min-width: 1px) and (max-width: 719px) {
-  .site-navigation__link:first-child {
-    display: none;
-  }
-}
-.site-navigation__link span {
-  border-bottom: 2px solid transparent;
-}
-.site-navigation__link.active span {
-  border-bottom: 2px solid #000;
-}
-@media only screen and (min-width: 1px) and (max-width: 719px) {
-  .site-navigation__link {
-    display: inline-block;
-  }
-}
-body {
-  -o-transition: background 0.5s ease-in-out;
-  -moz-transition: background 0.5s ease-in-out;
-  -webkit-transition: background 0.5s ease-in-out;
-  transition: background 0.5s ease-in-out;
-}
-.bg2 {
-  background: green;
-}
-.bg3 {
-  background: orange;
-}
-/* INTRO ============================================ */
-/* ================================================== */
-/* ================================================== */
-/* ================================================== */
-.intro-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-  z-index: 9;
-  color: #fff;
-  text-align: center;
-}
-.intro-text h1 {
-  margin: 0;
-  font-size: 105px;
-}
-.intro-text i {
-  font-family: georgia;
-  font-size: 22px;
-}
-.videoPlayer {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  height: auto;
-  width: auto;
-  z-index: 2;
-  top: 0;
-  left: 0;
-}
 .watch-video {
   display: inline-block;
   vertical-align: middle;
@@ -2970,6 +2807,204 @@ body {
   background: rgba(0, 0, 0, 0.1);
   color: #fff;
 }
+.button--section-jump {
+  width: 25%;
+  height: 60px;
+  display: none;
+  text-decoration: none;
+  float: left;
+  text-align: center;
+  font-size: 32px;
+  line-height: 60px;
+  color: #fff;
+  border-left: 1px solid #000;
+  border-left: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .button--section-jump {
+    display: inline;
+  }
+}
+.button--section-jump--up {
+  width: 25%;
+  height: 60px;
+  display: none;
+  text-decoration: none;
+  float: left;
+  text-align: center;
+  font-size: 32px;
+  line-height: 60px;
+  color: #fff;
+  border-left: 1px solid #000;
+  border-left: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .button--section-jump--up {
+    display: inline;
+  }
+}
+.button--section-jump--down {
+  width: 25%;
+  height: 60px;
+  display: none;
+  text-decoration: none;
+  float: left;
+  text-align: center;
+  font-size: 32px;
+  line-height: 60px;
+  color: #fff;
+  border-left: 1px solid #000;
+  border-left: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .button--section-jump--down {
+    display: inline;
+  }
+}
+/* Global =========================================== */
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+body {
+  -o-transition: background 0.5s ease-in-out;
+  -moz-transition: background 0.5s ease-in-out;
+  -webkit-transition: background 0.5s ease-in-out;
+  transition: background 0.5s ease-in-out;
+}
+.bg2 {
+  background: green;
+}
+.bg3 {
+  background: orange;
+}
+/* Navigation ======================================= */
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+.site-navigation {
+  position: absolute;
+  left: 0;
+  top: 180px;
+  z-index: 10;
+  width: 200px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .site-navigation {
+    position: static;
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .site-navigation.fixed {
+    opacity: 1;
+  }
+}
+.no-touch .site-navigation.fixed {
+  position: fixed;
+  top: 180px;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .no-touch .site-navigation.fixed {
+    top: 0;
+  }
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .site-navigation__logo {
+    display: none;
+  }
+}
+.site-navigation__link {
+  display: block;
+  font-weight: bold;
+  text-decoration: none;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .site-navigation__link {
+    color: #fff;
+    opacity: 0.3;
+  }
+}
+.site-navigation__link span {
+  border-bottom: 2px solid transparent;
+}
+.site-navigation__link.active {
+  display: block;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .site-navigation__link.active {
+    opacity: 1;
+  }
+}
+.site-navigation__link.active span {
+  border-bottom: 2px solid #000;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .site-navigation__link.active span {
+    border: none;
+  }
+}
+.site-navigation__link-group {
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .site-navigation__link-group {
+    width: 50%;
+    float: left;
+    height: 30px;
+    padding-top: 17px;
+    text-align: center;
+  }
+}
+/* INTRO ============================================ */
+/* ================================================== */
+/* ================================================== */
+/* ================================================== */
+.intro-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  z-index: 9;
+  color: #fff;
+  text-align: center;
+}
+.intro-text h1 {
+  margin: 0;
+  font-size: 105px;
+}
+.intro-text i {
+  font-family: georgia;
+  font-size: 22px;
+}
+.videoPlayer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  height: auto;
+  width: auto;
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
 .section--full-screen-video {
   width: 100%;
   height: 100%;
@@ -2996,6 +3031,11 @@ body {
   z-index: 1;
   opacity: 0.4;
   cursor: pointer;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  #mainVideo {
+    display: none;
+  }
 }
 /* Content sections ================================= */
 /* ================================================== */
@@ -3098,6 +3138,7 @@ body {
   opacity: 1;
   padding-top: 0;
   padding-bottom: 240px;
+  min-height: 800px;
 }
 .bg-image {
   width: 100%;
@@ -3135,7 +3176,18 @@ input[type="text"],
 input[type="email"],
 select {
   width: 100%;
-  border-color: #000;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  box-shadow: none;
+  font-size: 32px;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  min-height: 50px;
+  color: #aaa;
+  font-family: Georgia;
+  font-style: italic;
 }
 .button--submit {
   display: inline-block;

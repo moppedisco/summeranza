@@ -28,21 +28,27 @@
 </section>
 <!-- /.section--small -->
 <section class="wrapper">
-	<nav class="site-navigation">
-		<span class="site-navigation__link"><img src="http://www.ef.com/sitecore/__~/media/A2E821EF87C64F91BDB813DBE6E0E7B5.ashx/" alt="" width="80" /></span><br />
-		<a class="site-navigation__link active"><span>Party</span></a>
-		<a class="site-navigation__link"><span>Artist</span></a>
-		<a class="site-navigation__link"><span>The venue</span></a>
-		<a class="site-navigation__link"><span>Get your ticket</span></a>
-		<a class="site-navigation__link"><span>Book your spot</span></a>
-	</nav>
+	<div class="site-navigation">
+		<a class="site-navigation__logo">
+			<img src="http://www.ef.com/sitecore/__~/media/A2E821EF87C64F91BDB813DBE6E0E7B5.ashx/" alt="" width="80" />
+		</a>
+		<nav class="site-navigation__link-group">
+			<a class="site-navigation__link active"><span>Overview</span></a>
+			<a class="site-navigation__link"><span>Artists</span></a>
+			<a class="site-navigation__link"><span>The crowd</span></a>
+			<a class="site-navigation__link"><span>Social</span></a>
+			<a class="site-navigation__link"><span>Tickets</span></a>
+		</nav>
+		<a class="button--section-jump--up icon-up-open-mini"></a>
+		<a class="button--section-jump--down icon-down-open-mini"></a>		
+	</div>
 	<!-- /.site-navigation -->	
 	<article class="page-section first">
 		<div class="line">
 			<header class="page-section__header">
-				<h2>THE PARTY OF THE SUMMER</h2>
+				<h2>THE ULTIMATE STUDENT FESTIVAL</h2>
 				<div class="page-section__header__body">
-					<p>Summeranza is singing in the front row and shaking it to a headline performance. It's VIPs, roller coasters and cotton candy with 5,000 students from over 100 countries. Summeranza is the ultimate student festival - and the highlight of your language experience abroad with EF.</p>
+					<p>London. 10,000 screaming students from over 100 countries. Major performing artists on the main stage. DJ sets, carnival rides and all the cotton candy you can stomach. This is Summeranza. It’s only for EF students. And it will make your summer.</p>
 				</div>
 			</header>
 			<div class="page-section__body">
@@ -56,9 +62,9 @@
 	<article class="page-section">
 		<div class="line">
 			<header class="page-section__header">
-				<h2>THE LINEUP</h2>
+				<h2>AWARD-WINNING, PARTY ROCKING</h2>
 				<div class="page-section__header__body">
-					<p>Roll out the red carpet, start the drum roll and meet our Summeranza superstars</p>
+					<p>We don’t do B list. Our headliners win Grammys and our opening acts will soon. They come from all over the world and they know how to make 10,000 people dance. We wouldn’t accept anything less.</p>
 				</div>
 			</header>
 			<div class="page-section__body">
@@ -72,9 +78,9 @@
 	<article class="page-section">
 		<div class="line">
 			<header class="page-section__header">
-				<h2>5,000 STUDENTS FROM OVER 100 COUNTRIES</h2>
+				<h2>COOL PEOPLE = COOL FESTIVALS</h2>
 				<div class="page-section__header__body">
-					<p>in the same place on the same day</p>
+					<p>100 nationalities. Good luck finding any summer festival as global as this. Actually, don’t even try. Summeranza is one of a kind.</p>
 				</div>
 			</header>
 			<div class="page-section__body">
@@ -88,9 +94,9 @@
 	<article class="page-section">
 		<div class="line">
 			<header class="page-section__header">
-				<h2>GET YOUR TICKET</h2>
+				<h2>#SUMMERANZA</h2>
 				<div class="page-section__header__body">
-					<p>€75 - everything included</p>
+					<p>A will.i.am tweet minutes before he steps on stage. A Sky Blu selfie. And about 37,000 other status updates, tweets and instas. All with one killer hashtag.</p>
 				</div>
 			</header>
 			<div class="page-section__body">
@@ -105,7 +111,8 @@
 	<article class="page-section page-section--form">
 		<div class="line">
 			<header class="page-section__header">
-				<h2>BOOK YOUR SPOT</h2>
+				<h2>GET YOUR TICKET</h2>
+				<p>Summeranza is not just a concert. It’s a full-day festival of music, rides, food, dancing and enough social posts to blow up your feed. And you get it all with one magical ticket.</p>
 			</header>
 			<div class="page-section__body">
 				<form action="">
@@ -167,12 +174,29 @@
 		$intro = $('.section--full-screen-video');
 
 	function init(){
+		if(Modernizr.touch){
+			// $(".site-navigation").css({"top":getViewportH()-50});	
+		}
 		adjustVideoPositioning("#mainVideo");
 		reSizeVideoWrapper();
 
 		// if(!Modernizr.touch){
 			createWaypoint();
 		// }
+
+		$(".button--section-jump--down").on("click",function(){	
+			$('body').animate({
+				scrollTop: $(".page-section.active").next().offset().top-100
+			}, 800);
+			return false
+		});
+
+		$(".button--section-jump--up").on("click",function(){
+			$('body').animate({
+				scrollTop: $(".page-section.active").prev().offset().top-100
+			}, 800);
+			return false
+		});
 
 		$(".watch-video").on("click",function(){
 			// if(scrollY()>0){
@@ -207,16 +231,20 @@
 	}
 
 	function createWaypoint(){
+		menuLineheight = 26;
 		$('.page-section:eq(0)').addClass("static");
 		$('.page-section').waypoint({
 			handler: function(direction) {
 				var currentIndex = $(".page-section").index(this);
 					prevIndex = currentIndex-1;
+					
 				console.log(currentIndex);
 
 				if(direction === "down"){
 					console.log(direction);
+					menuLineheight = (menuLineheight - 26);
 					$("body").attr("class","").addClass(backgroundColors[currentIndex]);
+					$(".site-navigation__link-group").css({"transform":"translateY("+menuLineheight+"px)"});
 
 					if(currentIndex === 0){
 						return false
@@ -225,11 +253,13 @@
 					$('.page-section').removeClass("active");
 					$(this).addClass("active");
 
-					$(".site-navigation a").removeClass("active");
-					$(".site-navigation a:eq("+(currentIndex)+")").addClass("active");
+					$(".site-navigation__link-group a").removeClass("active");
+					$(".site-navigation__link-group a:eq("+(currentIndex)+")").addClass("active");
 
 				} else if(direction === "up"){
 					$("body").attr("class","").addClass(backgroundColors[prevIndex]);
+					menuLineheight = (menuLineheight + 26);
+					$(".site-navigation__link-group").css({"transform":"translateY("+menuLineheight+"px)"});
 					console.log(direction);
 
 					if(prevIndex < 0){
@@ -237,9 +267,9 @@
 					}
 
 					$('.page-section').removeClass("active");
-					$(".site-navigation a").removeClass("active");
+					$(".site-navigation__link-group a").removeClass("active");
 
-					$(".site-navigation a:eq("+prevIndex+")").addClass("active");
+					$(".site-navigation__link-group a:eq("+prevIndex+")").addClass("active");
 					$(".page-section:eq("+prevIndex+")").addClass("active");
 				}
 
