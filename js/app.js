@@ -7,9 +7,23 @@ START HERE //////////////////////////////////
 
 (function(window){
 
+	var animEndEventNames = { 'WebkitAnimation' : 'webkitAnimationEnd', 'OAnimation' : 'oAnimationEnd', 'msAnimation' : 'MSAnimationEnd', 'animation' : 'animationend' },
+		// animation end event name
+		animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ],
+		promiseVideoloaded = new $.Deferred(),
+		promiseIntroAnimIn = new $.Deferred(),
+		promiseIntroAnimOut = new $.Deferred();
+
 	// Main app
 	function init(){
+
 		Summeranza.app.init();
+
+		if(!Modernizr.touch){
+			loadVideoIntro();	
+		} else {
+
+		}
 
 		Modernizr.load({
 			test: Modernizr.touch,
@@ -20,6 +34,28 @@ START HERE //////////////////////////////////
 				}
 			}
 		});		
+	}
+
+	function loadVideoIntro(){
+		$("#mainVideo")[0].addEventListener('loadeddata', function() {
+			console.log("video is loaded");
+			promiseVideoloaded.resolve(this);
+		});
+
+		$(".loader-circle")[0].addEventListener( animEndEventName, function(){
+			console.log("loader animation done");
+			promiseIntroAnimIn.resolve(this);
+		});
+
+		// $(".loader-screen")[0].addEventListener( animEndEventName, function(){
+		// 	console.log("loader screen disapeared");
+		// 	// promiseIntroAnimOut.resolve(this);
+		// });
+
+		var pelle = $.when( promiseVideoloaded, promiseIntroAnimIn ).done(function ( v1, v2 ) {
+		    $(".loader-screen").addClass("loaded");
+		    console.log("intro anim and video is done");
+		});
 	}
 
 	window.Summeranza = {
@@ -66,7 +102,7 @@ MAIN FUNCTIONALITY //////////////////////////
 Summeranza.app = (function(window){
 
 	var $body = $("body"),
-		$intro = $('.section--full-screen-video'),
+		$intro = $('.header--full-screen-video'),
 		$panels = $(".page-section"),
 		$navigation = $(".site-navigation__link-group"),
 		$buttonScrollDown = $(".button--section-jump--down"),
@@ -80,7 +116,6 @@ Summeranza.app = (function(window){
 			"bg4",
 			"bg5"
 		];
-		
 
 	function init(){
 		
@@ -90,6 +125,7 @@ Summeranza.app = (function(window){
 
 		initNavigationButtons();
 		initWaypoints();
+		initVideoplayer();
 
 		$(".button--watch-video").on("click",function(){
 			playIntroVideo();
@@ -101,6 +137,10 @@ Summeranza.app = (function(window){
 				reSizeVideoWrapper();
 			}
 		});
+	}
+
+	function initVideoplayer(){
+
 	}
 
 	function playIntroVideo(){
