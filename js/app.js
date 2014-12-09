@@ -71,6 +71,7 @@ Summeranza.app = (function(window){
 		$navigation = $(".site-navigation__link-group"),
 		$buttonScrollDown = $(".button--section-jump--down"),
 		$buttonScrollUp = $(".button--section-jump--up"),
+		activePanelIndex = 0,
 		menuLinkheight = $(".site-navigation__link").height(),
 		backgroundColors = [
 			"bg1",
@@ -82,35 +83,16 @@ Summeranza.app = (function(window){
 		
 
 	function init(){
-		adjustVideoPositioning("#mainVideo");
+		
 		reSizeVideoWrapper();
+
+		adjustVideoPositioning("#mainVideo");
 
 		initNavigationButtons();
 		initWaypoints();
-	
 
-		$(".watch-video").on("click",function(){
-			// if(scrollY()>0){
-			// 	$("body").animate({
-			// 		scrollTop: 0
-			// 	},400,function(){
-			// 		// $(".wrapper,.section--small").hide();
-			// 		$(".intro-text").fadeOut(800,function(){
-			// 			document.getElementById("mainVideo").muted = false;
-			// 			document.getElementById("mainVideo").loop = false;
-			// 			document.getElementById("mainVideo").currentTime = 0;
-			// 			document.getElementById("mainVideo").controls = true;
-			// 		});
-			// 	});
-			// } else {
-				// $(".wrapper,.section--small").hide();
-				$(".intro-text").fadeOut(800,function(){
-					document.getElementById("mainVideo").muted = false;
-					document.getElementById("mainVideo").loop = false;
-					document.getElementById("mainVideo").currentTime = 0;
-					document.getElementById("mainVideo").controls = true;
-				});				
-			// }
+		$(".button--watch-video").on("click",function(){
+			playIntroVideo();
 		});
 
 		$(window).resize(function() {
@@ -121,9 +103,33 @@ Summeranza.app = (function(window){
 		});
 	}
 
+	function playIntroVideo(){
+		if(Summeranza.helpers.scrollY()>0){
+			$body.animate({
+				scrollTop: 0
+			},400,function(){
+				$(".wrapper,.section--small").hide();
+				$(".intro-text").fadeOut(800,function(){
+					document.getElementById("mainVideo").muted = false;
+					document.getElementById("mainVideo").loop = false;
+					document.getElementById("mainVideo").currentTime = 0;
+					document.getElementById("mainVideo").controls = true;
+				});
+			});
+		} else {
+			$(".wrapper,.section--small").hide();
+			$(".intro-text").fadeOut(800,function(){
+				document.getElementById("mainVideo").muted = false;
+				document.getElementById("mainVideo").loop = false;
+				document.getElementById("mainVideo").currentTime = 0;
+				document.getElementById("mainVideo").controls = true;
+			});				
+		}		
+	}
+
 	function initNavigationButtons(){
 		// Scroll down button mobile
-		$buttonScrollDown.on("click",function(){	
+		$buttonScrollDown.on("click",function(){
 			$body.animate({
 				scrollTop: $(".page-section.active").next().offset().top-92
 			}, 800);
@@ -131,9 +137,15 @@ Summeranza.app = (function(window){
 		});
 		// Scroll up button mobile
 		$buttonScrollUp.on("click",function(){
-			$body.animate({
-				scrollTop: $(".page-section.active").prev().offset().top-92
-			}, 800);
+			if(activePanelIndex != 0){
+				$body.animate({
+					scrollTop: $(".page-section.active").prev().offset().top-92
+				}, 800);
+			} else {
+				$body.animate({
+					scrollTop: $(".page-section.first").offset().top
+				}, 800);				
+			}
 			return false
 		});	
 
@@ -185,11 +197,12 @@ Summeranza.app = (function(window){
 	}
 
 	function setActiveSection(activeIndex){
+		activePanelIndex = activeIndex;
 		// Reset navigation
 		$navigation.find("a").removeClass("active");
 		// Animate navigation
 		if(Modernizr.touch){
-			$navigation.css({"-webkit-transform":"translateY(-"+(menuLinkheight*(activeIndex))+"px)"});
+			$navigation.css({"transform":"translateY(-"+(menuLinkheight*(activeIndex))+"px)"});
 		}
 		// Set active navigation element
 		$navigation.find("a:eq("+activeIndex+")").addClass("active");
