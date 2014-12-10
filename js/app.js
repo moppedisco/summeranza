@@ -79,6 +79,7 @@ Summeranza.app = (function(window){
 		$navigation = $(".site-navigation__link-group"),
 		$buttonScrollDown = $(".button--section-jump--down"),
 		$buttonScrollUp = $(".button--section-jump--up"),
+		$videoElement = $("#mainVideo"),
 		activePanelIndex = 0,
 		menuLinkheight = $(".site-navigation__link").height(),
 		backgroundColors = [
@@ -99,10 +100,6 @@ Summeranza.app = (function(window){
 		initWaypoints();
 		initVideoplayer();
 
-		$(".button--watch-video").on("click",function(){
-			playIntroVideo();
-		});
-
 		$(window).resize(function() {
 			if(!Modernizr.touch){
 				adjustVideoPositioning("#mainVideo");
@@ -111,32 +108,57 @@ Summeranza.app = (function(window){
 		});
 	}
 
-	function initVideoplayer(){
+	function initVideoplayer(callback){
+		$videoElement[0].addEventListener("pause",function(){
+			stopVideo();
+		});
+
+		$(".button--watch-video").on("click",function(){
+			playIntro(function(){
+				playVideo();
+			});
+		});
+
+		$(".button--scrolldown").on("click",function(){
+			stopVideo();
+		});
 
 	}
 
-	function playIntroVideo(){
+	function playIntro(callback){
 		if(Summeranza.helpers.scrollY()>0){
 			$body.animate({
 				scrollTop: 0
 			},400,function(){
-				$(".wrapper,.section--small").hide();
-				$(".intro-text").fadeOut(800,function(){
-					document.getElementById("mainVideo").muted = false;
-					document.getElementById("mainVideo").loop = false;
-					document.getElementById("mainVideo").currentTime = 0;
-					document.getElementById("mainVideo").controls = true;
-				});
+				callback();
 			});
 		} else {
-			$(".wrapper,.section--small").hide();
-			$(".intro-text").fadeOut(800,function(){
-				document.getElementById("mainVideo").muted = false;
-				document.getElementById("mainVideo").loop = false;
-				document.getElementById("mainVideo").currentTime = 0;
-				document.getElementById("mainVideo").controls = true;
-			});				
+			callback();		
 		}		
+	}
+
+	function playVideo(){
+		window.addEventListener( 'scroll', noscroll );
+		$(".button--watch-video").fadeOut();
+
+		$(".intro-text").fadeOut(800,function(){
+			$videoElement[0].muted = false;
+			$videoElement[0].loop = false;
+			$videoElement[0].currentTime = 0;
+		});		
+	}
+
+	function stopVideo(){
+		window.removeEventListener( 'scroll', noscroll );
+		$(".button--watch-video").fadeIn();
+		$(".intro-text").fadeIn();		
+		$videoElement[0].loop = true;
+		$videoElement[0].controls = false;
+		$videoElement[0].muted = true;
+	}
+
+	function noscroll() {
+		window.scrollTo(0,0);
 	}
 
 	function initNavigationButtons(){
