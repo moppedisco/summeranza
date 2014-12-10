@@ -19,12 +19,6 @@ START HERE //////////////////////////////////
 
 		Summeranza.app.init();
 
-		if(!Modernizr.touch){
-			loadVideoIntro();	
-		} else {
-
-		}
-
 		Modernizr.load({
 			test: Modernizr.touch,
 			yep : ['js/fastClick.js'],
@@ -34,28 +28,6 @@ START HERE //////////////////////////////////
 				}
 			}
 		});		
-	}
-
-	function loadVideoIntro(){
-		$("#mainVideo")[0].addEventListener('loadeddata', function() {
-			console.log("video is loaded");
-			promiseVideoloaded.resolve(this);
-		});
-
-		$(".loader-circle")[0].addEventListener( animEndEventName, function(){
-			console.log("loader animation done");
-			promiseIntroAnimIn.resolve(this);
-		});
-
-		// $(".loader-screen")[0].addEventListener( animEndEventName, function(){
-		// 	console.log("loader screen disapeared");
-		// 	// promiseIntroAnimOut.resolve(this);
-		// });
-
-		var pelle = $.when( promiseVideoloaded, promiseIntroAnimIn ).done(function ( v1, v2 ) {
-		    $(".loader-screen").addClass("loaded");
-		    console.log("intro anim and video is done");
-		});
 	}
 
 	window.Summeranza = {
