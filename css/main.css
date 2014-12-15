@@ -3149,6 +3149,7 @@ body {
   transition: opacity 0.4s;
   position: relative;
   z-index: 2;
+  min-height: 800px;
 }
 .first.static .page-section__body {
   opacity: 1;
