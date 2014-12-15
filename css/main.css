@@ -2843,18 +2843,10 @@ body {
   -moz-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
   -webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
   transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
-  background: #3F6B87;
-  color: #fff;
-}
-.bg2 {
-  background: none;
-  color: #000;
-}
-.bg3 {
-  background: #FFD1BA;
 }
 .bg5 {
-  background: #000;
+  background: #EF3C66;
+  color: #fff;
 }
 /* Navigation ======================================= */
 /* ================================================== */
@@ -2904,6 +2896,14 @@ body {
 .no-touch .site-navigation.fixed {
   margin-top: 0;
 }
+.site-navigation__logo {
+  height: 31px;
+  display: block;
+  overflow: hidden;
+  margin-left: -11px;
+  margin-bottom: 20px;
+  margin-top: 9px;
+}
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .site-navigation__logo {
     display: none;
@@ -2914,6 +2914,10 @@ body {
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;
+  transition: color 0.5s ease-in-out;
+}
+.bg5 .site-navigation__link {
+  color: #fff;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .site-navigation__link {
@@ -2934,6 +2938,9 @@ body {
 }
 .site-navigation__link.active span {
   border-bottom: 2px solid #000;
+}
+.bg5 .site-navigation__link.active span {
+  border-bottom-color: #fff;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .site-navigation__link.active span {
@@ -3088,9 +3095,10 @@ body {
 .section--small {
   text-align: center;
   font-family: georgia;
-  padding: 80px 0 0;
+  padding: 40px 0;
   font-size: 33px;
   line-height: 130%;
+  background: #EF3C66;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .section--small {
@@ -3100,7 +3108,7 @@ body {
 }
 .page-section--footer {
   height: 800px;
-  background: #000;
+  background: #EF3C66;
   color: #fff;
 }
 .page-section__header {
@@ -3190,10 +3198,10 @@ body {
   -moz-transition: opacity .3s linear;
   -webkit-transition: opacity .3s linear;
   transition: opacity .3s linear;
-  background: url("http://www.ef.com/Campaign/2014/summeranza/img/bg-getticket.jpg") no-repeat;
+  background: url("../img/background1.png") no-repeat;
   background-size: cover;
 }
-.bg4 .bg-image {
+.bg3 .bg-image {
   opacity: 1;
 }
 /* TEMP FORM FIXES ================================== */
@@ -3209,14 +3217,14 @@ select {
   width: 100%;
   background: none;
   border: none;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #fff;
   outline: none;
   box-shadow: none;
   font-size: 32px;
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
   min-height: 50px;
-  color: #aaa;
+  color: #fff;
   font-family: Georgia;
   font-style: italic;
 }
@@ -3244,7 +3252,7 @@ select {
   font-weight: bold;
   text-decoration: none;
   font-size: 93%;
-  background: #ec008c;
+  background: #000;
   color: #fff;
   width: 100%;
 }
@@ -3259,6 +3267,18 @@ select {
   outline: none;
 }
 .button--submit:hover {
-  background: rgba(236, 0, 140, 0.7);
+  background: #000;
+  background: rgba(0, 0, 0, 0.8);
   color: #fff;
+}
+.slides {
+  list-style: none;
+  margin: 0;
+}
+.slider li {
+  float: left;
+}
+.slides li img {
+  width: 50%;
+  float: left;
 }
