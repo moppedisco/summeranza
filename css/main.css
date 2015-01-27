@@ -2761,6 +2761,12 @@ a:hover {
   vertical-align: middle;
   text-align: center;
 }
+.tower {
+  opacity: 0;
+}
+.tower.bounceInUp {
+  opacity: 1;
+}
 /* Buttons & icons ================================== */
 /* ================================================== */
 /* ================================================== */
@@ -2843,6 +2849,15 @@ body {
   -moz-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
   -webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
   transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+.bg1 {
+  background: #ffeead;
+}
+.bg2 {
+  background: #d2eae4;
+}
+.bg3 {
+  background: #faccbb;
 }
 .bg5 {
   background: #EF3C66;
@@ -3074,6 +3089,22 @@ body {
     display: none;
   }
 }
+.wave {
+  width: 100%;
+  position: fixed;
+  z-index: 90;
+  bottom: 0px;
+  transform: translateY(100%);
+  transition: transform 4s;
+  transition-delay: 0.9s;
+}
+.text-content {
+  position: absolute;
+  top: 180px;
+  left: 0;
+  width: 50%;
+  text-align: left;
+}
 /* Content sections ================================= */
 /* ================================================== */
 /* ================================================== */
@@ -3082,7 +3113,7 @@ body {
   position: relative;
 }
 .page-section {
-  padding: 0 10% 0 200px;
+  padding: 0 20px 0 200px;
   position: relative;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
@@ -3098,7 +3129,7 @@ body {
   padding: 40px 0;
   font-size: 33px;
   line-height: 130%;
-  background: #EF3C66;
+  background: #333;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .section--small {
@@ -3112,14 +3143,21 @@ body {
   color: #fff;
 }
 .page-section__header {
-  float: left;
-  width: 28%;
-  padding-top: 180px;
+  float: right;
+  right: 0;
+  width: 80%;
+  padding-top: 30px;
   opacity: 0;
   position: fixed;
   top: 0;
   transition: opacity 0.4s;
   z-index: 2;
+  text-align: right;
+}
+.page-section__header img {
+  width: 100%;
+  position: relative;
+  bottom: 0;
 }
 .page-section.active .page-section__header {
   opacity: 1;
@@ -3149,7 +3187,7 @@ body {
   font-size: 20px;
 }
 .page-section__body {
-  float: right;
+  float: left;
   width: 50%;
   padding-top: 180px;
   padding-bottom: 180px;
@@ -3157,7 +3195,7 @@ body {
   transition: opacity 0.4s;
   position: relative;
   z-index: 2;
-  min-height: 800px;
+  min-height: 1200px;
 }
 .first.static .page-section__body {
   opacity: 1;

@@ -34,6 +34,14 @@
 	text-align:center;	
 }
 
+.tower {
+	 opacity: 0;
+
+	 &.bounceInUp {
+	 	opacity: 1;
+	 }
+}
+
 /* Buttons & icons ================================== */
 /* ================================================== */
 /* ================================================== */
@@ -95,16 +103,15 @@ body {
 
 
 .bg1 {
-
+	background: rgb(255,238,173);
 }
 
 .bg2 {
-	// background: none;
-	// color: #000;
+	background: rgb(210,234,228);
 }
 
 .bg3 {
-	// background: #FFD1BA;
+	background: rgb(250,204,187);
 }
 
 .bg5 {
@@ -316,6 +323,28 @@ body {
 	}		
 }
 
+.wave {
+	width: 100%;
+	position: fixed;
+	z-index: 90; 
+	bottom: 0px;
+	transform: translateY(100%);
+	transition: transform 4s;
+	transition-delay: 0.9s;
+
+	&.active {
+		// transform: translateY(60%);
+	}
+}
+
+.text-content {
+	position: absolute;
+	top: 180px;
+	left: 0;
+	width: 50%;
+	text-align: left;	
+}
+
 /* Content sections ================================= */
 /* ================================================== */
 /* ================================================== */
@@ -326,7 +355,7 @@ body {
 }
 
 .page-section {
-	padding: 0 10% 0 200px;
+	padding: 0 20px 0 200px;
 	position: relative;
 
 	@media @mobile {
@@ -343,7 +372,7 @@ body {
 	padding: 40px 0;
 	font-size: 33px;
 	line-height: 130%;
-	background: #EF3C66;
+	background: #333;
 
 	@media @mobile {
 		padding: 40px 0;
@@ -358,14 +387,22 @@ body {
 }
 
 .page-section__header {
-	float: left;
-	width: 28%;
-	padding-top: 180px;
+	float: right;
+	right: 0;
+	width: 80%;
+	padding-top: 30px;
 	opacity: 0;
 	position: fixed;
 	top: 0;
 	transition: opacity 0.4s;
 	z-index: 2;
+	text-align: right;
+
+	img {
+		width: 100%;
+		position: relative;
+		bottom: 0;
+	}
 
 	.page-section.active & {
 		opacity: 1;
@@ -401,7 +438,7 @@ body {
 }
 
 .page-section__body {
-	float: right;
+	float: left;
 	width: 50%;
 	padding-top: 180px;
 	padding-bottom: 180px;
@@ -409,7 +446,7 @@ body {
 	transition: opacity 0.4s;
 	position: relative;
 	z-index: 2;
-	min-height: 800px;
+	min-height: 1200px;
 
 	.first.static & {
 		opacity: 1;

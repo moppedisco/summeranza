@@ -1,3 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:700,400&amp;subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic" rel="stylesheet" type="text/css">
+	<title>Summeranza 2015</title>
+	<script src="js/modernizr.js"></script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		html, body {
+			width: 100%;
+			height: 100%;
+
+		}
+
+		.wrapper {
+			width: 500%;
+			height: 100%;
+			overflow: scroll;
+			background: #eee;
+		}
+
+		.page-section {
+			float: left;
+			width: 20%;
+			height: 100%;
+		}
+
+		.wave {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<main class="wrapper">
+		<section class="page-section" style="background: rgb(255,238,173);">
+			<img src="img/summrnza15-19.png" alt="" width="460">
+		</section><!-- /.page-section -->
+		<section class="page-section" style="background: rgb(210,234,228);">
+			
+		</section><!-- /.page-section -->
+		<section class="page-section" style="background: rgb(250,204,187);">
+			
+		</section><!-- /.page-section -->
+		<section class="page-section" style="background: cyan">
+			
+		</section><!-- /.page-section -->
+		<section class="page-section" style="background: yellow">
+			
+		</section><!-- /.page-section -->
+	</main><!-- /.wrapper -->
+<img class="wave" src="img/wave.svg" alt="" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="js/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="js/waypoints.js"></script>
+<script src="http://cdn.jsdelivr.net/vivus/0.1.2/vivus.min.js"></script>
+<script>
+$( document ).ready(function() {
+	$("body").mousewheel(function(event, delta) {
+		this.scrollLeft -= (delta);
+		event.preventDefault();
+	});	
+});
 /* 
 /////////////////////////////////////////////
 /////////////////////////////////////////////
@@ -91,74 +162,8 @@ Summeranza.app = (function(window){
 		];
 
 	function init(){
-		
-		reSizeVideoWrapper();
-
-		adjustVideoPositioning("#mainVideo");
-
 		initNavigationButtons();
 		initWaypoints();
-		initVideoplayer();
-
-		$(window).resize(function() {
-			if(!Modernizr.touch){
-				adjustVideoPositioning("#mainVideo");
-				reSizeVideoWrapper();
-			}
-		});
-	}
-
-	function initVideoplayer(callback){
-		$videoElement[0].addEventListener("pause",function(){
-			stopVideo();
-		});
-
-		$(".button--watch-video").on("click",function(){
-			playIntro(function(){
-				playVideo();
-			});
-		});
-
-		$(".button--scrolldown").on("click",function(){
-			stopVideo();
-		});
-
-	}
-
-	function playIntro(callback){
-		if(Summeranza.helpers.scrollY()>0){
-			$body.animate({
-				scrollTop: 0
-			},400,function(){
-				callback();
-			});
-		} else {
-			callback();		
-		}		
-	}
-
-	function playVideo(){
-		window.addEventListener( 'scroll', noscroll );
-		$(".button--watch-video").fadeOut();
-
-		$(".intro-text").fadeOut(800,function(){
-			$videoElement[0].muted = false;
-			$videoElement[0].loop = false;
-			$videoElement[0].currentTime = 0;
-		});		
-	}
-
-	function stopVideo(){
-		window.removeEventListener( 'scroll', noscroll );
-		$(".button--watch-video").fadeIn();
-		$(".intro-text").fadeIn();		
-		$videoElement[0].loop = true;
-		$videoElement[0].controls = false;
-		$videoElement[0].muted = true;
-	}
-
-	function noscroll() {
-		window.scrollTo(0,0);
 	}
 
 	function initNavigationButtons(){
@@ -205,7 +210,6 @@ Summeranza.app = (function(window){
 					if(currentIndex === 0){
 						return false
 					}
-
 					setActiveSection(currentIndex);
 				} else if(direction === "up"){
 					if(prevIndex < 0){
@@ -220,12 +224,9 @@ Summeranza.app = (function(window){
 		$('.page-section.first').waypoint({
 			handler: function(direction) {
 				if(direction === "down"){
-					$(".tower").addClass("bounceInUp");
-					$(".wave").addClass("active");
 					$(this).removeClass("static").addClass("active");	
 					$(".site-navigation").addClass("fixed");
 				} else {
-					// $(".wave").removeClass("active");
 					$(this).removeClass("active").addClass("static");	
 					$(".site-navigation").removeClass("fixed");
 				}
@@ -256,46 +257,15 @@ Summeranza.app = (function(window){
 		});		
 	}
 
-	function reSizeVideoWrapper(){
-		$intro.css({"height":Summeranza.helpers.getViewportH(),"width":Summeranza.helpers.getViewportW()});	
-	}
-
-	function adjustVideoPositioning(element) {
-		var windowW = $(window).width();
-		var windowH = $(window).height();
-		var mediaAspect = 16/9;
-		var windowAspect = windowW/windowH;
-		if (windowAspect < mediaAspect) {
-			// taller
-			$(element).find("video")
-				.width(windowH*mediaAspect)
-				.height(windowH);
-			$(element)
-				.css('top',0)
-				.css('left',-(windowH*mediaAspect-windowW)/2)
-				.css('height',windowH);
-			$(element+'_html5_api').css('width',windowH*mediaAspect);
-			$(element+'_flash_api')
-				.css('width',windowH*mediaAspect)
-				.css('height',windowH);
-		} else {
-			// wider
-			$(element).find("video")
-				.width(windowW)
-				.height(windowW/mediaAspect);
-			$(element)
-				.css('top',-(windowW/mediaAspect-windowH)/2)
-				.css('left',0)
-				.css('height',windowW/mediaAspect);
-			$(element+'_html5_api').css('width','100%');
-			$(element+'_flash_api')
-				.css('width',windowW)
-				.css('height',windowW/mediaAspect);
-		}
-	}
-
 	return {
 		init: init
 	};
 
 }(window))  // Self execute
+
+</script>
+<script>
+Summeranza.init();
+</script>
+</body>
+</html>
