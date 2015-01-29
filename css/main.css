@@ -2743,6 +2743,14 @@ a:hover {
   width: 300px;
   _margin-left: -3px;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
 /* Basic helpers ==================================== */
 /* ================================================== */
 /* ================================================== */
@@ -2834,6 +2842,48 @@ a:hover {
     display: inline;
   }
 }
+.button--book-myef {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-family: inherit;
+  font-size: 100%;
+  cursor: pointer;
+  border: none;
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 2.3;
+  padding-right: 1em;
+  padding-left: 1em;
+  border-radius: 4px;
+  border-radius: 0;
+  text-transform: uppercase;
+  min-width: 180px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 93%;
+  border: 1px solid #fff;
+  background: none;
+  color: #fff;
+}
+.button--book-myef,
+.button--book-myef:hover {
+  text-decoration: none;
+  /* [9] */
+
+}
+.button--book-myef:active,
+.button--book-myef:focus {
+  outline: none;
+}
+.button--book-myef:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #fff;
+}
 /* Global =========================================== */
 /* ================================================== */
 /* ================================================== */
@@ -2843,6 +2893,15 @@ body {
   -moz-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
   -webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
   transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+.bg1 {
+  background: #ffeead;
+}
+.bg2 {
+  background: #d2eae4;
+}
+.bg3 {
+  background: #faccbb;
 }
 .bg5 {
   background: #EF3C66;
@@ -2855,11 +2914,13 @@ body {
 .site-navigation {
   position: absolute;
   left: 0;
-  top: 180px;
+  top: 280px;
   z-index: 10;
   width: 200px;
   padding-left: 30px;
   padding-right: 30px;
+  font-size: 15px;
+  letter-spacing: 2px;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .site-navigation {
@@ -2881,7 +2942,7 @@ body {
 }
 .site-navigation.fixed {
   position: fixed;
-  top: 180px;
+  top: 280px;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .site-navigation.fixed {
@@ -2901,8 +2962,8 @@ body {
   display: block;
   overflow: hidden;
   margin-left: -11px;
-  margin-bottom: 20px;
-  margin-top: 9px;
+  margin-bottom: 34px;
+  margin-top: -8px;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .site-navigation__logo {
@@ -2911,7 +2972,6 @@ body {
 }
 .site-navigation__link {
   display: block;
-  font-weight: bold;
   text-decoration: none;
   cursor: pointer;
   transition: color 0.5s ease-in-out;
@@ -3098,7 +3158,7 @@ body {
   padding: 40px 0;
   font-size: 33px;
   line-height: 130%;
-  background: #EF3C66;
+  background: #333;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .section--small {
@@ -3114,12 +3174,12 @@ body {
 .page-section__header {
   float: left;
   width: 28%;
-  padding-top: 180px;
+  margin-top: 336px;
   opacity: 0;
   position: fixed;
   top: 0;
   transition: opacity 0.4s;
-  z-index: 2;
+  z-index: 3;
 }
 .page-section.active .page-section__header {
   opacity: 1;
@@ -3143,15 +3203,17 @@ body {
 }
 .page-section__header h2 {
   line-height: 44px;
+  position: absolute;
+  bottom: 100%;
+  font-weight: normal;
 }
 .page-section__header__body {
-  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 20px;
 }
 .page-section__body {
   float: right;
-  width: 50%;
-  padding-top: 180px;
+  width: 75%;
+  padding-top: 280px;
   padding-bottom: 180px;
   opacity: 0;
   transition: opacity 0.4s;
@@ -3173,11 +3235,15 @@ body {
     opacity: 1;
   }
 }
+.page-section__body img {
+  width: 100%;
+}
 .page-section--form .page-section__body {
   opacity: 1;
   padding-top: 0;
   padding-bottom: 240px;
   min-height: 800px;
+  width: 50%;
 }
 .bg-image {
   width: 100%;
@@ -3211,22 +3277,16 @@ body {
 fieldset {
   border: none;
 }
-input[type="text"],
-input[type="email"],
-select {
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container select {
   width: 100%;
   background: none;
-  border: none;
-  border-bottom: 2px solid #fff;
-  outline: none;
-  box-shadow: none;
-  font-size: 32px;
-  -webkit-appearance: none;
-  -webkit-border-radius: 0px;
-  min-height: 50px;
+  border-color: #fff;
   color: #fff;
-  font-family: Georgia;
-  font-style: italic;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 10px 10px;
 }
 .button--submit {
   display: inline-block;

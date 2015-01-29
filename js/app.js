@@ -196,6 +196,7 @@ Summeranza.app = (function(window){
 
 	function initWaypoints(){
 		$('.page-section.first').addClass("static");
+		$('body').addClass("bg1");
 		$panels.waypoint({
 			handler: function(direction) {
 				var currentIndex = $(".page-section").index(this);
