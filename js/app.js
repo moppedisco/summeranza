@@ -195,8 +195,11 @@ Summeranza.app = (function(window){
 	}
 
 	function initWaypoints(){
+		
 		$('.page-section.first').addClass("static");
 		$('body').addClass("bg1");
+
+
 		$panels.waypoint({
 			handler: function(direction) {
 				var currentIndex = $(".page-section").index(this);
@@ -222,6 +225,7 @@ Summeranza.app = (function(window){
 				if(direction === "down"){
 					$(this).removeClass("static").addClass("active");	
 					$(".site-navigation").addClass("fixed");
+					$(".wave").addClass("animated fadeInUp");
 				} else {
 					$(this).removeClass("active").addClass("static");	
 					$(".site-navigation").removeClass("fixed");
@@ -245,12 +249,11 @@ Summeranza.app = (function(window){
 		// Set active section background class on body
 		$body.attr("class","").addClass(backgroundColors[activeIndex]);
 		
-		$panels.each(function(index) {
-			$(this).removeClass("active");
-			if(index === activeIndex){
-				$(this).addClass("active");
-			}
-		});		
+		$(".page-section:eq('"+(activeIndex-direction)+"') .page-section__header img").attr('class', '').addClass("animated bounceOutDown");
+		$(".page-section:eq('"+activeIndex+"')").addClass("active");
+		$(".page-section:eq('"+(activeIndex-direction)+"')").removeClass("active");
+		$(".page-section:eq('"+(activeIndex)+"') .page-section__header img").attr('class', '').addClass("animated bounceInUp");
+
 	}
 
 	function reSizeVideoWrapper(){

@@ -120,6 +120,18 @@ body {
 	color: #fff;
 }
 
+.wave {
+	width: 100%;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	z-index: 44;
+	transform: translateY(100%);
+	&.fadeInUp {
+		transform: translateY(70%);
+	}
+}
+
 /* Navigation ======================================= */
 /* ================================================== */
 /* ================================================== */
@@ -335,8 +347,9 @@ body {
 }
 
 .page-section {
-	padding: 0 10% 0 200px;
+	padding: 0;
 	position: relative;
+	min-height: 800px;
 
 	@media @mobile {
 		padding: 0 20px 80px;
@@ -366,15 +379,24 @@ body {
 	color: #fff;
 }
 
+.yacine {
+	width: 30%;
+	position: relative;
+}
+
 .page-section__header {
 	float: left;
-	width: 28%;
+	width: 100%;
 	margin-top: 336px;
 	opacity: 0;
 	position: fixed;
 	top: 0;
 	transition: opacity 0.4s;
+
 	z-index: 3;
+	min-height: 500px;
+	left: 0;
+	padding-left: 15%;
 
 	.page-section.active & {
 		opacity: 1;
@@ -398,12 +420,19 @@ body {
 		opacity: 1;
 	}	
 
+	img {
+		position: absolute;
+		bottom: 0%;
+		right: 10%;
+	}
+
 }
 
 .page-section__header h2 {
 	line-height: 44px;
 	position: absolute;
 	bottom: 100%;
+	width: 100%;
 	font-weight: normal;
 }
 
@@ -416,7 +445,7 @@ body {
 	float: right;
 	width: 75%;
 	padding-top: 280px;
-	padding-bottom: 180px;
+	// padding-bottom: 180px;
 	opacity: 0;
 	transition: opacity 0.4s;
 	position: relative;
@@ -437,11 +466,6 @@ body {
 		padding: 0;
 		opacity: 1;
 	}	
-
-	img {
-		width: 100%;
-	}
-
 }
 
 
