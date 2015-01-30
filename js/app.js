@@ -206,12 +206,12 @@ Summeranza.app = (function(window){
 					if(currentIndex === 0){
 						return false
 					}
-					setActiveSection(currentIndex);
+					setActiveSection(currentIndex,"1");
 				} else if(direction === "up"){
 					if(prevIndex < 0){
 						return false
 					}
-					setActiveSection(prevIndex);
+					setActiveSection(prevIndex,'-1');
 				}
 
 			},
@@ -231,7 +231,7 @@ Summeranza.app = (function(window){
 		});
 	}
 
-	function setActiveSection(activeIndex){
+	function setActiveSection(activeIndex,direction){
 		activePanelIndex = activeIndex;
 		// Reset navigation
 		$navigation.find("a").removeClass("active");
