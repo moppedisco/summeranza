@@ -1,3 +1,13 @@
+
+$( document ).ready(function() {
+	$("body").mousewheel(function(event, delta) {
+		this.scrollLeft -= (delta);
+		event.preventDefault();
+	});	
+
+	$.stellar();
+
+});
 /* 
 /////////////////////////////////////////////
 /////////////////////////////////////////////
@@ -74,6 +84,7 @@ MAIN FUNCTIONALITY //////////////////////////
 Summeranza.app = (function(window){
 
 	var $body = $("body"),
+		$logo = $(".site-navigation__logo"),
 		$intro = $('.header--full-screen-video'),
 		$panels = $(".page-section"),
 		$navigation = $(".site-navigation__link-group"),
@@ -83,82 +94,16 @@ Summeranza.app = (function(window){
 		activePanelIndex = 0,
 		menuLinkheight = $(".site-navigation__link").height(),
 		backgroundColors = [
-			"bg1",
-			"bg2",
-			"bg3",
+			"rgb(255,238,173)",
+			"rgb(210,234,228)",
+			"rgb(250,204,187)",
 			"bg4",
 			"bg5"
 		];
 
 	function init(){
-		
-		reSizeVideoWrapper();
-
-		adjustVideoPositioning("#mainVideo");
-
 		initNavigationButtons();
 		initWaypoints();
-		initVideoplayer();
-
-		$(window).resize(function() {
-			if(!Modernizr.touch){
-				adjustVideoPositioning("#mainVideo");
-				reSizeVideoWrapper();
-			}
-		});
-	}
-
-	function initVideoplayer(callback){
-		$videoElement[0].addEventListener("pause",function(){
-			stopVideo();
-		});
-
-		$(".button--watch-video").on("click",function(){
-			playIntro(function(){
-				playVideo();
-			});
-		});
-
-		$(".button--scrolldown").on("click",function(){
-			stopVideo();
-		});
-
-	}
-
-	function playIntro(callback){
-		if(Summeranza.helpers.scrollY()>0){
-			$body.animate({
-				scrollTop: 0
-			},400,function(){
-				callback();
-			});
-		} else {
-			callback();		
-		}		
-	}
-
-	function playVideo(){
-		window.addEventListener( 'scroll', noscroll );
-		$(".button--watch-video").fadeOut();
-
-		$(".intro-text").fadeOut(800,function(){
-			$videoElement[0].muted = false;
-			$videoElement[0].loop = false;
-			$videoElement[0].currentTime = 0;
-		});		
-	}
-
-	function stopVideo(){
-		window.removeEventListener( 'scroll', noscroll );
-		$(".button--watch-video").fadeIn();
-		$(".intro-text").fadeIn();		
-		$videoElement[0].loop = true;
-		$videoElement[0].controls = false;
-		$videoElement[0].muted = true;
-	}
-
-	function noscroll() {
-		window.scrollTo(0,0);
 	}
 
 	function initNavigationButtons(){
@@ -195,50 +140,58 @@ Summeranza.app = (function(window){
 	}
 
 	function initWaypoints(){
-		
-		$('.page-section.first').addClass("static");
-		$('body').addClass("bg1");
-
-
+		$('.page-section.first').addClass("active");
 		$panels.waypoint({
+			element: $(".wrapper"),
+			horizontal: true,
 			handler: function(direction) {
 				var currentIndex = $(".page-section").index(this);
 					prevIndex = currentIndex-1;
 
-				if(direction === "down"){
+				if(direction === "right"){
 					if(currentIndex === 0){
 						return false
 					}
 					setActiveSection(currentIndex,"1");
-				} else if(direction === "up"){
+				} else if(direction === "left"){
 					if(prevIndex < 0){
 						return false
 					}
-					setActiveSection(prevIndex,'-1');
+					setActiveSection(prevIndex,"-1");
 				}
 
 			},
-			offset: "50%"
+			offset: "30%"
 		});
-		$('.page-section.first').waypoint({
-			handler: function(direction) {
-				if(direction === "down"){
-					$(this).removeClass("static").addClass("active");	
-					$(".site-navigation").addClass("fixed");
-					$(".wave").addClass("animated fadeInUp");
-				} else {
-					$(this).removeClass("active").addClass("static");	
-					$(".site-navigation").removeClass("fixed");
-				}
-			},
-			offset: "0%"
-		});
+		// $('.page-section.first').waypoint({
+		// 	element: $(".wrapper"),
+		// 	horizontal: true,			
+		// 	handler: function(direction) {
+		// 		if(direction === "left"){
+		// 			// $(this).removeClass("static").addClass("active");	
+		// 			// $(".site-navigation").addClass("fixed");
+		// 		} else {
+		// 			// $(this).removeClass("active").addClass("static");	
+		// 			// $(".site-navigation").removeClass("fixed");
+		// 		}
+		// 	},
+		// 	offset: "0%"
+		// });
 	}
 
 	function setActiveSection(activeIndex,direction){
 		activePanelIndex = activeIndex;
 		// Reset navigation
 		$navigation.find("a").removeClass("active");
+
+		$logo.addClass("animate"+activeIndex);
+		if(direction === "-1"){
+			$logo.removeClass("animate"+(activeIndex-direction));	
+		}
+		
+		
+		// animateLogo(activeIndex);
+
 		// Animate navigation
 		if(Modernizr.touch){
 			$navigation.css({"transform":"translateY(-"+(menuLinkheight*(activeIndex))+"px)"});
@@ -247,50 +200,25 @@ Summeranza.app = (function(window){
 		$navigation.find("a:eq("+activeIndex+")").addClass("active");
 		
 		// Set active section background class on body
-		$body.attr("class","").addClass(backgroundColors[activeIndex]);
+		$(".wrapper").css("background-color",backgroundColors[activeIndex]);
 		
-		$(".page-section:eq('"+(activeIndex-direction)+"') .page-section__header img").attr('class', '').addClass("animated bounceOutDown");
+		$(".page-section:eq('"+(activeIndex-direction)+"') img").css("opacity","1").attr('class', '').addClass("animated bounceOutDown");
 		$(".page-section:eq('"+activeIndex+"')").addClass("active");
 		$(".page-section:eq('"+(activeIndex-direction)+"')").removeClass("active");
-		$(".page-section:eq('"+(activeIndex)+"') .page-section__header img").attr('class', '').addClass("animated bounceInUp");
+		$(".page-section:eq('"+(activeIndex)+"') img").css("opacity","1").attr('class', '').addClass("animated bounceInUp");
 
 	}
 
-	function reSizeVideoWrapper(){
-		$intro.css({"height":Summeranza.helpers.getViewportH(),"width":Summeranza.helpers.getViewportW()});	
-	}
-
-	function adjustVideoPositioning(element) {
-		var windowW = $(window).width();
-		var windowH = $(window).height();
-		var mediaAspect = 16/9;
-		var windowAspect = windowW/windowH;
-		if (windowAspect < mediaAspect) {
-			// taller
-			$(element).find("video")
-				.width(windowH*mediaAspect)
-				.height(windowH);
-			$(element)
-				.css('top',0)
-				.css('left',-(windowH*mediaAspect-windowW)/2)
-				.css('height',windowH);
-			$(element+'_html5_api').css('width',windowH*mediaAspect);
-			$(element+'_flash_api')
-				.css('width',windowH*mediaAspect)
-				.css('height',windowH);
-		} else {
-			// wider
-			$(element).find("video")
-				.width(windowW)
-				.height(windowW/mediaAspect);
-			$(element)
-				.css('top',-(windowW/mediaAspect-windowH)/2)
-				.css('left',0)
-				.css('height',windowW/mediaAspect);
-			$(element+'_html5_api').css('width','100%');
-			$(element+'_flash_api')
-				.css('width',windowW)
-				.css('height',windowW/mediaAspect);
+	function animateLogo(activeIndex){
+		switch(activeIndex) {
+			case 1:
+				// $logo.find("img:eq()")
+				break;
+			case 2:
+				// code block
+				break;
+			default:
+				// default code block
 		}
 	}
 
