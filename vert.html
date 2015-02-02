@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:700,400&amp;subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic" rel="stylesheet" type="text/css">
+	<link href="css/custom-animate.css" rel="stylesheet" type="text/css">	
+	<title>Summeranza 2015</title>
+	<script src="js/modernizr.js"></script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		html, body {
+			width: 100%;
+			height: 100%;
+
+		}
+
+		h2 {
+			font-family: "Roboto Condensed", sans-serif;			
+		}
+
+		.wrapper {
+			-o-transition: background .5s ease-in-out, color .5s ease-in-out;
+			-moz-transition: background .5s ease-in-out, color .5s ease-in-out;
+			-webkit-transition: background .5s ease-in-out, color .5s ease-in-out;
+			transition: background .5s ease-in-out, color .5s ease-in-out;
+	
+		}
+
+		.wrapper {
+			width: 500%;
+			height: 100%;
+			overflow: scroll;	
+
+		}
+
+		.page-section {
+			float: left;
+			width: 20%;
+			height: 100%;
+			position: relative;
+			/*border-right: 5px solid #000;*/
+		}
+
+		.left-col {
+			position: fixed;
+			top: 200px;
+			left: 155px;
+			width: 400px;
+			opacity: 0;
+			transition: opacity 0.2s;
+			font-size: 1.3rem;
+			z-index: 99;		
+		}
+
+		.page-section.active.first .left-col {
+			opacity: 1;
+		}		
+
+		img {
+/*			-webkit-transform: translate3d(0,0,0);
+			transform: translate3d(0,0,0);*/
+		}
+
+		.left-col p {
+			margin-top: 20px;
+			line-height: 120%;
+		}
+
+		.page-section.active .left-col {
+			opacity: 1;
+		}
+
+		.wave {
+			position: fixed;
+			bottom: -150px;
+			left: -100px;
+			width: 140%;
+			z-index: 9;
+		}
+
+		.wave2 {
+			position: fixed;
+			bottom: -60px;
+			left: -100px;
+			width: 140%;
+		}
+
+		.right-col {
+			position: relative;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			z-index: 9;
+		}
+
+		.right-col img {
+			position: absolute;
+			opacity: 0;
+			transition: opacity 0.2s;
+			-webkit-transition: opacity 0.2s;
+		}
+
+		.page-section.active .right-col img {
+			opacity: 1;
+		}
+
+		.page-section.first.active .right-col img {
+			opacity: 1;
+		}
+
+		.bg1 {
+			background: rgb(255,238,173);
+		}
+
+		.bg2 {
+			background: rgb(210,234,228);
+		}
+
+		.bg3 {
+			background: rgb(250,204,187);
+		}
+
+		.bg5 {
+			background: #EF3C66;
+			color: #fff;
+		}
+
+		.site-navigation {
+			position: fixed;
+			top: 40px;
+			left: 40px;
+			width: 100%;
+			z-index: 9;
+		}
+
+		.site-navigation__link-group {
+			float: left;
+			margin-left: 115px;
+		}
+
+		.site-navigation__link {
+			float: left;
+			margin-right: 15px;
+			font-size: 16px;
+			text-transform: uppercase;
+			font-weight: normal;
+			font-family: "Roboto Condensed", sans-serif;
+			letter-spacing: 1px;
+			margin-top: 10px;
+		}
+
+		.site-navigation__logo {
+			height: 36px;
+			width: 64px;
+			display: block;
+			float: left;
+			position: absolute;
+		}
+
+		.site-navigation__logo img {
+			/*opacity: 0;*/
+			position: absolute;
+			opacity: 0;
+		}
+
+		.site-navigation__logo img:first-child {
+			opacity: 1;
+		}
+
+		.site-navigation button { display: none; }
+	</style>
+</head>
+<body class="bg1">
+	<div class="site-navigation">
+		<a class="site-navigation__logo">
+			<img class="logo-nr1" src="img/summeranza-mm.png" alt="" width="64" />
+			<img class="logo-nr2" src="img/summeranza-mm.png" alt="" width="64" />
+			<img class="logo-nr3" src="img/summeranza-mm.png" alt="" width="64" />
+			<img class="logo-nr4" src="img/summeranza-mm.png" alt="" width="64" />
+			<img class="logo-nr5" src="img/summeranza-mm.png" alt="" width="64" />
+		</a>
+		<nav class="site-navigation__link-group">
+			<a class="site-navigation__link active"><span>Festival</span></a>
+			<a class="site-navigation__link"><span>Artists</span></a>
+			<a class="site-navigation__link"><span>Crowd</span></a>
+			<a class="site-navigation__link"><span>Social</span></a>
+			<a class="site-navigation__link"><span>Tickets</span></a>
+		</nav>
+		<button class="button--section-jump--up icon-up-open-mini"></button>
+		<button class="button--section-jump--down icon-down-open-mini"></button>		
+	</div>	
+	<main class="wrapper">
+		<section class="page-section first">
+			<div class="left-col">
+				<h2>THE ULTIMATE STUDENT FESTIVAL</h2>
+				<p>London. 10,000 fans from 100 countries. A full-fledged carnival. And major artists on the main stage. This is Summeranza. It will make your summer.</p>
+			</div><!-- /.left-col -->
+			<div class="right-col">
+				<img class="tower" src="img/tower.png" alt="" data-stellar-vertical-offset="150" data-stellar-ratio="0.08" data-stellar-horizontal-offset="600">
+			</div><!-- /.right-col -->
+		</section><!-- /.page-section -->
+		<section class="page-section">
+			<div class="left-col">
+				<h2>AWARD-WINNING, PARTY ROCKING</h2>
+				<p>We don’t do B list. Our headliners win Grammys and our opening acts will one day. We wouldn’t accept anything less.</p>
+			</div><!-- /.left-col -->			
+			<div class="right-col">
+				<img class="tower" src="img/surf.png" width="500" alt="" data-stellar-vertical-offset="150" data-stellar-ratio="0.08" data-stellar-horizontal-offset="600">
+			</div><!-- /.right-col -->			
+		</section><!-- /.page-section -->
+		<section class="page-section">
+			<div class="left-col">
+				<h2>AWESOME PEOPLE = AWESOME FESTIVALS</h2>
+				<p>100 nationalities. Good luck finding any summer festival as global as this. Actually, don’t even try. Summeranza is one of a kind.</p>
+			</div><!-- /.left-col -->	
+			<div class="right-col">
+				<img class="tower" src="img/wolf.png" width="600" alt="" data-stellar-vertical-offset="150" data-stellar-ratio="0.08" data-stellar-horizontal-offset="600">
+			</div><!-- /.right-col -->			
+		</section><!-- /.page-section -->
+		<section class="page-section">
+			<div class="left-col">
+				<h2>#SUMMERANZA</h2>
+				<p>A will.i.am tweet minutes before he steps on stage. A Sky Blu selfie. And about 37,000 other status updates, tweets and instas. All with one hashtag.</p>
+			</div><!-- /.left-col -->				
+			<div class="right-col">
+				<img class="tower" src="img/tower.png" alt="" data-stellar-vertical-offset="150" data-stellar-ratio="0.08" data-stellar-horizontal-offset="600">
+			</div><!-- /.right-col -->			
+		</section><!-- /.page-section -->
+		<section class="page-section">
+			<div class="left-col">
+				<h2>AWESOME PEOPLE = AWESOME FESTIVALS</h2>
+				<p>100 nationalities. Good luck finding any summer festival as global as this. Actually, don’t even try. Summeranza is one of a kind.</p>
+			</div><!-- /.left-col -->				
+			<div class="right-col">
+				<img class="tower" src="img/tower.png" alt="" data-stellar-vertical-offset="150" data-stellar-ratio="0.08" data-stellar-horizontal-offset="600">
+			</div><!-- /.right-col -->			
+		</section><!-- /.page-section -->
+	</main><!-- /.wrapper -->
+<img class="wave" data-stellar-ratio="0.12" src="img/wave.svg" alt="" />
+<img class="wave2" data-stellar-ratio="0.03" src="img/wave.svg" alt="" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="js/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="js/waypoints.js"></script>
+<script type="text/javascript" src="js/stellar.js"></script>
+<script src="js/jquery.transit.js"></script>
+<script>
+$( document ).ready(function() {
+	$("body").mousewheel(function(event, delta) {
+		this.scrollLeft -= (delta);
+		event.preventDefault();
+	});	
+
+	$.stellar();
+
+});
+/* 
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+START HERE //////////////////////////////////
+*/
+
+(function(window){
+
+	var animEndEventNames = { 'WebkitAnimation' : 'webkitAnimationEnd', 'OAnimation' : 'oAnimationEnd', 'msAnimation' : 'MSAnimationEnd', 'animation' : 'animationend' },
+		// animation end event name
+		animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ],
+		promiseVideoloaded = new $.Deferred(),
+		promiseIntroAnimIn = new $.Deferred(),
+		promiseIntroAnimOut = new $.Deferred();
+
+	// Main app
+	function init(){
+
+		Summeranza.app.init();
+
+		Modernizr.load({
+			test: Modernizr.touch,
+			yep : ['js/fastClick.js'],
+			callback : function (url, result, key) {
+				if(result){
+					FastClick.attach(document.body);
+				}
+			}
+		});		
+	}
+
+	window.Summeranza = {
+		init: init
+	};
+
+}(window));
+
+/* 
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+Helpers = viewportsize, scroll position /////
+*/
+
+Summeranza.helpers = (function(window){
+
+	var docElem = window.document.documentElement;
+
+	return {
+		getViewportW: function() {
+			var client = docElem['clientWidth'], inner = window['innerWidth'];
+			return client < inner ? inner : client;
+		},
+		getViewportH: function() {
+			var client = docElem['clientHeight'], inner = window['innerHeight'];
+			return client < inner ? inner : client;
+		},
+		scrollX: function() { 
+			return window.pageXOffset || docElem.scrollLeft; 
+		},
+		scrollY: function() { 
+			return window.pageYOffset || docElem.scrollTop; 
+		}
+	};
+}(window));
+
+/* 
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+MAIN FUNCTIONALITY //////////////////////////
+*/
+Summeranza.app = (function(window){
+
+	var $body = $("body"),
+		$logo = $(".site-navigation__logo"),
+		$intro = $('.header--full-screen-video'),
+		$panels = $(".page-section"),
+		$navigation = $(".site-navigation__link-group"),
+		$buttonScrollDown = $(".button--section-jump--down"),
+		$buttonScrollUp = $(".button--section-jump--up"),
+		$videoElement = $("#mainVideo"),
+		activePanelIndex = 0,
+		menuLinkheight = $(".site-navigation__link").height(),
+		backgroundColors = [
+			"rgb(255,238,173)",
+			"rgb(210,234,228)",
+			"rgb(250,204,187)",
+			"bg4",
+			"bg5"
+		];
+
+	function init(){
+		initNavigationButtons();
+		initWaypoints();
+	}
+
+	function initNavigationButtons(){
+		// Scroll down button mobile
+		$buttonScrollDown.on("click",function(){
+			$body.animate({
+				scrollTop: $(".page-section.active").next().offset().top-92
+			}, 800);
+			return false
+		});
+		// Scroll up button mobile
+		$buttonScrollUp.on("click",function(){
+			if(activePanelIndex != 0){
+				$body.animate({
+					scrollTop: $(".page-section.active").prev().offset().top-92
+				}, 800);
+			} else {
+				$body.animate({
+					scrollTop: $(".page-section.first").offset().top
+				}, 800);				
+			}
+			return false
+		});	
+
+		// Navigation buttons
+		$navigation.find("a").on("click",function(){
+			if(!Modernizr.touch){
+				$body.animate({
+					scrollTop: $(".page-section:eq("+$(this).index()+")").offset().top
+				}, 800);
+			}
+			return false
+		});	
+	}
+
+	function initWaypoints(){
+		$('.page-section.first').addClass("active");
+		$panels.waypoint({
+			element: $(".wrapper"),
+			horizontal: true,
+			handler: function(direction) {
+				var currentIndex = $(".page-section").index(this);
+					prevIndex = currentIndex-1;
+
+				if(direction === "right"){
+					if(currentIndex === 0){
+						return false
+					}
+					setActiveSection(currentIndex,"1");
+				} else if(direction === "left"){
+					if(prevIndex < 0){
+						return false
+					}
+					setActiveSection(prevIndex,"-1");
+				}
+
+			},
+			offset: "30%"
+		});
+		// $('.page-section.first').waypoint({
+		// 	element: $(".wrapper"),
+		// 	horizontal: true,			
+		// 	handler: function(direction) {
+		// 		if(direction === "left"){
+		// 			// $(this).removeClass("static").addClass("active");	
+		// 			// $(".site-navigation").addClass("fixed");
+		// 		} else {
+		// 			// $(this).removeClass("active").addClass("static");	
+		// 			// $(".site-navigation").removeClass("fixed");
+		// 		}
+		// 	},
+		// 	offset: "0%"
+		// });
+	}
+
+	function setActiveSection(activeIndex,direction){
+		activePanelIndex = activeIndex;
+		// Reset navigation
+		$navigation.find("a").removeClass("active");
+
+		// animateLogo(activeIndex);
+
+		// Animate navigation
+		if(Modernizr.touch){
+			$navigation.css({"transform":"translateY(-"+(menuLinkheight*(activeIndex))+"px)"});
+		}
+		// Set active navigation element
+		$navigation.find("a:eq("+activeIndex+")").addClass("active");
+		
+		// Set active section background class on body
+		$(".wrapper").css("background-color",backgroundColors[activeIndex]);
+		
+		$(".page-section:eq('"+(activeIndex-direction)+"') img").css("opacity","1").attr('class', '').addClass("animated bounceOutDown");
+		$(".page-section:eq('"+activeIndex+"')").addClass("active");
+		$(".page-section:eq('"+(activeIndex-direction)+"')").removeClass("active");
+		$(".page-section:eq('"+(activeIndex)+"') img").css("opacity","1").attr('class', '').addClass("animated bounceInUp");
+
+	}
+
+	function animateLogo(activeIndex){
+		switch(activeIndex) {
+			case 1:
+				// $logo.find("img:eq()")
+				break;
+			case 2:
+				// code block
+				break;
+			default:
+				// default code block
+		}
+	}
+
+	return {
+		init: init
+	};
+
+}(window))  // Self execute
+
+</script>
+<script>
+Summeranza.init();
+</script>
+</body>
+</html>

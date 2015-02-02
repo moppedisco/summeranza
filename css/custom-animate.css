@@ -918,20 +918,20 @@ Copyright (c) 2014 Daniel Eden
 
 @keyframes bounceOutDown {
   20% {
-    -webkit-transform: translate3d(0, 10px, 0);
-            transform: translate3d(0, 10px, 0);
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px);
   }
 
   40%, 45% {
     opacity: 1;
-    -webkit-transform: translate3d(0, -20px, 0);
-            transform: translate3d(0, -20px, 0);
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
   }
 
   100% {
     opacity: 0;
-    -webkit-transform: translate3d(0, 2000px, 0);
-            transform: translate3d(0, 2000px, 0);
+    -webkit-transform: translateY(2000px);
+            transform: translateY(2000px);
   }
 }
 
