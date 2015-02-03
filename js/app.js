@@ -189,8 +189,7 @@ Summeranza.app = (function(window){
 			$logo.removeClass("animate"+(activeIndex-direction));	
 		}
 		
-		
-		// animateLogo(activeIndex);
+		animateLogo(activeIndex,direction);
 
 		// Animate navigation
 		if(Modernizr.touch){
@@ -209,16 +208,56 @@ Summeranza.app = (function(window){
 
 	}
 
-	function animateLogo(activeIndex){
-		switch(activeIndex) {
-			case 1:
-				// $logo.find("img:eq()")
-				break;
-			case 2:
-				// code block
-				break;
-			default:
-				// default code block
+	function animateLogo(activeIndex,direction){
+		if(direction === "1"){
+			switch(activeIndex) {
+				case 1:
+					$(".logo-nr2").css("opacity","0").transition({
+						opacity: "1",
+						rotate: "180"
+					},function(){
+						$(".logo-nr1").transition({
+							y: "50%"
+						});
+						$(".logo-nr2").transition({
+							y: "50%"
+						});
+					});
+					break;
+				case 2:
+					$(".logo-nr1").css({ transformOrigin:'50% 0%'}).transition({
+						rotate: "90deg"
+					}).transition({
+						x: "25%"
+					});
+					$(".logo-nr2").css({ transformOrigin:'50% 50%'}).transition({
+						rotate: "270deg"
+					}).transition({
+						y: "-25%"
+					});
+					break;
+				default:
+					// default code block
+			}
+		} else if(direction === "-1"){
+			switch(activeIndex) {
+				case 0:
+					$(".logo-nr2").transition({
+						y: 0
+					}).transition({
+						opacity: "0",
+						rotate: "0"						
+					});
+					$(".logo-nr1").transition({
+						y: "0%"
+					});					
+					break;
+				case 1:
+					// code block
+					break;
+				default:
+					// default code block
+			}			
 		}
 	}
 
