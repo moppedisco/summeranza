@@ -1,11 +1,5 @@
 
 $( document ).ready(function() {
-	$("body").mousewheel(function(event, delta) {
-		this.scrollLeft -= (delta);
-		event.preventDefault();
-	});	
-
-	$.stellar();
 
 });
 /* 
@@ -93,6 +87,9 @@ Summeranza.app = (function(window){
 		$videoElement = $("#mainVideo"),
 		activePanelIndex = 0,
 		menuLinkheight = $(".site-navigation__link").height(),
+		scrollWait = 1000,
+		lastAnimation = 0,
+		scrolled = false,
 		backgroundColors = [
 			"rgb(255,238,173)",
 			"rgb(210,234,228)",
@@ -104,6 +101,111 @@ Summeranza.app = (function(window){
 	function init(){
 		initNavigationButtons();
 		initWaypoints();
+
+		reSizeVideoWrapper();
+		adjustVideoPositioning("#mainVideo");
+
+		initVideoplayer();
+
+		$(window).resize(function() {
+			if(!Modernizr.touch){
+				adjustVideoPositioning("#mainVideo");
+				reSizeVideoWrapper();
+			}
+		});
+
+		$("body").css("overflow","hidden");
+		$.stellar();
+
+		initScroll();
+		$(document).bind('mousewheel DOMMouseScroll MozMousePixelScroll', function(event) {
+			event.preventDefault();
+			var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
+			console.log(delta);
+			var timeNow = new Date().getTime();
+			if(timeNow - lastAnimation < scrollWait && delta > 0) {
+				event.preventDefault();
+				return;
+			}
+			console.log("asd");
+			lastAnimation = timeNow;
+			introAnim();
+		});
+	}
+
+	function initVideoplayer(callback){
+		$videoElement[0].addEventListener("pause",function(){
+			stopVideo();
+		});
+
+		$(".button--watch-video").on("click",function(){
+			$(this).fadeOut();
+
+			$(".intro-text").fadeOut(800,function(){
+				$videoElement[0].muted = false;
+				$videoElement[0].loop = false;
+				$videoElement[0].controls = true;
+				$videoElement[0].currentTime = 0;
+			});		
+		});
+
+		$(".button--scrolldown").on("click",function(){
+			$(".button--watch-video").fadeIn();
+			$(".intro-text").fadeIn();		
+			$videoElement[0].loop = true;
+			$videoElement[0].controls = false;
+			$videoElement[0].muted = true;
+		});
+
+	}
+
+	function playIntro(callback){
+		if(Summeranza.helpers.scrollY()>0){
+			$body.animate({
+				scrollTop: 0
+			},400,function(){
+				callback();
+			});
+		} else {
+			callback();		
+		}		
+	}
+
+	function playVideo(){
+		// window.addEventListener( 'scroll', noscroll );
+
+	}
+
+	function stopVideo(){
+		// window.removeEventListener( 'scroll', noscroll );
+
+	}
+
+
+	function introAnim(){
+		$(document).unbind('mousewheel DOMMouseScroll MozMousePixelScroll');
+		$(".intro-text").transition({
+			opacity: "0",
+			marginTop: "20px"
+		},1000,function(){
+			window.scrollTo(0,0);
+			setTimeout(function(){ 
+				$intro.transition({
+					opacity: "0"
+				},function(){
+					initScroll();
+					
+				});
+			}, 600);
+		});
+	}
+
+	function initScroll(){
+		$("body").mousewheel(function(event, delta) {
+			this.scrollLeft -= (delta);
+			event.preventDefault();
+		});
+		
 	}
 
 	function initNavigationButtons(){
@@ -261,6 +363,43 @@ Summeranza.app = (function(window){
 		}
 	}
 
+	function reSizeVideoWrapper(){
+		$intro.css({"height":Summeranza.helpers.getViewportH(),"width":Summeranza.helpers.getViewportW()});	
+	}
+
+	function adjustVideoPositioning(element) {
+		var windowW = $(window).width();
+		var windowH = $(window).height();
+		var mediaAspect = 16/9;
+		var windowAspect = windowW/windowH;
+		if (windowAspect < mediaAspect) {
+			// taller
+			$(element).find("video")
+				.width(windowH*mediaAspect)
+				.height(windowH);
+			$(element)
+				.css('top',0)
+				.css('left',-(windowH*mediaAspect-windowW)/2)
+				.css('height',windowH);
+			$(element+'_html5_api').css('width',windowH*mediaAspect);
+			$(element+'_flash_api')
+				.css('width',windowH*mediaAspect)
+				.css('height',windowH);
+		} else {
+			// wider
+			$(element).find("video")
+				.width(windowW)
+				.height(windowW/mediaAspect);
+			$(element)
+				.css('top',-(windowW/mediaAspect-windowH)/2)
+				.css('left',0)
+				.css('height',windowW/mediaAspect);
+			$(element+'_html5_api').css('width','100%');
+			$(element+'_flash_api')
+				.css('width',windowW)
+				.css('height',windowW/mediaAspect);
+		}
+	}
 	return {
 		init: init
 	};
