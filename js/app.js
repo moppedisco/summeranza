@@ -114,19 +114,21 @@ Summeranza.app = (function(window){
 			}
 		});
 
-		// $("body").css("overflow","hidden");
+
+
+
+		window.addEventListener( 'scroll', noscroll );
 
 		initScroll();
+
 		$(document).bind('mousewheel DOMMouseScroll MozMousePixelScroll', function(event) {
 			event.preventDefault();
-			var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
-			console.log(delta);
+			// var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
 			var timeNow = new Date().getTime();
-			if(timeNow - lastAnimation < scrollWait && delta > 0) {
+			if(timeNow - lastAnimation < scrollWait) {
 				event.preventDefault();
 				return;
 			}
-			console.log("asd");
 			lastAnimation = timeNow;
 			introAnim();
 		});
@@ -170,52 +172,76 @@ Summeranza.app = (function(window){
 		}		
 	}
 
-	function playVideo(){
-		// window.addEventListener( 'scroll', noscroll );
-
+	function noscroll(){
+		window.scrollTo(0,0);
 	}
-
-	function stopVideo(){
-		// window.removeEventListener( 'scroll', noscroll );
-
-	}
-
 
 	function introAnim(){
+		
 		$(document).unbind('mousewheel DOMMouseScroll MozMousePixelScroll');
-		$.stellar();
-		$(".intro-text").transition({
-			opacity: "0",
-			marginTop: "20px"
-		},600,function(){
-			window.scrollTo(0,0);
 
-			$(".page-section.first img").css({
-				"z-index":"99999",
-				"transform":"translate(0,100%)"
-			}).transition({
-				y: "-10px",
-				delay: 300
-			},400).transition({
+		TweenMax.to($(".page-section.first .right-col img"),0.5,{
+			css: {
 				y: "0"
-			},150);
-
-			$(".wave2").css({
-				"z-index":"99999",
-				"transform":"translate(0,100%)"
-			}).transition({
-				y: "-10px"
-			},300).transition({
-				y: "0"
-			},100);
-			setTimeout(function(){ 
-				$intro.transition({
-					opacity: "0"
-				},function(){
-					initScroll();
-				});
-			}, 600);
+			},
+			ease: Power4.easeInOut
 		});
+
+		TweenMax.to($(".wave"),0.5,{
+			css: {
+				y: "0"
+			},
+			delay: -0.1,
+			ease: Power4.easeInOut
+		});
+
+		TweenMax.to($intro,1.5,{
+			css: {
+				opacity: "0"
+			},
+			ease: Power1.easeOut,
+			delay: 0.5,
+			onComplete: function(){
+				window.removeEventListener( 'scroll', noscroll );
+				$.stellar();				
+			}
+		});
+
+
+
+		// $(".intro-text").transition({
+		// 	opacity: "0",
+		// 	marginTop: "20px"
+		// },400,function(){
+		// 	window.scrollTo(0,0);
+
+		// 	$(".page-section.first img").css({
+		// 		"z-index":"99999",
+		// 		"transform":"translate(0,100%)"
+		// 	}).transition({
+		// 		y: "-10px",
+		// 		delay: 300
+		// 	},400).transition({
+		// 		y: "0"
+		// 	},150);
+
+		// 	$(".wave2").css({
+		// 		"z-index":"99999",
+		// 		"transform":"translate(0,100%)"
+		// 	}).transition({
+		// 		y: "-10px"
+		// 	},300).transition({
+		// 		y: "0"
+		// 	},100);
+			// setTimeout(function(){ 
+				// $intro.transition({
+				// 	opacity: "0"
+				// },function(){
+				// 	initScroll();
+				// 	window.removeEventListener( 'scroll', noscroll );
+				// });
+			// }, 900);
+		// });
 	}
 
 	function initScroll(){

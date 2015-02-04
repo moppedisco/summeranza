@@ -100,7 +100,8 @@ img {
 	bottom: -150px;
 	left: -100px;
 	width: 140%;
-	z-index: 9;
+	z-index: 200;
+	transform: translateY(100%);	
 }
 
 .wave2 {
@@ -116,14 +117,21 @@ img {
 	// bottom: 0;
 	// width: 100%;
 	// z-index: 9;
+
 }
 
 .right-col img {
-	position: absolute;
+	position: fixed;
+	right: 20px;
+	bottom: -40px;
 	opacity: 0;
 	transition: opacity 0.2s;
 	-webkit-transition: opacity 0.2s;
 	z-index: 1;
+	.page-section.first & {
+		transform: translateY(100%);
+		z-index: 150;
+	} 	
 }
 
 .page-section.active .right-col img {
@@ -194,88 +202,3 @@ img {
 }
 
 .site-navigation button { display: none; }
-
-// .logo-nr1 {
-// 	transition-origin: 50% 50%;
-// }
-
-// .logo-nr2 {
-// 	transition-origin: 50% 50%;
-// 	margin-top: 6px;
-// }
-
-// .site-navigation__logo.animate1 .logo-nr1 {
-// 	-webkit-animation-name: anim1;
-// 	-webkit-animation-duration: 0.35s;
-// 	-webkit-animation-delay: 0.35s;
-// 	-webkit-animation-iteration-count: 1;
-// 	-webkit-animation-fill-mode: forwards;
-// }
-
-// .site-navigation__logo.animate1 .logo-nr2 {
-// 	-webkit-animation-name: anim2;
-// 	-webkit-animation-duration: 0.7s;
-// 	-webkit-animation-iteration-count: 1;
-// 	-webkit-animation-fill-mode: forwards;
-// }
-
-// @-webkit-keyframes anim1{
-//     from {
-// 		transform: translateY(0%);
-//     }
-//     to {
-//     	transform: translateY(50%);
-//     }    
-// }
-
-// @-webkit-keyframes anim2{
-//     from {
-// 		transform: rotate(0);
-// 		opacity: 0;
-//     }
-//     50% {
-// 		transform: rotate(180deg);
-// 		opacity: 1;
-//     }
-//     to {
-//     	transform: rotate(180deg) translateY(50%);
-//     	opacity: 1;
-//     }    
-// }
-
-// .site-navigation__logo.animate2 .logo-nr1 {
-// 	transform: translateY(50%);
-// 	-webkit-animation-name: anim3;
-// 	-webkit-animation-duration: 0.35s;
-// 	-webkit-animation-iteration-count: 1;
-// 	-webkit-animation-fill-mode: forwards;
-// }
-
-// /*		.site-navigation__logo.animate2 .logo-nr2 {
-// 	-webkit-animation-name: anim4;
-// 	-webkit-animation-duration: 0.7s;
-// 	-webkit-animation-iteration-count: 1;
-// 	-webkit-animation-fill-mode: forwards;
-// }*/
-
-// @-webkit-keyframes anim3{
-//     from {
-// 		transform: translateY(50%);
-// 		opacity: 1;
-//     }
-//     to {
-//     	transform: rotate(90deg);
-//     	opacity: 1;
-//     }
-// }
-
-// @-webkit-keyframes anim4{
-//     from {
-// 		transform: rotate(180deg);
-// 		opacity: 1;
-//     }
-//     to {
-//     	transform: rotate(-90deg);
-//     	opacity: 1;
-//     }
-// }		

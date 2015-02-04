@@ -84,7 +84,8 @@ img {
   bottom: -150px;
   left: -100px;
   width: 140%;
-  z-index: 9;
+  z-index: 200;
+  transform: translateY(100%);
 }
 .wave2 {
   position: fixed;
@@ -93,11 +94,17 @@ img {
   width: 140%;
 }
 .right-col img {
-  position: absolute;
+  position: fixed;
+  right: 20px;
+  bottom: -40px;
   opacity: 0;
   transition: opacity 0.2s;
   -webkit-transition: opacity 0.2s;
   z-index: 1;
+}
+.page-section.first .right-col img {
+  transform: translateY(100%);
+  z-index: 150;
 }
 .page-section.active .right-col img {
   opacity: 1;
