@@ -43,7 +43,7 @@ h2 {
   -moz-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
   -webkit-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
   transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
-  width: 500%;
+  width: 800%;
   height: 100%;
   overflow: scroll;
 }
@@ -52,8 +52,7 @@ h2 {
   width: 20%;
   height: 100%;
   position: relative;
-  /*border-right: 5px solid #000;*/
-
+  border-right: 5px solid #000;
 }
 .left-col {
   position: fixed;
@@ -93,18 +92,12 @@ img {
   left: -100px;
   width: 140%;
 }
-.right-col {
-  position: relative;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  z-index: 9;
-}
 .right-col img {
   position: absolute;
   opacity: 0;
   transition: opacity 0.2s;
   -webkit-transition: opacity 0.2s;
+  z-index: 1;
 }
 .page-section.active .right-col img {
   opacity: 1;

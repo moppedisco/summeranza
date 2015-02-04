@@ -114,8 +114,7 @@ Summeranza.app = (function(window){
 			}
 		});
 
-		$("body").css("overflow","hidden");
-		$.stellar();
+		// $("body").css("overflow","hidden");
 
 		initScroll();
 		$(document).bind('mousewheel DOMMouseScroll MozMousePixelScroll', function(event) {
@@ -184,17 +183,36 @@ Summeranza.app = (function(window){
 
 	function introAnim(){
 		$(document).unbind('mousewheel DOMMouseScroll MozMousePixelScroll');
+		$.stellar();
 		$(".intro-text").transition({
 			opacity: "0",
 			marginTop: "20px"
-		},1000,function(){
+		},600,function(){
 			window.scrollTo(0,0);
+
+			$(".page-section.first img").css({
+				"z-index":"99999",
+				"transform":"translate(0,100%)"
+			}).transition({
+				y: "-10px",
+				delay: 300
+			},400).transition({
+				y: "0"
+			},150);
+
+			$(".wave2").css({
+				"z-index":"99999",
+				"transform":"translate(0,100%)"
+			}).transition({
+				y: "-10px"
+			},300).transition({
+				y: "0"
+			},100);
 			setTimeout(function(){ 
 				$intro.transition({
 					opacity: "0"
 				},function(){
 					initScroll();
-					
 				});
 			}, 600);
 		});
@@ -263,22 +281,8 @@ Summeranza.app = (function(window){
 				}
 
 			},
-			offset: "30%"
+			offset: "0%"
 		});
-		// $('.page-section.first').waypoint({
-		// 	element: $(".wrapper"),
-		// 	horizontal: true,			
-		// 	handler: function(direction) {
-		// 		if(direction === "left"){
-		// 			// $(this).removeClass("static").addClass("active");	
-		// 			// $(".site-navigation").addClass("fixed");
-		// 		} else {
-		// 			// $(this).removeClass("active").addClass("static");	
-		// 			// $(".site-navigation").removeClass("fixed");
-		// 		}
-		// 	},
-		// 	offset: "0%"
-		// });
 	}
 
 	function setActiveSection(activeIndex,direction){
@@ -355,7 +359,17 @@ Summeranza.app = (function(window){
 					});					
 					break;
 				case 1:
-					// code block
+					$(".logo-nr1").css({ transformOrigin:'50% 0%'}).transition({
+						x: "0%",
+						y: "50%"
+					}).transition({
+						rotate: "0deg"
+					});
+					$(".logo-nr2").css({ transformOrigin:'50% 50%'}).transition({
+						y: "50%"
+					}).transition({
+						rotate: "180deg"
+					});
 					break;
 				default:
 					// default code block
