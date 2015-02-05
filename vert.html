@@ -16,7 +16,6 @@
 			<img class="logo-nr2" src="img/summeranza-mm.png" alt="" width="64" />
 			<img class="logo-nr3" src="img/summeranza-mm.png" alt="" width="64" />
 			<img class="logo-nr4" src="img/summeranza-mm.png" alt="" width="64" />
-			<img class="logo-nr5" src="img/summeranza-mm.png" alt="" width="64" />
 		</a>
 		<nav class="site-navigation__link-group">
 			<a class="site-navigation__link active"><span>Festival</span></a>
@@ -75,11 +74,97 @@
 		</section><!-- /.page-section -->
 		<section class="page-section">
 			<div class="left-col">
-				<h2>AWESOME PEOPLE = AWESOME FESTIVALS</h2>
-				<p>100 nationalities. Good luck finding any summer festival as global as this. Actually, don’t even try. Summeranza is one of a kind.</p>
+				<h2>GET YOUR TICKET</h2>
+				<p>Summeranza is a full-day festival of music, rides, food, dancing and enough social posts to blow up your feed. And you get it all with one magic ticket.</p>
 			</div><!-- /.left-col -->				
 			<div class="right-col">
-				<img class="tower" src="img/tower.png" alt="">
+				
+							<input type="text" id="hdnCampaignID" value='' style="display:none" />
+							<input type="text" id="hdnCampaignDivisionCode" value='' style="display:none" />
+							<input type="text" id="hdnCampaignAllocationCode" value=''  style="display:none"/>
+							<input type="text" id="hdnCampaignAllocationPrograms" value=''  style="display:none"  />
+							<input type="text" id="hdnWantsMoreInfo" value='False'   style="display:none" />
+							<input type="text" id="hdnProgram" value=''   style="display:none" />
+							<input type="text" id="hdnMarketCode" value='WE'   style="display:none" />
+							<input type="text" id="hdnFormURL" value='http://localhost/campaign/Summeranza2015/?mc=we' style="display:none" />
+							<form action="" class="form-container">
+								<fieldset class="checkbox--styled">
+									<input type="radio" name="student" id="EFStudent" value="EFStudent" checked="checked" />
+									<label for="EFStudent">I am EF Student</label>
+									<input type="radio" name="student" value="NOTEFStudent" id="NOTEFStudent" />
+									<label for="NOTEFStudent">I am not EF Student</label>
+
+								</fieldset>
+								<div class="">
+									<fieldset ft="F-B,e-B" class="form-item">
+										<label for="firstname" class="required">*First Name</label>
+										<input name="FirstName" type="text" id="FirstName" maxlength="50" required="" class="required" />
+										<span id="REQ_FirstName"></span>
+									</fieldset>
+									<fieldset ft="F-B,e-B" class="form-item">
+										<label for="lastname" class="required">*Last name</label>
+										<input name="LastName" type="text" id="LastName" maxlength="50" required="" class="required" />
+										<span id="REQ_LastName"></span>
+									</fieldset>
+									<fieldset ft="F-B,e-B" class="form-item">
+										<label for="email" class="required">*E-mail</label>
+										<input name="Email" type="email" id="Email" maxlength="50" required="" class="required" regpattern="^\w+([-+._]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$" />
+										<span id="REQ_Email"></span>
+									</fieldset>
+									<fieldset ft="F-B,e-B" for="CountryCode" class="dropList dob-country">
+										<span id="REQ_CountryCode"></span>
+										<select name="CountryCode" id="CountryCode" class="required" required="">
+											<option value="">Country of Residence</option>
+											<option value="AF">Afghanistan</option>
+										</select>
+									</fieldset>
+									<fieldset ft="F-B,e-B" for="BirthDate" class="dropList dob-select">
+										<label class="required dob-label">*Birthdate for students</label><span id="REQ_Days"></span>
+										<select name="Days" id="Days" class="required" required="">
+											<option value="Day">Day</option>
+											<option value="1">1</option>
+										</select>
+										<span id="REQ_Months"></span>
+										<select name="Months" id="Months" class="required" required="">
+											<option value="Month">Month</option>
+											<option value="1">1</option>
+										</select>
+										<span id="REQ_Year"></span>
+										<select name="Year" id="Year" class="required" required="" >
+											<option value="Year">Year</option>
+											<option value="2009">2009</option>
+										</select>
+									</fieldset>
+								</div>
+								<fieldset>
+									<select name="Merchandise" id="Merchandise" class="required" required="" >
+										<option value=Gold>Gold($20)</option>
+										<option value=Platinum>Platinum($25)</option>
+										<option value=Silver>Silver($15)</option>
+									</select>
+								</fieldset>
+								<fieldset>
+									<select name="UKschools" id="UKschools" class="required" required="">
+										<option value=Bournemouth>Bournemouth</option>
+										<option value=Brighton>Brighton</option>
+										<option value=Bristol>Bristol</option>
+										<option value=Cambridge>Cambridge</option>
+										<option value=>Cambridge Clare College</option>
+										<option value=>Eastbourne</option>
+										<option value=Hastings>Hastings</option>
+										<option value=London>London</option>
+										<option value=Manchester>Manchester</option>
+										<option value=Oxford>Oxford</option>
+									</select>
+								</fieldset>
+								<fieldset id="Gender" class="checkbox--styled checkbox--styled--gender">
+									<input id="male" type="radio" name="Gender" />
+									<label for="male">Male</label>
+									<input id="female" type="radio" name="Gender" />
+									<label for="female">Female</label>
+								</fieldset>
+								<input type="button" class="form-submit" id="btnRegister" value='Submit'/>
+							</form>
 			</div><!-- /.right-col -->			
 		</section><!-- /.page-section -->
 	</main><!-- /.wrapper -->

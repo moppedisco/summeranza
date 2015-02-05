@@ -90,6 +90,7 @@ Summeranza.app = (function(window){
 		scrollWait = 1000,
 		lastAnimation = 0,
 		scrolled = false,
+		logoAnim = new TimelineMax({paused: true});
 		backgroundColors = [
 			"rgb(255,238,173)",
 			"rgb(210,234,228)",
@@ -100,11 +101,12 @@ Summeranza.app = (function(window){
 
 	function init(){
 		initNavigationButtons();
-		initWaypoints();
+		
 
 		reSizeVideoWrapper();
 		adjustVideoPositioning("#mainVideo");
 
+		initlogo();
 		initVideoplayer();
 
 		$(window).resize(function() {
@@ -114,16 +116,15 @@ Summeranza.app = (function(window){
 			}
 		});
 
-
-
-
 		window.addEventListener( 'scroll', noscroll );
 
 		initScroll();
 
 		$(document).bind('mousewheel DOMMouseScroll MozMousePixelScroll', function(event) {
 			event.preventDefault();
-			// var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
+
+			var delta = event.originalEvent.wheelDelta || -event.originalEvent.detail;
+			console.log(delta);
 			var timeNow = new Date().getTime();
 			if(timeNow - lastAnimation < scrollWait) {
 				event.preventDefault();
@@ -131,6 +132,7 @@ Summeranza.app = (function(window){
 			}
 			lastAnimation = timeNow;
 			introAnim();
+			initWaypoints();
 		});
 	}
 
@@ -157,7 +159,6 @@ Summeranza.app = (function(window){
 			$videoElement[0].controls = false;
 			$videoElement[0].muted = true;
 		});
-
 	}
 
 	function playIntro(callback){
@@ -195,53 +196,19 @@ Summeranza.app = (function(window){
 			ease: Power4.easeInOut
 		});
 
-		TweenMax.to($intro,1.5,{
+		TweenMax.to($intro,0.5,{
 			css: {
-				opacity: "0"
+				y: "100%"
 			},
-			ease: Power1.easeOut,
-			delay: 0.5,
+			ease: Back.easeInOut.config(1.1),
+			delay: 0.6,
 			onComplete: function(){
 				window.removeEventListener( 'scroll', noscroll );
-				$.stellar();				
+				$.stellar({
+					positionProperty:"transform"
+				});				
 			}
 		});
-
-
-
-		// $(".intro-text").transition({
-		// 	opacity: "0",
-		// 	marginTop: "20px"
-		// },400,function(){
-		// 	window.scrollTo(0,0);
-
-		// 	$(".page-section.first img").css({
-		// 		"z-index":"99999",
-		// 		"transform":"translate(0,100%)"
-		// 	}).transition({
-		// 		y: "-10px",
-		// 		delay: 300
-		// 	},400).transition({
-		// 		y: "0"
-		// 	},150);
-
-		// 	$(".wave2").css({
-		// 		"z-index":"99999",
-		// 		"transform":"translate(0,100%)"
-		// 	}).transition({
-		// 		y: "-10px"
-		// 	},300).transition({
-		// 		y: "0"
-		// 	},100);
-			// setTimeout(function(){ 
-				// $intro.transition({
-				// 	opacity: "0"
-				// },function(){
-				// 	initScroll();
-				// 	window.removeEventListener( 'scroll', noscroll );
-				// });
-			// }, 900);
-		// });
 	}
 
 	function initScroll(){
@@ -254,31 +221,31 @@ Summeranza.app = (function(window){
 
 	function initNavigationButtons(){
 		// Scroll down button mobile
-		$buttonScrollDown.on("click",function(){
-			$body.animate({
-				scrollTop: $(".page-section.active").next().offset().top-92
-			}, 800);
-			return false
-		});
-		// Scroll up button mobile
-		$buttonScrollUp.on("click",function(){
-			if(activePanelIndex != 0){
-				$body.animate({
-					scrollTop: $(".page-section.active").prev().offset().top-92
-				}, 800);
-			} else {
-				$body.animate({
-					scrollTop: $(".page-section.first").offset().top
-				}, 800);				
-			}
-			return false
-		});	
+		// $buttonScrollDown.on("click",function(){
+		// 	$body.animate({
+		// 		scrollTop: $(".page-section.active").next().offset().top-92
+		// 	}, 800);
+		// 	return false
+		// });
+		// // Scroll up button mobile
+		// $buttonScrollUp.on("click",function(){
+		// 	if(activePanelIndex != 0){
+		// 		$body.animate({
+		// 			scrollTop: $(".page-section.active").prev().offset().top-92
+		// 		}, 800);
+		// 	} else {
+		// 		$body.animate({
+		// 			scrollTop: $(".page-section.first").offset().top
+		// 		}, 800);				
+		// 	}
+		// 	return false
+		// });	
 
 		// Navigation buttons
 		$navigation.find("a").on("click",function(){
 			if(!Modernizr.touch){
 				$body.animate({
-					scrollTop: $(".page-section:eq("+$(this).index()+")").offset().top
+					scrollLeft: $(".page-section:eq("+$(this).index()+")").offset().left
 				}, 800);
 			}
 			return false
@@ -340,67 +307,64 @@ Summeranza.app = (function(window){
 
 	}
 
+	function initlogo(){
+		logoAnim
+		.to($(".logo-nr2"),0.3,{ opacity: "1", rotation: "180", transformOrigin:"50% 50%" },'one')
+		.to($(".logo-nr2"),0.3,{ y: "-50%"},"one+=0.3")
+		.to($(".logo-nr1"),0.3,{ y: "50%" },"one+=0.3")
+		.to($(".logo-nr1"),0.3,{ rotation: "-90", y: "0%" },"two")
+		.to($(".logo-nr2"),0.3,{ rotation: "90", y: "0%" },"two")
+		.to($(".logo-nr1"),0.3,{ x: "-16px"  },"two+=0.3")
+		.to($(".logo-nr2"),0.3,{ x: "16px"  },"two+=0.3")
+		.to($(".logo-nr1"),0.3,{ x: "16px"  },"three")
+		.to($(".logo-nr2"),0.3,{ x: "-16px"  },"three")
+		.to($(".logo-nr1"),0.3,{ x: "16px"  },"four")
+		.to($(".logo-nr2"),0.3,{ x: "-16px"  },"four");
+		// .to($(".logo-nr3"),0.3,{ opacity: "1", rotation: "0" },"five")
+		// .to($(".logo-nr4"),0.3,{ opacity: "1", rotation: "-180"  },"five")
+		// .to($(".logo-nr1"),0.3,{ x: "32px" },"five+=0.3")
+		// .to($(".logo-nr2"),0.3,{ x: "-32px" },"five+=0.3")
+		// .to($(".logo-nr3"),0.3,{ y: "32px" },"five+=0.3")
+		// .to($(".logo-nr4"),0.3,{ y: "-32px"  },"five+=0.3");
+	}
+
 	function animateLogo(activeIndex,direction){
-		if(direction === "1"){
+		if(direction == "1"){
 			switch(activeIndex) {
 				case 1:
-					$(".logo-nr2").css("opacity","0").transition({
-						opacity: "1",
-						rotate: "180"
-					},function(){
-						$(".logo-nr1").transition({
-							y: "50%"
-						});
-						$(".logo-nr2").transition({
-							y: "50%"
-						});
-					});
+					logoAnim.tweenTo("two");
 					break;
 				case 2:
-					$(".logo-nr1").css({ transformOrigin:'50% 0%'}).transition({
-						rotate: "90deg"
-					}).transition({
-						x: "25%"
-					});
-					$(".logo-nr2").css({ transformOrigin:'50% 50%'}).transition({
-						rotate: "270deg"
-					}).transition({
-						y: "-25%"
-					});
+					logoAnim.tweenTo("three");
 					break;
+				case 3:
+					logoAnim.tweenTo("four");
+					break;
+				case 4:
+					// logoAnim.tweenTo("five");
+					break;		
 				default:
 					// default code block
 			}
-		} else if(direction === "-1"){
+		} else if(direction == "-1"){
 			switch(activeIndex) {
 				case 0:
-					$(".logo-nr2").transition({
-						y: 0
-					}).transition({
-						opacity: "0",
-						rotate: "0"						
-					});
-					$(".logo-nr1").transition({
-						y: "0%"
-					});					
+					logoAnim.tweenFromTo("two","one");
 					break;
 				case 1:
-					$(".logo-nr1").css({ transformOrigin:'50% 0%'}).transition({
-						x: "0%",
-						y: "50%"
-					}).transition({
-						rotate: "0deg"
-					});
-					$(".logo-nr2").css({ transformOrigin:'50% 50%'}).transition({
-						y: "50%"
-					}).transition({
-						rotate: "180deg"
-					});
+					logoAnim.tweenTo("two");
 					break;
+				case 2:
+					logoAnim.tweenTo("three");
+					break;
+				case 3:
+					logoAnim.tweenTo("four");
+					break;			
 				default:
 					// default code block
-			}			
+			}
 		}
+
 	}
 
 	function reSizeVideoWrapper(){

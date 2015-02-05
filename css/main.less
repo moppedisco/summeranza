@@ -1,10 +1,16 @@
-﻿* {
-	margin: 0;
-	padding: 0;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
+﻿@charset "UTF-8";
+
+/* Framework =================================================================================================== */
+/* ============================================================================================================  */
+/* ============================================================================================================  */
+@import "EF-CSS-FRAMEWORK/defaults";				// Get framework defaults
+@import "_vars.less";								// Override framework defaults with your own styles
+@import "EF-CSS-FRAMEWORK/init";					// Load framework based on your preferences in _vars
+
+@desktop:   ~"only screen and (min-width: 990px)"; // We use
+@tablet:    ~"only screen and (min-width: 720px) and (max-width: 989px)";
+@mobile:    ~"only screen and (min-width: 1px) and (max-width: 719px)";
+
 
 html, body {
 	width: 100%;
@@ -63,7 +69,7 @@ h2 {
 	width: 20%;
 	height: 100%;
 	position: relative;
-	border-right: 5px solid #000;
+	// border-right: 5px solid #000;
 }
 
 .left-col {
@@ -180,7 +186,12 @@ img {
 	font-weight: normal;
 	font-family: "Roboto Condensed", sans-serif;
 	letter-spacing: 1px;
-	margin-top: 10px;
+	margin-top: 5px;
+	cursor: pointer;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 .site-navigation__logo {
@@ -194,7 +205,6 @@ img {
 .site-navigation__logo img {
 	position: absolute;
 	opacity: 0;
-	// border: 2px solid orange;
 }
 
 .site-navigation__logo img:first-child {
@@ -202,3 +212,77 @@ img {
 }
 
 .site-navigation button { display: none; }
+
+
+.form-container {
+	width: 500px;
+	position: fixed;
+	right: 90px;
+	bottom: 0;
+	z-index: 999999;
+	display: none;
+}
+
+fieldset {
+	border: none;
+}
+
+.form-container input[type="text"], 
+.form-container input[type="email"],
+.form-container select {
+	width: 100%;
+	background: none;
+	border-color: #fff;
+	color: #fff;
+	font-size: 16px;
+	text-transform: uppercase;
+	padding: 15px 10px;
+	-webkit-appearance: none;
+}
+
+.form-container label {
+	font-weight: normal;
+	letter-spacing: 1px;
+}
+
+.form-container select {
+	height: 50px;
+	border-radius: 0;
+	border-right: 15px solid #fff;
+}
+
+.checkbox--styled {
+	overflow: hidden;
+}
+
+
+.checkbox--styled input[type="radio"] {
+	opacity: 0;
+	position: absolute;
+}
+
+.checkbox--styled input[type="radio"]:checked + label {
+	.button--black;
+}
+
+.checkbox--styled label {
+	float: left;
+	width: 50%;
+	.button;
+	.button--black-outline;	
+	font-size: 15px;
+	font-weight: normal;	
+}
+
+.dob-select select {
+	float: left;
+	width: 33.33333333%;
+}
+
+.form-submit {
+	.button;
+	.button--white;
+	width: 100%;
+}
+
+
