@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+]>
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="19px" height="127px" viewBox="-0.59 -0.175 19 127"
+	 overflow="visible" enable-background="new -0.59 -0.175 19 127" xml:space="preserve">
+<defs>
+</defs>
+<rect x="2.41" y="65.071" fill="#FFEEAD" stroke="#FF345C" stroke-width="0.4874" stroke-miterlimit="10" width="10.666" height="60.754"/>
+<rect x="8.567" y="0.045" fill="#FF345C" width="3.591" height="6.283"/>
+<rect x="11.809" y="0.045" fill="#FF345C" width="2.558" height="6.283"/>
+<rect x="14.366" y="1.052" fill="#FF345C" width="3.509" height="6.283"/>
+<line fill="none" stroke="#FF345C" stroke-width="0.4169" stroke-miterlimit="10" x1="7.902" y1="0" x2="7.902" y2="28.132"/>
+<polygon fill="#FFEEAD" points="10.396,0.518 10.692,1.433 11.654,1.433 10.877,1.998 11.174,2.913 10.396,2.348 9.617,2.913 
+	9.914,1.998 9.137,1.433 10.099,1.433 "/>
+<polygon fill="#FFEEAD" points="12.529,0.345 12.617,0.615 12.901,0.615 12.672,0.782 12.76,1.052 12.529,0.885 12.3,1.052 
+	12.388,0.782 12.158,0.615 12.441,0.615 "/>
+<polygon fill="#FFEEAD" points="12.97,1.24 13.058,1.511 13.342,1.511 13.111,1.677 13.2,1.947 12.97,1.78 12.74,1.947 
+	12.828,1.677 12.599,1.511 12.882,1.511 "/>
+<polygon fill="#FFEEAD" points="12.952,2.011 13.04,2.281 13.324,2.281 13.095,2.448 13.183,2.719 12.952,2.551 12.723,2.719 
+	12.811,2.448 12.581,2.281 12.864,2.281 "/>
+<polygon fill="#FFEEAD" points="12.41,2.825 12.498,3.095 12.782,3.095 12.553,3.262 12.641,3.532 12.41,3.365 12.181,3.532 
+	12.269,3.262 12.039,3.095 12.322,3.095 "/>
+<polygon fill="#FFEEAD" stroke="#FF345C" stroke-width="0.3876" stroke-miterlimit="10" points="0.613,64.797 7.795,25.396 
+	14.681,65.345 "/>
+<path fill="#FFBD9E" d="M15.294,65.129c-0.005,0.609-0.351,1.1-0.772,1.097L0.757,66.121C0.334,66.118-0.004,65.622,0,65.013l0,0
+	c0.005-0.609,0.352-1.099,0.773-1.096l13.764,0.104C14.959,64.024,15.299,64.521,15.294,65.129L15.294,65.129z"/>
+<line fill="none" stroke="#FCC7AB" stroke-width="0.1836" stroke-miterlimit="10" x1="7.627" y1="27.379" x2="5.359" y2="64.172"/>
+<line fill="none" stroke="#FCC7AB" stroke-width="0.1836" stroke-miterlimit="10" x1="7.627" y1="27.379" x2="11.475" y2="64.659"/>
+</svg>
