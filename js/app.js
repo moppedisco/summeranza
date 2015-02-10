@@ -61,7 +61,7 @@ Summeranza.helpers = (function(window){
 		},
 		scrollY: function() { 
 			return window.pageYOffset || docElem.scrollTop; 
-		}
+		}	
 	};
 }(window));
 
@@ -80,18 +80,136 @@ Summeranza.app = (function(window){
 		$buttonScrollDown = $(".button--section-jump--down"),
 		$buttonScrollUp = $(".button--section-jump--up"),
 		$videoElement = $("#mainVideo"),
-		activePanelIndex = 0,
+		activePanelIndex = -1,
+		nrPageSections = $(".page-section").length-1,
 		menuLinkheight = $(".site-navigation__link").height(),
+		scrollWait = 1000,
+		lastAnimation = 0,
+		anim_logo = new TimelineMax({paused: true}),
+		anim_intro = new TimelineMax({paused: true}),
+		anim_flags = new TimelineMax({paused: true}),		
 		backgroundColors = [
 			"bg1",
 			"bg2",
 			"bg3",
 			"bg4",
 			"bg5"
-		];
+		],
+		scrollVal,
+		isRevealed, 
+		noscroll, 
+		isAnimating,
+		isVideoPlaying = false,
+		$container = $('.header--full-screen-video');		
+
+	var ie = (function(){
+		var undef,rv = -1; // Return value assumes failure.
+		var ua = window.navigator.userAgent;
+		var msie = ua.indexOf('MSIE ');
+		var trident = ua.indexOf('Trident/');
+
+		if (msie > 0) {
+			// IE 10 or older => return version number
+			rv = parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+		} else if (trident > 0) {
+			// IE 11 (or newer) => return version number
+			var rvNum = ua.indexOf('rv:');
+			rv = parseInt(ua.substring(rvNum + 3, ua.indexOf('.', rvNum)), 10);
+		}
+
+		return ((rv > -1) ? rv : undef);
+	}());
+
+
+	// disable/enable scroll (mousewheel and keys) from http://stackoverflow.com/a/4770179					
+	// left: 37, up: 38, right: 39, down: 40,
+	// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+	var keys = [32, 37, 38, 39, 40], wheelIter = 0;
+
+	function keydown(e) {
+		for (var i = keys.length; i--;) {
+			if (e.keyCode === keys[i]) {
+				preventDefault(e);
+				return;
+			}
+		}
+	}
+
+	function touchmove(e) {
+		preventDefault(e);
+	}
+
+	function wheel(e) {
+		// for IE 
+		//if( ie ) {
+			//preventDefault(e);
+		//}
+	}
+
+	function disable_scroll() {
+		window.onmousewheel = document.onmousewheel = wheel;
+		document.onkeydown = keydown;
+		document.body.ontouchmove = touchmove;
+	}
+
+	function enable_scroll() {
+		window.onmousewheel = document.onmousewheel = document.onkeydown = document.body.ontouchmove = null;  
+	}
+
+		
+	function scrollPage() {
+		scrollVal = Summeranza.helpers.scrollY();
+		
+		if( noscroll && !ie ) {
+			if( scrollVal < 0 ) return false;
+			// keep it that way
+			window.scrollTo( 0, 0 );
+		}
+
+		if( $container.hasClass('notrans')) {
+			$container.removeClass('notrans');
+			return false;
+		}
+
+		if( isAnimating || isVideoPlaying) {
+			return false;
+		}
+		
+		if( scrollVal <= 0 && isRevealed ) {
+			toggleIntro(0);
+		}
+		else if( scrollVal > 0 && !isRevealed ){
+			toggleIntro(1);
+		}
+	}
+
+	function toggleIntro( reveal ) {
+		isAnimating = true;
+		
+		if( reveal ) {
+			$container.addClass('modify');
+			anim_intro.tweenTo("seq3");
+		}
+		else {
+			noscroll = true;
+			disable_scroll();
+			anim_intro.tweenFromTo("seq3","seq1");
+			$container.removeClass('modify');
+		}
+
+		// simulating the end of the transition:
+		setTimeout( function() {
+			isRevealed = !isRevealed;
+			isAnimating = false;
+			if( reveal ) {
+				noscroll = false;
+				enable_scroll();
+			}
+		}, 600 );
+	}
 
 	function init(){
-		
+
 		reSizeVideoWrapper();
 
 		adjustVideoPositioning("#mainVideo");
@@ -99,30 +217,85 @@ Summeranza.app = (function(window){
 		initNavigationButtons();
 		initWaypoints();
 		initVideoplayer();
-
+		initHeaderScroll();
+		
 		$(window).resize(function() {
 			if(!Modernizr.touch){
 				adjustVideoPositioning("#mainVideo");
 				reSizeVideoWrapper();
 			}
 		});
+
+		createAnimations();
 	}
 
+	function initHeaderScroll(){
+		var pageScroll = Summeranza.helpers.scrollY();
+		noscroll = pageScroll === 0;
+		
+		disable_scroll();
+		if( pageScroll ) {
+			isRevealed = true;
+		}
+		
+		window.addEventListener( 'scroll', scrollPage );
+	}
+
+	function createAnimations(){
+		// Logo animation sequence
+		anim_logo
+			.to($(".logo-nr2"),0.3,{ opacity: "1", rotation: "180", transformOrigin:"50% 50%" },'one')
+			.to($(".logo-nr2"),0.3,{ y: "-50%"},"one+=0.3")
+			.to($(".logo-nr1"),0.3,{ y: "50%" },"one+=0.3")
+			.to($(".logo-nr1"),0.3,{ rotation: "-90", y: "0%" },"two")
+			.to($(".logo-nr2"),0.3,{ rotation: "90", y: "0%" },"two")
+			.to($(".logo-nr1"),0.3,{ x: "-16px"  },"two+=0.3")
+			.to($(".logo-nr2"),0.3,{ x: "16px"  },"two+=0.3")
+			.to($(".logo-nr1"),0.3,{ x: "16px"  },"three")
+			.to($(".logo-nr2"),0.3,{ x: "-16px"  },"three")
+			.to($(".logo-nr1"),0.3,{ x: "16px"  },"four")
+			.to($(".logo-nr2"),0.3,{ x: "-16px"  },"four")
+			.to($(".logo-nr3"),0.3,{ opacity: "1", rotation: "0" },"five")
+			.to($(".logo-nr4"),0.3,{ opacity: "1", rotation: "-180"  },"five")
+			.to($(".logo-nr1"),0.3,{ x: "32px" },"five+=0.3")
+			.to($(".logo-nr2"),0.3,{ x: "-32px" },"five+=0.3")
+			.to($(".logo-nr3"),0.3,{ y: "32px" },"five+=0.3")
+			.to($(".logo-nr4"),0.3,{ y: "-32px"  },"five+=0.3")
+			.to($(".logo-nr3"),0.3,{ y: "32px" },"last")
+			.to($(".logo-nr4"),0.3,{ y: "-32px"  },"last");
+
+		// Flags popup animation
+		anim_flags
+			.staggerFrom(".tower-small", 0.3, { y: "200", ease: Back.easeOut.config(1.7)}, -0.1, "stagger"); 
+
+		// Video to site transtion sequence
+		anim_intro
+			.staggerFrom([".header__text--summeranza", ".header__text--tagline"], 0.3, 
+				{ y:"0", opacity: 1,ease: Power2.easeOut }, -0.1,"seq0")
+			.staggerTo([".header__text--summeranza", ".header__text--tagline"], 0.3, 
+				{ y:"-10", opacity: 0,ease: Power2.easeOut }, -0.1,"seq1")		
+			.staggerFrom([".header__text--date", ".header__text--venue"], 0.3, 
+				{ y:"10px", opacity: 0,ease: Power2.easeOut }, -0.1,"seq2")
+			.staggerTo([".header__text--date", ".header__text--venue"], 0.3, 
+				{ y:"-10", opacity: 0,ease: Power2.easeOut }, -0.1,"seq3");		
+
+
+
+	}
 	function initVideoplayer(callback){
 		$videoElement[0].addEventListener("pause",function(){
+			isVideoPlaying = false;
+			enable_scroll();			
 			stopVideo();
 		});
 
 		$(".button--watch-video").on("click",function(){
 			playIntro(function(){
+				isVideoPlaying = true;
+				disable_scroll();				
 				playVideo();
 			});
 		});
-
-		$(".button--scrolldown").on("click",function(){
-			stopVideo();
-		});
-
 	}
 
 	function playIntro(callback){
@@ -133,52 +306,58 @@ Summeranza.app = (function(window){
 				callback();
 			});
 		} else {
-			callback();		
+			callback();
 		}		
 	}
 
 	function playVideo(){
-		window.addEventListener( 'scroll', noscroll );
 		$(".button--watch-video").fadeOut();
 
-		$(".intro-text").fadeOut(800,function(){
+		$(".header__vert-box").fadeOut(800,function(){
+			$videoElement[0].play();
 			$videoElement[0].muted = false;
 			$videoElement[0].loop = false;
+			$videoElement[0].controls = true;
 			$videoElement[0].currentTime = 0;
 		});		
 	}
 
 	function stopVideo(){
-		window.removeEventListener( 'scroll', noscroll );
 		$(".button--watch-video").fadeIn();
-		$(".intro-text").fadeIn();		
+		$(".header__vert-box").fadeIn();		
 		$videoElement[0].loop = true;
 		$videoElement[0].controls = false;
 		$videoElement[0].muted = true;
 	}
 
-	function noscroll() {
-		window.scrollTo(0,0);
-	}
-
 	function initNavigationButtons(){
 		// Scroll down button mobile
 		$buttonScrollDown.on("click",function(){
-			$body.animate({
-				scrollTop: $(".page-section.active").next().offset().top-92
-			}, 800);
+			if(activePanelIndex < 0){
+				$body.animate({
+					scrollTop: $(".page-section.first").offset().top
+				}, 400);
+
+			} else if(activePanelIndex == nrPageSections){
+				return false
+			} else {
+				$body.animate({
+					scrollTop: $(".page-section.active").next().offset().top
+				}, 400);
+			}
 			return false
 		});
 		// Scroll up button mobile
 		$buttonScrollUp.on("click",function(){
-			if(activePanelIndex != 0){
+			if(activePanelIndex <= 0){
 				$body.animate({
-					scrollTop: $(".page-section.active").prev().offset().top-92
-				}, 800);
+					scrollTop: $(".header--full-screen-video").offset().top
+				}, 400);				
+
 			} else {
 				$body.animate({
-					scrollTop: $(".page-section.first").offset().top
-				}, 800);				
+					scrollTop: $(".page-section.active").prev().offset().top
+				}, 400);			
 			}
 			return false
 		});	
@@ -188,7 +367,7 @@ Summeranza.app = (function(window){
 			if(!Modernizr.touch){
 				$body.animate({
 					scrollTop: $(".page-section:eq("+$(this).index()+")").offset().top
-				}, 800);
+				}, 400);
 			}
 			return false
 		});	
@@ -223,10 +402,13 @@ Summeranza.app = (function(window){
 		$('.page-section.first').waypoint({
 			handler: function(direction) {
 				if(direction === "down"){
+					activePanelIndex = 0;
 					$(this).removeClass("static").addClass("active");	
 					$(".site-navigation").addClass("fixed");
 					$(".wave").addClass("animated fadeInUp");
 				} else {
+
+					activePanelIndex = -1;
 					$(this).removeClass("active").addClass("static");	
 					$(".site-navigation").removeClass("fixed");
 				}
@@ -235,7 +417,18 @@ Summeranza.app = (function(window){
 		});
 	}
 
+	var isAnimating = false;
+
 	function setActiveSection(activeIndex,direction){
+		// if(isAnimating){
+		// 	return false
+		// }
+		// isAnimating = true;
+
+		// setTimeout(function(){ 
+		// 	isAnimating = false;
+		// }, 800);
+
 		activePanelIndex = activeIndex;
 		// Reset navigation
 		$navigation.find("a").removeClass("active");
@@ -246,13 +439,58 @@ Summeranza.app = (function(window){
 		// Set active navigation element
 		$navigation.find("a:eq("+activeIndex+")").addClass("active");
 		
+		animateLogo(activeIndex,direction);
+
 		// Set active section background class on body
-		$body.attr("class","").addClass(backgroundColors[activeIndex]);
+		$(".wrapper").removeClass(backgroundColors[activeIndex-direction]).addClass(backgroundColors[activeIndex]);
 		
-		$(".page-section:eq('"+(activeIndex-direction)+"') .page-section__header img").attr('class', '').addClass("animated bounceOutDown");
+		$(".page-section:eq('"+(activeIndex-direction)+"') .main-graphic").css("opacity","1").removeClass('animated bounceOutDown bounceInUp').addClass("animated bounceOutDown");
+		$(".page-section.active").removeClass("active");
 		$(".page-section:eq('"+activeIndex+"')").addClass("active");
-		$(".page-section:eq('"+(activeIndex-direction)+"')").removeClass("active");
-		$(".page-section:eq('"+(activeIndex)+"') .page-section__header img").attr('class', '').addClass("animated bounceInUp");
+		
+		$(".page-section:eq('"+(activeIndex)+"') .main-graphic").css("opacity","1").removeClass('animated bounceOutDown bounceInUp').addClass("animated bounceInUp");
+	}
+
+	function animateLogo(activeIndex,direction){
+		if(direction == "1"){
+			switch(activeIndex) {
+				case 0:
+					break;
+				case 1:
+					anim_logo.tweenTo("two");
+					anim_flags.reverse();
+					break;
+				case 2:
+					anim_logo.tweenTo("three");
+					break;
+				case 3:
+					anim_logo.tweenTo("four");
+					break;
+				case 4:
+					anim_logo.tweenTo("last");
+					break;		
+				default:
+					// default code block
+			}
+		} else if(direction == "-1"){
+			switch(activeIndex) {
+				case 0:
+					anim_logo.tweenFromTo("two","one");
+					anim_flags.play();
+					break;
+				case 1:
+					anim_logo.tweenTo("two");
+					break;
+				case 2:
+					anim_logo.tweenTo("three");
+					break;
+				case 3:
+					anim_logo.tweenTo("four");
+					break;			
+				default:
+					// default code block
+			}
+		}
 
 	}
 
