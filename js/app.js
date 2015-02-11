@@ -126,6 +126,30 @@ Summeranza.app = (function(window){
 	// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
 	var keys = [32, 37, 38, 39, 40], wheelIter = 0;
 
+	function init(){
+
+		
+
+		adjustVideoPositioning("#mainVideo");
+
+		initNavigationButtons();
+		initWaypoints();
+		if(!Modernizr.touch){
+			initVideoplayer();
+			initHeaderScroll();
+			reSizeVideoWrapper();
+		}
+		
+		$(window).resize(function() {
+			if(!Modernizr.touch){
+				adjustVideoPositioning("#mainVideo");
+				reSizeVideoWrapper();
+			}
+		});
+
+		createAnimations();
+	}
+
 	function keydown(e) {
 		for (var i = keys.length; i--;) {
 			if (e.keyCode === keys[i]) {
@@ -206,27 +230,6 @@ Summeranza.app = (function(window){
 				enable_scroll();
 			}
 		}, 600 );
-	}
-
-	function init(){
-
-		reSizeVideoWrapper();
-
-		adjustVideoPositioning("#mainVideo");
-
-		initNavigationButtons();
-		initWaypoints();
-		initVideoplayer();
-		initHeaderScroll();
-		
-		$(window).resize(function() {
-			if(!Modernizr.touch){
-				adjustVideoPositioning("#mainVideo");
-				reSizeVideoWrapper();
-			}
-		});
-
-		createAnimations();
 	}
 
 	function initHeaderScroll(){
@@ -376,7 +379,7 @@ Summeranza.app = (function(window){
 	function initWaypoints(){
 		
 		$('.page-section.first').addClass("static");
-		$('body').addClass("bg1");
+		$('.wrapper').addClass("bg1");
 
 
 		$panels.waypoint({
@@ -403,11 +406,12 @@ Summeranza.app = (function(window){
 			handler: function(direction) {
 				if(direction === "down"){
 					activePanelIndex = 0;
+					anim_flags.play();
 					$(this).removeClass("static").addClass("active");	
 					$(".site-navigation").addClass("fixed");
 					$(".wave").addClass("animated fadeInUp");
 				} else {
-
+					anim_flags.reverse();
 					activePanelIndex = -1;
 					$(this).removeClass("active").addClass("static");	
 					$(".site-navigation").removeClass("fixed");
@@ -444,6 +448,10 @@ Summeranza.app = (function(window){
 		// Set active section background class on body
 		$(".wrapper").removeClass(backgroundColors[activeIndex-direction]).addClass(backgroundColors[activeIndex]);
 		
+		// TweenLite.to("body", 1, {className:backgroundColors[activeIndex],onComplete: function(){
+		// 	// $body.addClass("introDone");
+		// }});
+
 		$(".page-section:eq('"+(activeIndex-direction)+"') .main-graphic").css("opacity","1").removeClass('animated bounceOutDown bounceInUp').addClass("animated bounceOutDown");
 		$(".page-section.active").removeClass("active");
 		$(".page-section:eq('"+activeIndex+"')").addClass("active");
