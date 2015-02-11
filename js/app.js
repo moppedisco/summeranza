@@ -85,9 +85,11 @@ Summeranza.app = (function(window){
 		menuLinkheight = $(".site-navigation__link").height(),
 		scrollWait = 1000,
 		lastAnimation = 0,
+		isAnimating = false,
 		anim_logo = new TimelineMax({paused: true}),
 		anim_intro = new TimelineMax({paused: true}),
-		anim_flags = new TimelineMax({paused: true}),		
+		anim_flags = new TimelineMax({paused: true}),
+		anim_hands = new TimelineMax({paused: true}),		
 		backgroundColors = [
 			"bg1",
 			"bg2",
@@ -136,7 +138,7 @@ Summeranza.app = (function(window){
 		initWaypoints();
 		if(!Modernizr.touch){
 			initVideoplayer();
-			initHeaderScroll();
+			// initHeaderScroll();
 			reSizeVideoWrapper();
 		}
 		
@@ -212,12 +214,12 @@ Summeranza.app = (function(window){
 		
 		if( reveal ) {
 			$container.addClass('modify');
-			anim_intro.tweenTo("seq3");
+			// anim_intro.tweenTo("seq3");
 		}
 		else {
 			noscroll = true;
 			disable_scroll();
-			anim_intro.tweenFromTo("seq3","seq1");
+			// anim_intro.tweenFromTo("seq3","seq5");
 			$container.removeClass('modify');
 		}
 
@@ -271,20 +273,23 @@ Summeranza.app = (function(window){
 		anim_flags
 			.staggerFrom(".tower-small", 0.3, { y: "200", ease: Back.easeOut.config(1.7)}, -0.1, "stagger"); 
 
+		// Flags popup animation
+		anim_hands
+			.staggerFrom(".hand-small", 0.3, { y: "200", ease: Back.easeOut.config(1.7)}, -0.1, "stagger"); 
+
+
 		// Video to site transtion sequence
 		anim_intro
 			.staggerFrom([".header__text--summeranza", ".header__text--tagline"], 0.3, 
-				{ y:"0", opacity: 1,ease: Power2.easeOut }, -0.1,"seq0")
-			.staggerTo([".header__text--summeranza", ".header__text--tagline"], 0.3, 
-				{ y:"-10", opacity: 0,ease: Power2.easeOut }, -0.1,"seq1")		
+				{ x:"0", opacity: 1,ease: Power2.easeOut }, 0.1,"seq0")
+			.staggerTo([".header__text--summeranza", ".header__text--tagline"],0.1, 
+				{ x:"-10", opacity: 0,ease: Power2.easeOut }, 0.1,"seq1")		
 			.staggerFrom([".header__text--date", ".header__text--venue"], 0.3, 
-				{ y:"10px", opacity: 0,ease: Power2.easeOut }, -0.1,"seq2")
+				{ x:"10px", opacity: 0,ease: Power2.easeOut }, 0.1,"seq2")
 			.staggerTo([".header__text--date", ".header__text--venue"], 0.3, 
-				{ y:"-10", opacity: 0,ease: Power2.easeOut }, -0.1,"seq3");		
-
-
-
+				{ x:"-10", opacity: 0,ease: Power2.easeOut }, 0.1,"seq3");
 	}
+
 	function initVideoplayer(callback){
 		$videoElement[0].addEventListener("pause",function(){
 			isVideoPlaying = false;
@@ -337,30 +342,20 @@ Summeranza.app = (function(window){
 		// Scroll down button mobile
 		$buttonScrollDown.on("click",function(){
 			if(activePanelIndex < 0){
-				$body.animate({
-					scrollTop: $(".page-section.first").offset().top
-				}, 400);
-
+				TweenLite.to(window, 0.4, {scrollTo:{y:$(".page-section.first").offset().top}, ease:Power2.easeOut});
 			} else if(activePanelIndex == nrPageSections){
 				return false
 			} else {
-				$body.animate({
-					scrollTop: $(".page-section.active").next().offset().top
-				}, 400);
+				TweenLite.to(window, 0.4, {scrollTo:{y:$(".page-section.active").next().offset().top}, ease:Power2.easeOut});
 			}
 			return false
 		});
 		// Scroll up button mobile
 		$buttonScrollUp.on("click",function(){
 			if(activePanelIndex <= 0){
-				$body.animate({
-					scrollTop: $(".header--full-screen-video").offset().top
-				}, 400);				
-
+				TweenLite.to(window, 0.4, {scrollTo:{y:$(".header--full-screen-video").offset().top}, ease:Power2.easeOut});
 			} else {
-				$body.animate({
-					scrollTop: $(".page-section.active").prev().offset().top
-				}, 400);			
+				TweenLite.to(window, 0.4, {scrollTo:{y:$(".page-section.active").prev().offset().top}, ease:Power2.easeOut});
 			}
 			return false
 		});	
@@ -368,9 +363,7 @@ Summeranza.app = (function(window){
 		// Navigation buttons
 		$navigation.find("a").on("click",function(){
 			if(!Modernizr.touch){
-				$body.animate({
-					scrollTop: $(".page-section:eq("+$(this).index()+")").offset().top
-				}, 400);
+				TweenLite.to(window, 0.4, {scrollTo:{y:$(".page-section:eq("+$(this).index()+")").offset().top}, ease:Power2.easeOut});
 			}
 			return false
 		});	
@@ -421,8 +414,6 @@ Summeranza.app = (function(window){
 		});
 	}
 
-	var isAnimating = false;
-
 	function setActiveSection(activeIndex,direction){
 		// if(isAnimating){
 		// 	return false
@@ -443,7 +434,9 @@ Summeranza.app = (function(window){
 		// Set active navigation element
 		$navigation.find("a:eq("+activeIndex+")").addClass("active");
 		
-		animateLogo(activeIndex,direction);
+		if(!Modernizr.touch){
+			animateLogo(activeIndex,direction);
+		}
 
 		// Set active section background class on body
 		$(".wrapper").removeClass(backgroundColors[activeIndex-direction]).addClass(backgroundColors[activeIndex]);
@@ -467,9 +460,11 @@ Summeranza.app = (function(window){
 				case 1:
 					anim_logo.tweenTo("two");
 					anim_flags.reverse();
+					anim_hands.play();
 					break;
 				case 2:
 					anim_logo.tweenTo("three");
+					anim_hands.reverse();
 					break;
 				case 3:
 					anim_logo.tweenTo("four");
@@ -485,9 +480,11 @@ Summeranza.app = (function(window){
 				case 0:
 					anim_logo.tweenFromTo("two","one");
 					anim_flags.play();
+					anim_hands.reverse();
 					break;
 				case 1:
 					anim_logo.tweenTo("two");
+					anim_hands.play();
 					break;
 				case 2:
 					anim_logo.tweenTo("three");
