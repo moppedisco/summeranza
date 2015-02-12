@@ -150,10 +150,10 @@ html {
 
 	@media @mobile {
 		height: 500%;
-		// -o-transition: none;
-		// -moz-transition: none;
-		// -webkit-transition: none;
-		// transition: none;
+		-o-transition: none;
+		-moz-transition: none;
+		-webkit-transition: none;
+		transition: none;
 	}
 }
 
@@ -200,10 +200,7 @@ html {
 	}	
 }
 .bg5 {
-	background-image: url("../img/bg1-alt.jpg");
-	@media @mobile {
-		background: #8ae7ec; /* Old browsers */
-	}	
+	background: rgb(255,52,92);
 }
 
 .page-section {
@@ -247,10 +244,10 @@ html {
 
 	@media @mobile {
 		left: 0;
-		top: 80px;
+		top: 0;
 		width: 70%;
-		padding: 0 20px;
-		position: absolute;
+		padding: 100px 20px 0;
+		position: relative;
 		opacity: 0.2;
 		transform: translate3d(0,0,0);
 		-webkit-transform: translate3d(0,0,0);		
@@ -356,14 +353,26 @@ html {
 	transform: translateY(-50%);
 	-webkit-transform: translateY(-50%);
 	text-align: center;
+
+	@media @mobile {
+		top: 0%;
+		transform: translateY(0);
+		-webkit-transform: translateY(0%);
+	}
 }
 
 .header__vert-box svg {
 	display: block;
 	margin: 0 auto 25px;
 	
+	&.header__text--summeranza {
+		@media @mobile {
+			margin-bottom: 0;
+		}			
+	}
+
 	@media @mobile {
-		width: 90%;
+		width: 70%;
 	}	
 
 }
@@ -377,7 +386,12 @@ html {
 	-webkit-transform: translateX(-50%);
 
 	@media @mobile {
-		display: none;
+		position: relative;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		-webkit-transform: translateX(-50%);
+		margin: 20px 0;
 	}	
 
 }
@@ -391,6 +405,12 @@ html {
 	left: 50%;
 	transform: translateX(-50%);
 	-webkit-transform: translateX(-50%);
+
+	@media @mobile {
+		bottom: 0;
+		position: relative;
+	}	
+
 }
 
 .header__text--date,
@@ -413,6 +433,12 @@ html {
 
 .header__text--venue {
 	margin-top: -43px;
+}
+
+.header__text--tagline {
+	@media @mobile {
+		margin-bottom: 40px;
+	}		
 }
 
 
@@ -512,6 +538,16 @@ html {
 		@media @mobile {
 			opacity: 1;
 			border: none;
+		}
+	}
+
+	&:last-child {
+		color: rgb(255,52,92);
+		font-weight: bold;
+
+		&.active {
+			color: #fff;
+			border-color: #fff;
 		}
 	}
 
@@ -637,8 +673,37 @@ html {
 /* ================================================== */
 /* ================================================== */
 
+.page-section--form {
+	height: auto;
+	color: #fff;
+
+	@media @mobile {
+		& .left-col {
+			width: 100%;
+		}
+
+		& .right-col {
+			background: rgb(255,52,92);
+		}
+	}
+}
+
+.page-section--form .right-col {
+	width: 400px;
+	float: right;
+	margin-right: 155px;
+
+	@media @mobile {
+		padding: 20px;
+		width: 100%;
+		margin: 0;
+	}		
+
+}
+
 fieldset {
 	border: none;
+	margin-bottom: 15px;
 }
 
 .form-container input[type="text"], 

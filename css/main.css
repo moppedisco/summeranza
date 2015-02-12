@@ -2952,6 +2952,10 @@ html.touch {
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .wrapper {
     height: 500%;
+    -o-transition: none;
+    -moz-transition: none;
+    -webkit-transition: none;
+    transition: none;
   }
 }
 .bg1 {
@@ -2995,14 +2999,7 @@ html.touch {
   }
 }
 .bg5 {
-  background-image: url("../img/bg1-alt.jpg");
-}
-@media only screen and (min-width: 1px) and (max-width: 719px) {
-  .bg5 {
-    background: #8ae7ec;
-    /* Old browsers */
-  
-  }
+  background: #ff345c;
 }
 .page-section {
   padding: 0;
@@ -3043,10 +3040,10 @@ html.touch {
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .left-col {
     left: 0;
-    top: 80px;
+    top: 0;
     width: 70%;
-    padding: 0 20px;
-    position: absolute;
+    padding: 100px 20px 0;
+    position: relative;
     opacity: 0.2;
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
@@ -3142,13 +3139,25 @@ html.touch {
   -webkit-transform: translateY(-50%);
   text-align: center;
 }
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .header__vert-box {
+    top: 0%;
+    transform: translateY(0);
+    -webkit-transform: translateY(0%);
+  }
+}
 .header__vert-box svg {
   display: block;
   margin: 0 auto 25px;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
+  .header__vert-box svg.header__text--summeranza {
+    margin-bottom: 0;
+  }
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
   .header__vert-box svg {
-    width: 90%;
+    width: 70%;
   }
 }
 .header__ef-logo {
@@ -3161,7 +3170,12 @@ html.touch {
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .header__ef-logo {
-    display: none;
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    margin: 20px 0;
   }
 }
 .button--watch-video {
@@ -3212,6 +3226,12 @@ html.touch {
   background: rgba(0, 0, 0, 0.1);
   color: #fff;
 }
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .button--watch-video {
+    bottom: 0;
+    position: relative;
+  }
+}
 .header__text--date,
 .header__text--venue,
 .header__text--tagline {
@@ -3230,6 +3250,11 @@ html.touch {
 }
 .header__text--venue {
   margin-top: -43px;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .header__text--tagline {
+    margin-bottom: 40px;
+  }
 }
 /* Navigation ======================================= */
 /* ================================================== */
@@ -3320,6 +3345,14 @@ html.touch {
     opacity: 1;
     border: none;
   }
+}
+.site-navigation__link:last-child {
+  color: #ff345c;
+  font-weight: bold;
+}
+.site-navigation__link:last-child.active {
+  color: #fff;
+  border-color: #fff;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .site-navigation__link {
@@ -3431,8 +3464,33 @@ html.touch {
 /* ================================================== */
 /* ================================================== */
 /* ================================================== */
+.page-section--form {
+  height: auto;
+  color: #fff;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .page-section--form .left-col {
+    width: 100%;
+  }
+  .page-section--form .right-col {
+    background: #ff345c;
+  }
+}
+.page-section--form .right-col {
+  width: 400px;
+  float: right;
+  margin-right: 155px;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .page-section--form .right-col {
+    padding: 20px;
+    width: 100%;
+    margin: 0;
+  }
+}
 fieldset {
   border: none;
+  margin-bottom: 15px;
 }
 .form-container input[type="text"],
 .form-container input[type="email"],
