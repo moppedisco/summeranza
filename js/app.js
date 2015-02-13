@@ -61,7 +61,14 @@ Summeranza.helpers = (function(window){
 		},
 		scrollY: function() { 
 			return window.pageYOffset || docElem.scrollTop; 
-		}	
+		},
+		preventDefault: function(e) {
+			e = e || window.event;
+			if (e.preventDefault)
+			e.preventDefault();
+			e.returnValue = false;  
+		}
+
 	};
 }(window));
 
@@ -136,8 +143,9 @@ Summeranza.app = (function(window){
 
 		initNavigationButtons();
 		initWaypoints();
+		initVideoplayer();
 		if(!Modernizr.touch){
-			initVideoplayer();
+			
 			// initHeaderScroll();
 			reSizeVideoWrapper();
 		}
@@ -155,14 +163,14 @@ Summeranza.app = (function(window){
 	function keydown(e) {
 		for (var i = keys.length; i--;) {
 			if (e.keyCode === keys[i]) {
-				preventDefault(e);
+				Summeranza.helpers.preventDefault(e);
 				return;
 			}
 		}
 	}
 
 	function touchmove(e) {
-		preventDefault(e);
+		Summeranza.helpers.preventDefault(e);
 	}
 
 	function wheel(e) {
@@ -279,30 +287,64 @@ Summeranza.app = (function(window){
 
 
 		// Video to site transtion sequence
-		anim_intro
-			.staggerFrom([".header__text--summeranza", ".header__text--tagline"], 0.3, 
-				{ x:"0", opacity: 1,ease: Power2.easeOut }, 0.1,"seq0")
-			.staggerTo([".header__text--summeranza", ".header__text--tagline"],0.1, 
-				{ x:"-10", opacity: 0,ease: Power2.easeOut }, 0.1,"seq1")		
-			.staggerFrom([".header__text--date", ".header__text--venue"], 0.3, 
-				{ x:"10px", opacity: 0,ease: Power2.easeOut }, 0.1,"seq2")
-			.staggerTo([".header__text--date", ".header__text--venue"], 0.3, 
-				{ x:"-10", opacity: 0,ease: Power2.easeOut }, 0.1,"seq3");
+		// anim_intro
+		// 	.staggerFrom([".header__text--summeranza", ".header__text--tagline"], 0.3, 
+		// 		{ x:"0", opacity: 1,ease: Power2.easeOut }, 0.1,"seq0")
+		// 	.staggerTo([".header__text--summeranza", ".header__text--tagline"],0.1, 
+		// 		{ x:"-10", opacity: 0,ease: Power2.easeOut }, 0.1,"seq1")		
+		// 	.staggerFrom([".header__text--date", ".header__text--venue"], 0.3, 
+		// 		{ x:"10px", opacity: 0,ease: Power2.easeOut }, 0.1,"seq2")
+		// 	.staggerTo([".header__text--date", ".header__text--venue"], 0.3, 
+		// 		{ x:"-10", opacity: 0,ease: Power2.easeOut }, 0.1,"seq3");
 	}
 
 	function initVideoplayer(callback){
-		$videoElement[0].addEventListener("pause",function(){
-			isVideoPlaying = false;
-			enable_scroll();			
-			stopVideo();
-		});
+		if(!Modernizr.touch){
+			$videoElement[0].addEventListener("pause",function(){
+				isVideoPlaying = false;
+				enable_scroll();
+				if(!$videoElement[0].seeking){
+					$(".button--watch-video").fadeIn();
+					$(".header__vert-box").fadeIn();			
+				}
+			});
+
+			$videoElement[0].addEventListener("ended",function(){
+				isVideoPlaying = false;
+				$videoElement[0].currentTime = 0;
+				$videoElement[0].pause();
+				$(".button--watch-video").fadeIn();
+				$(".header__vert-box").fadeIn();
+			});
+
+			$videoElement[0].addEventListener("play",function(){
+				isVideoPlaying = true;
+
+				if(!$videoElement[0].autoplay){
+					$(".button--watch-video").fadeOut();
+					$(".header__vert-box").fadeOut();				
+				}
+			});
+		}
 
 		$(".button--watch-video").on("click",function(){
-			playIntro(function(){
-				isVideoPlaying = true;
-				disable_scroll();				
-				playVideo();
-			});
+			if(!Modernizr.touch){
+				playIntro(function(){
+
+					$videoElement[0].currentTime = 0;
+					$videoElement[0].pause();
+					$videoElement[0].play();
+					$videoElement[0].controls = true;
+					$videoElement[0].muted = false;
+					$videoElement[0].autoplay = false;
+					$videoElement[0].loop = false;
+
+					isVideoPlaying = true;
+					disable_scroll()
+				});
+			} else {
+				$videoElement[0].play();
+			}
 		});
 	}
 
@@ -316,26 +358,6 @@ Summeranza.app = (function(window){
 		} else {
 			callback();
 		}		
-	}
-
-	function playVideo(){
-		$(".button--watch-video").fadeOut();
-
-		$(".header__vert-box").fadeOut(800,function(){
-			$videoElement[0].play();
-			$videoElement[0].muted = false;
-			$videoElement[0].loop = false;
-			$videoElement[0].controls = true;
-			$videoElement[0].currentTime = 0;
-		});		
-	}
-
-	function stopVideo(){
-		$(".button--watch-video").fadeIn();
-		$(".header__vert-box").fadeIn();		
-		$videoElement[0].loop = true;
-		$videoElement[0].controls = false;
-		$videoElement[0].muted = true;
 	}
 
 	function initNavigationButtons(){
@@ -374,6 +396,23 @@ Summeranza.app = (function(window){
 		$('.page-section.first').addClass("static");
 		$('.wrapper').addClass("bg1");
 
+		$('.page-section.first').waypoint({
+			handler: function(direction) {
+				if(direction === "down"){
+					activePanelIndex = 0;
+					anim_flags.play();
+					$(this).removeClass("static").addClass("active");	
+					$(".site-navigation").addClass("fixed");
+					$(".wave").addClass("animated fadeInUp");
+				} else {
+					anim_flags.reverse();
+					activePanelIndex = -1;
+					$(this).removeClass("active").addClass("static");
+					$(".site-navigation").removeClass("fixed");
+				}
+			},
+			offset: "0%"
+		});
 
 		$panels.waypoint({
 			handler: function(direction) {
@@ -395,23 +434,7 @@ Summeranza.app = (function(window){
 			},
 			offset: "50%"
 		});
-		$('.page-section.first').waypoint({
-			handler: function(direction) {
-				if(direction === "down"){
-					activePanelIndex = 0;
-					anim_flags.play();
-					$(this).removeClass("static").addClass("active");	
-					$(".site-navigation").addClass("fixed");
-					$(".wave").addClass("animated fadeInUp");
-				} else {
-					anim_flags.reverse();
-					activePanelIndex = -1;
-					$(this).removeClass("active").addClass("static");	
-					$(".site-navigation").removeClass("fixed");
-				}
-			},
-			offset: "0%"
-		});
+
 	}
 
 	function setActiveSection(activeIndex,direction){
@@ -441,12 +464,8 @@ Summeranza.app = (function(window){
 		// Set active section background class on body
 		$(".wrapper").removeClass(backgroundColors[activeIndex-direction]).addClass(backgroundColors[activeIndex]);
 		
-		// TweenLite.to("body", 1, {className:backgroundColors[activeIndex],onComplete: function(){
-		// 	// $body.addClass("introDone");
-		// }});
-
 		$(".page-section:eq('"+(activeIndex-direction)+"') .main-graphic").css("opacity","1").removeClass('animated bounceOutDown bounceInUp').addClass("animated bounceOutDown");
-		$(".page-section.active").removeClass("active");
+		$(".page-section").removeClass("active");
 		$(".page-section:eq('"+activeIndex+"')").addClass("active");
 		
 		$(".page-section:eq('"+(activeIndex)+"') .main-graphic").css("opacity","1").removeClass('animated bounceOutDown bounceInUp').addClass("animated bounceInUp");

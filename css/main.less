@@ -290,8 +290,12 @@ html {
 		z-index: 1; 
 	}	
 
-	@media only screen and (min-height: 880px) and (max-height: 1100px){
-		top: 240px;
+	@media only screen and (min-height: 500px){
+		top: 50px;
+	}
+
+	@media only screen and (min-height: 760px) and (max-height: 1100px){
+		top: 200px;
 	}
 
 	@media only screen and (min-height: 1100px) and (max-height: 1300px){
@@ -317,9 +321,13 @@ html {
 	left: 0;
 
 	.touch & {
-		display: none;
+		// display: none;
 	}
 
+}
+
+video::-webkit-media-controls {
+    display: none;
 }
 
 .header--full-screen-video {
@@ -328,14 +336,7 @@ html {
 	position: relative;
 	overflow: hidden;
 	z-index: @zIndexTop;
-
-	.introAnimating & {
-		z-index: @zIndexMiddle;
-	}
-
-	.introDone & {
-		display: none;
-	}
+	background: #000;
 
 	@media @mobile {
 		background: #000;
@@ -428,11 +429,11 @@ html {
 .header__text--date {
 	font-size: 62px;
 	line-height: 100%;
-	margin-top: -81px;
+
 }
 
 .header__text--venue {
-	margin-top: -43px;
+
 }
 
 .header__text--tagline {
