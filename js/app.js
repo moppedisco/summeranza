@@ -305,7 +305,8 @@ Summeranza.app = (function(window){
 				enable_scroll();
 				if(!$videoElement[0].seeking){
 					$(".button--watch-video").fadeIn();
-					$(".header__vert-box").fadeIn();			
+					$(".header__vert-box").fadeIn();
+					$(".header__ef-logo").fadeIn();
 				}
 			});
 
@@ -315,6 +316,7 @@ Summeranza.app = (function(window){
 				$videoElement[0].pause();
 				$(".button--watch-video").fadeIn();
 				$(".header__vert-box").fadeIn();
+				$(".header__ef-logo").fadeIn();
 			});
 
 			$videoElement[0].addEventListener("play",function(){
@@ -322,7 +324,8 @@ Summeranza.app = (function(window){
 
 				if(!$videoElement[0].autoplay){
 					$(".button--watch-video").fadeOut();
-					$(".header__vert-box").fadeOut();				
+					$(".header__vert-box").fadeOut();
+					$(".header__ef-logo").fadeOut();			
 				}
 			});
 		}
@@ -384,9 +387,7 @@ Summeranza.app = (function(window){
 
 		// Navigation buttons
 		$navigation.find("a").on("click",function(){
-			if(!Modernizr.touch){
-				TweenLite.to(window, 0.4, {scrollTo:{y:$(".page-section:eq("+$(this).index()+")").offset().top}, ease:Power2.easeOut});
-			}
+			TweenLite.to(window, 0.4, {scrollTo:{y:$(".page-section:eq("+$(this).index()+")").offset().top}, ease:Power2.easeOut});
 			return false
 		});	
 	}
