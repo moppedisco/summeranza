@@ -3185,7 +3185,7 @@ body {
 .site-navigation__logo {
   height: 36px;
   width: 64px;
-  left: 10%;
+  left: 45px;
   position: absolute;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
@@ -3203,7 +3203,7 @@ body {
 }
 .site-navigation__link {
   float: left;
-  margin-left: 25px;
+  margin-right: 25px;
   font-size: 16px;
   text-transform: uppercase;
   font-weight: normal;
@@ -3256,8 +3256,8 @@ body {
 .site-navigation__link-group {
   -webkit-transition: -webkit-transform 0.6s;
   transition: transform 0.6s;
-  float: right;
-  margin-right: 10%;
+  float: left;
+  margin-left: 155px;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .site-navigation__link-group {
@@ -3276,7 +3276,7 @@ body {
   padding: 0;
   position: relative;
   height: 20%;
-  padding: 0 10%;
+  padding: 0 10% 0 0;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .page-section {
@@ -3306,6 +3306,7 @@ body {
   font-size: 1.3rem;
   z-index: 99;
   padding-right: 20px;
+  margin-left: 155px;
 }
 .page-section.first.static .left-col {
   opacity: 1;
@@ -3326,6 +3327,7 @@ body {
     top: 0;
     width: 100%;
     padding: 100px 20px 0;
+    margin: 0;
   }
 }
 .left-col h2 {
@@ -3442,9 +3444,11 @@ body {
 .page-section--form .left-col {
   top: 0;
   position: relative;
-  width: 50%;
+  width: 60%;
   float: left;
   opacity: 1;
+  padding-left: 155px;
+  margin: 0;
 }
 .touch .page-section--form .left-col {
   width: 100%;
@@ -3452,10 +3456,11 @@ body {
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .page-section--form .left-col {
     width: 100%;
+    padding: 0 20px;
   }
 }
 .page-section--form .right-col {
-  width: 50%;
+  width: 40%;
   float: right;
   background: #ff345c;
 }
