@@ -279,11 +279,11 @@ Summeranza.app = (function(window){
 
 		// Flags popup animation
 		anim_flags
-			.staggerFrom(".tower-small", 0.3, { y: "200", ease: Back.easeOut.config(1.7)}, -0.1, "stagger"); 
+			.staggerFrom(".tower-small", 0.3, { y: "100%", ease: Back.easeOut.config(1.7)}, -0.1, "stagger"); 
 
 		// Flags popup animation
 		anim_hands
-			.staggerFrom(".hand-small", 0.3, { y: "200", ease: Back.easeOut.config(1.7)}, -0.1, "stagger"); 
+			.staggerFrom(".hand-small", 0.3, { y: "100%", ease: Back.easeOut.config(1.7)}, -0.1, "stagger"); 
 
 
 		// Video to site transtion sequence

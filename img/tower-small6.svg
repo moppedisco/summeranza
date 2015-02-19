@@ -5,19 +5,23 @@
 ]>
 <svg version="1.1"
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-	 x="0px" y="0px" width="24px" height="143px" viewBox="-0.468 -0.486 24 143"
-	 overflow="visible" enable-background="new -0.468 -0.486 24 143" xml:space="preserve">
+	 x="0px" y="0px" width="15px" height="81px" viewBox="-0.744 -0.028 15 81"
+	 overflow="visible" enable-background="new -0.744 -0.028 15 81" xml:space="preserve">
 <defs>
 </defs>
-<polygon fill="#FFEEAD" stroke="#FF345C" stroke-width="0.4874" stroke-miterlimit="10" points="0.771,82.91 9.803,33.362 
-	18.461,83.6 "/>
-<rect x="2.532" y="83.6" fill="#FFEEAD" stroke="#FF345C" stroke-width="0.4874" stroke-miterlimit="10" width="13.333" height="58.062"/>
-<rect x="10.384" y="0.058" fill="#6BB1CD" width="4.619" height="8.082"/>
-<rect x="15.003" y="0.058" fill="#F4F4F4" width="3.289" height="8.082"/>
-<rect x="18.292" y="1.353" fill="#FF345C" width="4.513" height="8.082"/>
-<line fill="none" stroke="#FF345C" stroke-width="0.5362" stroke-miterlimit="10" x1="9.528" y1="0" x2="9.528" y2="36.185"/>
-<path fill="#FFBD9E" d="M19.231,83.328c-0.005,0.766-0.44,1.383-0.971,1.379L0.95,84.575C0.419,84.571-0.006,83.947,0,83.182l0,0
-	c0.006-0.766,0.441-1.382,0.972-1.378l17.31,0.131C18.812,81.939,19.238,82.562,19.231,83.328L19.231,83.328z"/>
-<line fill="none" stroke="#FCC7AB" stroke-width="0.2309" stroke-miterlimit="10" x1="9.591" y1="35.855" x2="6.739" y2="82.124"/>
-<line fill="none" stroke="#FCC7AB" stroke-width="0.2309" stroke-miterlimit="10" x1="9.591" y1="35.855" x2="14.429" y2="82.737"/>
+<polygon fill="#FDF8D7" points="0.558,27.283 7.01,12.069 13.346,27.781 "/>
+<polygon fill="none" stroke="#FF345C" stroke-width="0.124" stroke-miterlimit="10" points="0.558,27.283 7.01,12.069 
+	13.346,27.781 "/>
+<rect x="7.334" y="0.001" fill="#6BB1CD" width="3.142" height="3.196"/>
+<rect x="9.112" y="0.001" fill="#FFEEAC" width="0.592" height="3.196"/>
+<rect x="7.334" y="1.302" fill="#FFEEAC" width="3.142" height="0.593"/>
+<rect x="10.465" y="0.441" fill="#6BB1CD" width="1.723" height="3.198"/>
+<rect x="10.465" y="1.743" fill="#FFEEAC" width="1.723" height="0.594"/>
+<line fill="none" stroke="#FF345C" stroke-width="0.212" stroke-miterlimit="10" x1="6.974" y1="0" x2="6.974" y2="12.486"/>
+<rect x="0.558" y="27.781" fill="#FDF8D7" width="12.428" height="52.883"/>
+<rect x="0.558" y="27.781" fill="none" stroke="#FF345C" stroke-width="0.124" stroke-miterlimit="10" width="12.428" height="52.883"/>
+<path fill="#FFBD9E" d="M13.903,27.585c-0.004,0.553-0.318,1-0.702,0.997L0.687,28.486C0.303,28.484-0.004,28.033,0,27.479
+	c0.004-0.553,0.318-0.999,0.702-0.997l12.514,0.096C13.601,26.581,13.907,27.032,13.903,27.585"/>
+<line fill="none" stroke="#FCC7AB" stroke-width="0.072" stroke-miterlimit="10" x1="6.944" y1="12.842" x2="4.872" y2="26.715"/>
+<line fill="none" stroke="#FCC7AB" stroke-width="0.072" stroke-miterlimit="10" x1="6.944" y1="12.842" x2="10.431" y2="27.158"/>
 </svg>

@@ -5,23 +5,31 @@
 ]>
 <svg version="1.1"
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-	 x="0px" y="0px" width="56px" height="194px" viewBox="-0.721 -0.771 56 194"
-	 overflow="visible" enable-background="new -0.721 -0.771 56 194" xml:space="preserve">
+	 x="0px" y="0px" width="6px" height="65px" viewBox="-0.901 -0.5 6 65"
+	 overflow="visible" enable-background="new -0.901 -0.5 6 65" xml:space="preserve">
 <defs>
 </defs>
-<polygon fill="#FFEEAD" stroke="#FF345C" stroke-width="0.4874" stroke-miterlimit="10" points="2.194,107.352 27.583,47.488 
-	52.515,109.312 "/>
-<rect x="28.858" fill="#6BB1CD" width="12.362" height="12.582"/>
-<rect x="35.854" fill="#FFEEAC" width="2.331" height="12.582"/>
-<rect x="28.858" y="5.125" fill="#FFEEAC" width="12.362" height="2.332"/>
-<rect x="28.858" fill="none" width="12.362" height="12.582"/>
-<rect x="41.178" y="1.738" fill="#6BB1CD" width="6.777" height="12.583"/>
-<rect x="41.178" y="6.864" fill="#FFEEAC" width="6.777" height="2.331"/>
-<rect x="41.178" y="1.738" fill="none" width="6.777" height="12.583"/>
-<line fill="none" stroke="#FF345C" stroke-width="0.8348" stroke-miterlimit="10" x1="27.442" y1="0" x2="27.442" y2="49.132"/>
-<rect x="2.194" y="109.312" fill="#FFEEAD" stroke="#FF345C" stroke-width="0.4874" stroke-miterlimit="10" width="48.896" height="82.852"/>
-<path fill="#FFBD9E" d="M54.708,108.54c-0.016,2.178-1.254,3.933-2.764,3.922l-49.239-0.375c-1.511-0.01-2.722-1.785-2.705-3.963
-	l0,0c0.017-2.177,1.254-3.933,2.765-3.921l49.238,0.373C53.515,104.589,54.724,106.362,54.708,108.54L54.708,108.54z"/>
-<line fill="none" stroke="#FCC7AB" stroke-width="0.2816" stroke-miterlimit="10" x1="27.324" y1="50.529" x2="19.171" y2="105.116"/>
-<line fill="none" stroke="#FCC7AB" stroke-width="0.2816" stroke-miterlimit="10" x1="27.324" y1="50.529" x2="41.044" y2="106.859"/>
+<rect x="0.612" y="16.537" fill="#FDF8D7" width="2.711" height="47.268"/>
+<rect x="0.612" y="16.537" fill="none" stroke="#FF345C" stroke-width="0.124" stroke-miterlimit="10" width="2.711" height="47.268"/>
+<rect x="2.178" y="0.011" fill="#FF345C" width="0.913" height="1.598"/>
+<rect x="3.002" y="0.011" fill="#FF345C" width="0.649" height="1.598"/>
+<rect x="3.651" y="0.266" fill="#FF345C" width="0.893" height="1.598"/>
+<line fill="none" stroke="#FF345C" stroke-width="0.106" stroke-miterlimit="10" x1="2.008" y1="0" x2="2.008" y2="7.149"/>
+<polygon fill="#FDF8D7" points="2.643,0.132 2.718,0.363 2.962,0.363 2.765,0.507 2.84,0.74 2.643,0.596 2.444,0.74 2.52,0.507 
+	2.322,0.363 2.567,0.363 "/>
+<polygon fill="#FDF8D7" points="3.185,0.087 3.207,0.156 3.278,0.156 3.221,0.197 3.243,0.267 3.185,0.225 3.127,0.267 3.148,0.197 
+	3.091,0.156 3.162,0.156 "/>
+<polygon fill="#FDF8D7" points="3.297,0.314 3.318,0.384 3.392,0.384 3.332,0.426 3.355,0.494 3.297,0.452 3.238,0.494 3.261,0.426 
+	3.202,0.384 3.274,0.384 "/>
+<polygon fill="#FDF8D7" points="3.292,0.511 3.314,0.58 3.387,0.58 3.328,0.621 3.351,0.69 3.292,0.648 3.232,0.69 3.256,0.621 
+	3.198,0.58 3.27,0.58 "/>
+<polygon fill="#FDF8D7" points="3.154,0.717 3.176,0.786 3.248,0.786 3.19,0.828 3.213,0.897 3.154,0.854 3.096,0.897 3.118,0.828 
+	3.06,0.786 3.132,0.786 "/>
+<polygon fill="#FDF8D7" points="0.156,16.468 1.981,6.454 3.731,16.606 "/>
+<polygon fill="none" stroke="#FF345C" stroke-width="0.099" stroke-miterlimit="10" points="0.156,16.468 1.981,6.454 3.731,16.606 
+	"/>
+<path fill="#FFBD9E" d="M0,16.522c0.001-0.154,0.09-0.279,0.196-0.278l3.499,0.026c0.106,0.001,0.193,0.127,0.191,0.281"/>
+<path fill="#FFBD9E" d="M3.887,16.552c-0.001,0.155-0.089,0.28-0.196,0.279l-3.498-0.026C0.085,16.803-0.001,16.677,0,16.522"/>
+<line fill="none" stroke="#FCC7AB" stroke-width="0.047" stroke-miterlimit="10" x1="1.938" y1="6.958" x2="1.361" y2="16.309"/>
+<line fill="none" stroke="#FCC7AB" stroke-width="0.047" stroke-miterlimit="10" x1="1.938" y1="6.958" x2="2.916" y2="16.433"/>
 </svg>

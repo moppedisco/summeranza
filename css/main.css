@@ -2908,22 +2908,23 @@ body {
   }
 }
 .wave-level1 {
-  width: 120%;
-  bottom: -350px;
-  left: -140px;
+  width: 110%;
+  bottom: -170px;
+  left: -10px;
   z-index: 100;
 }
 .wave-level2 {
-  left: 19%;
-  bottom: -320px;
-  width: 100%;
+  left: auto;
+  right: -10px;
+  bottom: -120px;
+  width: 70%;
   z-index: 500;
 }
 .wave-level3 {
-  bottom: -290px;
+  bottom: -150px;
   z-index: 999;
-  left: 400px;
-  right: 0;
+  left: auto;
+  right: -10px;
   width: 110%;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
@@ -3378,16 +3379,17 @@ body {
   z-index: 501;
 }
 .tower-small2 {
-  left: 78%;
-  bottom: 90px;
+  left: 58%;
+  bottom: 40px;
   z-index: 99;
 }
 .tower-small3 {
-  left: 95%;
-  bottom: 90px;
+  left: 25%;
+  bottom: 0px;
+  z-index: 501;
 }
 .tower-small4 {
-  left: 62%;
+  left: 76%;
   bottom: 0;
   z-index: 501;
 }
@@ -3398,7 +3400,7 @@ body {
 .tower-small6 {
   left: 35%;
   z-index: 4;
-  bottom: 90px;
+  bottom: 100px;
 }
 /* Artist section =================================== */
 /* ================================================== */
@@ -3414,17 +3416,17 @@ body {
   }
 }
 .hand-small1 {
-  left: 86%;
+  left: 56%;
   bottom: 0px;
   z-index: 501;
 }
 .hand-small2 {
-  left: 58%;
+  left: 48%;
   bottom: 90px;
   z-index: 99;
 }
 .hand-small3 {
-  left: 33%;
+  left: 13%;
   bottom: 90px;
 }
 .hand-small4 {

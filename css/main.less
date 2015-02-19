@@ -103,24 +103,26 @@ html {
 }
 
 .wave-level1 {
-	width: 120%;
-	bottom: -350px;
-	left: -140px;
+	width: 110%;
+	bottom: -170px;
+	left: -10px;
 	z-index: @zIndexBottom;
 }
 
 .wave-level2 {
-	left: 19%;
-	bottom: -320px;
-	width: 100%;
+	left: auto;
+	right: -10px;
+	bottom: -120px;
+	width: 70%;
 	z-index: @zIndexMiddle;
 }
 
 .wave-level3 {
-	bottom: -290px;
 	z-index: (@zIndexTop)-1;
-	left: 400px;
-	right: 0;
+	bottom: -150px;
+	z-index: 999;
+	left: auto;
+	right: -10px;
 	width: 110%;
 	@media @mobile {
 		bottom: -115px;
@@ -613,18 +615,19 @@ video::-webkit-media-controls {
 }
 
 .tower-small2 {
-	left: 78%;
-	bottom: 90px;
+	left: 58%;
+	bottom: 40px;
 	z-index: (@zIndexBottom)-1;
 }
 
 .tower-small3 {
-	left: 95%;
-	bottom: 90px;
+	left: 25%;
+	bottom: 0px;
+	z-index: (@zIndexMiddle)+1;
 }
 
 .tower-small4 {
-	left: 62%;
+	left: 76%;
 	bottom: 0;
 	z-index: (@zIndexMiddle)+1;
 }
@@ -637,7 +640,7 @@ video::-webkit-media-controls {
 .tower-small6 {
 	left: 35%;
 	z-index: 4;
-	bottom: 90px;
+	bottom: 100px;
 }
 
 /* Artist section =================================== */
@@ -655,19 +658,19 @@ video::-webkit-media-controls {
 }    
 
 .hand-small1 {
-	left: 86%;
+	left: 56%;
 	bottom: 0px;
 	z-index: (@zIndexMiddle)+1;
 }
 
 .hand-small2 {
-	left: 58%;
+	left: 48%;
 	bottom: 90px;
 	z-index: (@zIndexBottom)-1;
 }
 
 .hand-small3 {
-	left: 33%;
+	left: 13%;
 	bottom: 90px;
 }
 
