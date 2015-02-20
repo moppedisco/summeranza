@@ -2878,6 +2878,11 @@ h6 {
   background: rgba(0, 0, 0, 0.1);
   color: #fff;
 }
+.social-links a {
+  color: #fff;
+  font-size: 42px;
+  text-decoration: none;
+}
 /* Global =========================================== */
 /* ================================================== */
 /* ================================================== */
@@ -2909,19 +2914,22 @@ body {
 }
 .wave-level1 {
   width: 110%;
-  bottom: -170px;
+  margin-top: -170px;
+  top: 100%;
   left: -10px;
   z-index: 100;
 }
 .wave-level2 {
   left: auto;
   right: -10px;
-  bottom: -120px;
+  margin-top: -120px;
+  top: 100%;
   width: 70%;
   z-index: 500;
 }
 .wave-level3 {
-  bottom: -150px;
+  margin-top: -150px;
+  top: 100%;
   z-index: 999;
   left: auto;
   right: -10px;
@@ -2929,7 +2937,8 @@ body {
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .wave-level3 {
-    bottom: -115px;
+    top: auto;
+    bottom: -50px;
     width: 200%;
     display: block;
     left: -50px;
@@ -2955,6 +2964,10 @@ body {
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .wrapper {
     height: 500%;
+    -o-transition: none;
+    -moz-transition: none;
+    -webkit-transition: none;
+    transition: none;
   }
 }
 .bg1 {
@@ -2982,6 +2995,13 @@ body {
   background: #1F7F84;
 }
 .bg5 {
+  background-image: url("../img/bg2-alt.jpg");
+}
+.touch .bg5 {
+  background: #1F7F84;
+}
+.bg6 {
+  color: #fff;
   background: #ff345c;
 }
 /* Video screen ===================================== */
@@ -3276,7 +3296,7 @@ body {
 .page-section {
   padding: 0;
   position: relative;
-  height: 20%;
+  height: 16.6666666667%;
   padding: 0 10% 0 0;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
@@ -3337,7 +3357,8 @@ body {
 .main-graphic {
   position: fixed;
   right: 0;
-  top: 150px;
+  top: 100%;
+  margin-top: -800px;
   opacity: 0;
   transition: opacity 0.2s;
   -webkit-transition: opacity 0.2s;
@@ -3346,6 +3367,8 @@ body {
 .page-section.first.static .main-graphic {
   opacity: 1;
   position: absolute;
+  top: 150px;
+  margin-top: 0;
 }
 .touch .page-section.first.static .main-graphic {
   position: fixed;
@@ -3358,15 +3381,27 @@ body {
   .main-graphic {
     top: auto;
     bottom: -30px;
+    margin-top: 0;
     width: 80%;
     z-index: 1;
+  }
+}
+.last-section {
+  color: #fff;
+  background: #ff345c;
+  padding: 40px 30% 200px;
+  text-align: center;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .last-section {
+    padding: 0 20px 100px;
   }
 }
 /* Festival section ================================= */
 /* ================================================== */
 .tower-small {
   position: fixed;
-  bottom: 50px;
+  bottom: 0px;
   left: 50%;
   z-index: 99;
 }
@@ -3434,6 +3469,64 @@ body {
   bottom: 100px;
   z-index: 99;
 }
+/* #SUMERANZA section =================================== */
+/* ================================================== */
+.tent {
+  position: fixed;
+  top: 100%;
+  margin-top: -230px;
+  left: 50%;
+  z-index: 99;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .tent {
+    display: none;
+  }
+}
+.tent0 {
+  left: 56%;
+  top: 100%;
+  margin-top: -330px;
+  z-index: 99;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+}
+.tent1 {
+  left: 56%;
+  top: 100%;
+  margin-top: -230px;
+  z-index: 99;
+}
+.tent2 {
+  left: 56%;
+  top: 100%;
+  margin-top: -230px;
+  z-index: 99;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+}
+.tent3 {
+  left: 56%;
+  top: 100%;
+  margin-top: -230px;
+  z-index: 99;
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+}
+.tent4 {
+  left: 50%;
+  top: 100%;
+  margin-top: -230px;
+  z-index: 99;
+}
+.tent5 {
+  left: 50%;
+  top: 100%;
+  margin-top: -230px;
+  z-index: 99;
+  transform: translateX(-55%);
+  -webkit-transform: translateX(-55%);
+}
 /* TEMP FORM FIXES ================================== */
 /* ================================================== */
 /* ================================================== */
@@ -3441,7 +3534,7 @@ body {
 .page-section--form {
   z-index: 999;
   padding-top: 80px;
-  opacity: 0;
+  opacity: 1;
 }
 .page-section--form .left-col {
   top: 0;
@@ -3464,7 +3557,6 @@ body {
 .page-section--form .right-col {
   width: 40%;
   float: right;
-  background: #ff345c;
 }
 .touch .page-section--form .right-col {
   width: 100%;
@@ -3473,6 +3565,7 @@ body {
   .page-section--form .right-col {
     width: 100%;
     padding: 20px;
+    background: #ff345c;
   }
 }
 .page-section--form.active {

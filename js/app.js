@@ -96,13 +96,15 @@ Summeranza.app = (function(window){
 		anim_logo = new TimelineMax({paused: true}),
 		anim_intro = new TimelineMax({paused: true}),
 		anim_flags = new TimelineMax({paused: true}),
-		anim_hands = new TimelineMax({paused: true}),		
+		anim_hands = new TimelineMax({paused: true}),
+		anim_tents = new TimelineMax({paused: true}),		
 		backgroundColors = [
 			"bg1",
 			"bg2",
 			"bg3",
 			"bg4",
-			"bg5"
+			"bg5",
+			"bg6"
 		],
 		scrollVal,
 		isRevealed, 
@@ -111,42 +113,14 @@ Summeranza.app = (function(window){
 		isVideoPlaying = false,
 		$container = $('.header--full-screen-video');		
 
-	var ie = (function(){
-		var undef,rv = -1; // Return value assumes failure.
-		var ua = window.navigator.userAgent;
-		var msie = ua.indexOf('MSIE ');
-		var trident = ua.indexOf('Trident/');
-
-		if (msie > 0) {
-			// IE 10 or older => return version number
-			rv = parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
-		} else if (trident > 0) {
-			// IE 11 (or newer) => return version number
-			var rvNum = ua.indexOf('rv:');
-			rv = parseInt(ua.substring(rvNum + 3, ua.indexOf('.', rvNum)), 10);
-		}
-
-		return ((rv > -1) ? rv : undef);
-	}());
-
-
-	// disable/enable scroll (mousewheel and keys) from http://stackoverflow.com/a/4770179					
-	// left: 37, up: 38, right: 39, down: 40,
-	// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
-	var keys = [32, 37, 38, 39, 40], wheelIter = 0;
-
 	function init(){
-
-		
-
 		adjustVideoPositioning("#mainVideo");
 
 		initNavigationButtons();
 		initWaypoints();
 		initVideoplayer();
+		
 		if(!Modernizr.touch){
-			
-			// initHeaderScroll();
 			reSizeVideoWrapper();
 		}
 		
@@ -158,100 +132,6 @@ Summeranza.app = (function(window){
 		});
 
 		createAnimations();
-	}
-
-	function keydown(e) {
-		for (var i = keys.length; i--;) {
-			if (e.keyCode === keys[i]) {
-				Summeranza.helpers.preventDefault(e);
-				return;
-			}
-		}
-	}
-
-	function touchmove(e) {
-		Summeranza.helpers.preventDefault(e);
-	}
-
-	function wheel(e) {
-		// for IE 
-		//if( ie ) {
-			//preventDefault(e);
-		//}
-	}
-
-	function disable_scroll() {
-		window.onmousewheel = document.onmousewheel = wheel;
-		document.onkeydown = keydown;
-		document.body.ontouchmove = touchmove;
-	}
-
-	function enable_scroll() {
-		window.onmousewheel = document.onmousewheel = document.onkeydown = document.body.ontouchmove = null;  
-	}
-
-		
-	function scrollPage() {
-		scrollVal = Summeranza.helpers.scrollY();
-		
-		if( noscroll && !ie ) {
-			if( scrollVal < 0 ) return false;
-			// keep it that way
-			window.scrollTo( 0, 0 );
-		}
-
-		if( $container.hasClass('notrans')) {
-			$container.removeClass('notrans');
-			return false;
-		}
-
-		if( isAnimating || isVideoPlaying) {
-			return false;
-		}
-		
-		if( scrollVal <= 0 && isRevealed ) {
-			toggleIntro(0);
-		}
-		else if( scrollVal > 0 && !isRevealed ){
-			toggleIntro(1);
-		}
-	}
-
-	function toggleIntro( reveal ) {
-		isAnimating = true;
-		
-		if( reveal ) {
-			$container.addClass('modify');
-			// anim_intro.tweenTo("seq3");
-		}
-		else {
-			noscroll = true;
-			disable_scroll();
-			// anim_intro.tweenFromTo("seq3","seq5");
-			$container.removeClass('modify');
-		}
-
-		// simulating the end of the transition:
-		setTimeout( function() {
-			isRevealed = !isRevealed;
-			isAnimating = false;
-			if( reveal ) {
-				noscroll = false;
-				enable_scroll();
-			}
-		}, 600 );
-	}
-
-	function initHeaderScroll(){
-		var pageScroll = Summeranza.helpers.scrollY();
-		noscroll = pageScroll === 0;
-		
-		disable_scroll();
-		if( pageScroll ) {
-			isRevealed = true;
-		}
-		
-		window.addEventListener( 'scroll', scrollPage );
 	}
 
 	function createAnimations(){
@@ -285,17 +165,10 @@ Summeranza.app = (function(window){
 		anim_hands
 			.staggerFrom(".hand-small", 0.3, { y: "100%", ease: Back.easeOut.config(1.7)}, -0.1, "stagger"); 
 
+		// Flags popup animation
+		anim_tents
+			.staggerFrom(".tent", 0.3, { y: "100%", ease: Back.easeOut.config(1.7)}, -0.1, "stagger"); 
 
-		// Video to site transtion sequence
-		// anim_intro
-		// 	.staggerFrom([".header__text--summeranza", ".header__text--tagline"], 0.3, 
-		// 		{ x:"0", opacity: 1,ease: Power2.easeOut }, 0.1,"seq0")
-		// 	.staggerTo([".header__text--summeranza", ".header__text--tagline"],0.1, 
-		// 		{ x:"-10", opacity: 0,ease: Power2.easeOut }, 0.1,"seq1")		
-		// 	.staggerFrom([".header__text--date", ".header__text--venue"], 0.3, 
-		// 		{ x:"10px", opacity: 0,ease: Power2.easeOut }, 0.1,"seq2")
-		// 	.staggerTo([".header__text--date", ".header__text--venue"], 0.3, 
-		// 		{ x:"-10", opacity: 0,ease: Power2.easeOut }, 0.1,"seq3");
 	}
 
 	function initVideoplayer(callback){
@@ -439,15 +312,6 @@ Summeranza.app = (function(window){
 	}
 
 	function setActiveSection(activeIndex,direction){
-		// if(isAnimating){
-		// 	return false
-		// }
-		// isAnimating = true;
-
-		// setTimeout(function(){ 
-		// 	isAnimating = false;
-		// }, 800);
-
 		activePanelIndex = activeIndex;
 		// Reset navigation
 		$navigation.find("a").removeClass("active");
@@ -478,40 +342,54 @@ Summeranza.app = (function(window){
 				case 0:
 					break;
 				case 1:
-					anim_logo.tweenTo("two");
+					// anim_logo.tweenTo("two");
 					anim_flags.reverse();
 					anim_hands.play();
 					break;
 				case 2:
-					anim_logo.tweenTo("three");
+					// anim_logo.tweenTo("three");
 					anim_hands.reverse();
 					break;
 				case 3:
-					anim_logo.tweenTo("four");
+					// anim_logo.tweenTo("four");
+					anim_tents.reverse();
 					break;
 				case 4:
-					anim_logo.tweenTo("last");
+					// anim_logo.tweenTo("last");
+					anim_tents.play();
 					break;		
+				case 5:
+					// anim_logo.tweenTo("last");
+					anim_tents.reverse();
+					break;							
 				default:
 					// default code block
 			}
 		} else if(direction == "-1"){
 			switch(activeIndex) {
 				case 0:
-					anim_logo.tweenFromTo("two","one");
+					// anim_logo.tweenFromTo("two","one");
 					anim_flags.play();
 					anim_hands.reverse();
 					break;
 				case 1:
-					anim_logo.tweenTo("two");
+					// anim_logo.tweenTo("two");
 					anim_hands.play();
 					break;
 				case 2:
-					anim_logo.tweenTo("three");
+					// anim_logo.tweenTo("three");
+					// anim_tents.play();
 					break;
 				case 3:
-					anim_logo.tweenTo("four");
+					anim_tents.reverse();
+					// anim_logo.tweenTo("four");
 					break;			
+				case 4:
+					anim_tents.play();
+					// anim_tents.reverse();
+					// anim_logo.tweenTo("four");
+					break;			
+
 				default:
 					// default code block
 			}
