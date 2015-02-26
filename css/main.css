@@ -2743,14 +2743,6 @@ a:hover {
   width: 300px;
   _margin-left: -3px;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: normal;
-}
 /* Buttons & icons ================================== */
 /* ================================================== */
 /* ================================================== */
@@ -2929,6 +2921,7 @@ body {
   position: fixed;
   bottom: 0;
   left: 0;
+  backface-visibility: hidden;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .wave-level1,
@@ -2974,15 +2967,6 @@ body {
 /* ================================================== */
 /* ================================================== */
 /* ================================================== */
-.wrapper {
-  position: relative;
-  height: 600%;
-}
-@media only screen and (min-width: 1px) and (max-width: 719px) {
-  .wrapper {
-    height: auto;
-  }
-}
 body {
   -o-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
   -moz-transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
@@ -2993,38 +2977,17 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
-body.bg1 {
-  background-image: url("../img/bg1.jpg");
+.touch body {
+  background: #ff345c;
 }
-.touch body.bg1 {
-  background: #2C3990;
+.wrapper {
+  position: relative;
+  height: 600%;
 }
-body.bg2 {
-  background-image: url("../img/bg2.jpg");
-}
-.touch body.bg2 {
-  background: #9F2C5F;
-}
-body.bg3 {
-  background-image: url("../img/bg3.jpg");
-}
-.touch body.bg3 {
-  background: #FF3B5C;
-}
-body.bg4 {
-  background-image: url("../img/bg4.jpg");
-}
-.touch body.bg4 {
-  background: #1F7F84;
-}
-body.bg5,
-body.bg6 {
-  background-image: url("../img/bg5.jpg");
-  color: #fff;
-}
-.touch body.bg5,
-.touch body.bg6 {
-  background: #1F7F84;
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .wrapper {
+    height: auto;
+  }
 }
 /* Video screen ===================================== */
 /* ================================================== */
@@ -3186,6 +3149,7 @@ body.bg6 {
   left: 5%;
   top: 180px;
   z-index: 995;
+  backface-visibility: hidden;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .site-navigation {
@@ -3354,6 +3318,7 @@ body.bg6 {
   -webkit-transition: opacity 0.2s;
   font-size: 1.3rem;
   z-index: 993;
+  backface-visibility: hidden;
 }
 .page-section.active .left-col {
   opacity: 1;
@@ -3421,12 +3386,22 @@ body.bg6 {
     z-index: 1;
   }
 }
+.main-graphic--carousel {
+  right: -250px;
+}
+@media only screen and (min-width: 1px) and (max-width: 719px) {
+  .main-graphic--carousel {
+    right: 0;
+  }
+}
+.main-graphic--tower {
+  right: 0;
+}
 .page-section--form {
   z-index: 994;
   padding: 140px 17%;
   opacity: 1;
   color: #fff;
-  background: #ff345c;
   position: relative;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
@@ -3470,6 +3445,7 @@ body.bg6 {
   bottom: 0px;
   left: 50%;
   z-index: 99;
+  backface-visibility: hidden;
 }
 .touch .tower-small {
   display: none;
@@ -3510,6 +3486,7 @@ body.bg6 {
   bottom: 50px;
   left: 50%;
   z-index: 99;
+  backface-visibility: hidden;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .hand-small {
@@ -3543,6 +3520,7 @@ body.bg6 {
   margin-top: -230px;
   left: 50%;
   z-index: 99;
+  backface-visibility: hidden;
 }
 @media only screen and (min-width: 1px) and (max-width: 719px) {
   .tent {
@@ -3744,7 +3722,7 @@ fieldset {
 }
 .ticket-includes {
   border: 6px solid #fff;
-  padding: 60px 40px;
+  padding: 50px 40px;
   position: relative;
   display: inline-block;
 }
@@ -3761,8 +3739,8 @@ fieldset {
 .ticket-includes:after,
 .ticket-includes:before {
   content: "";
-  width: 80px;
-  height: 50px;
+  width: 50px;
+  height: 30px;
   position: absolute;
   background: #ff345c;
   top: -6px;

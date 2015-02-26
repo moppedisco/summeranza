@@ -17,10 +17,6 @@
 
 @navHeight: 60px;
 
-h1,h2,h3,h4,h5,h6 {
-	font-weight: normal;
-}
-
 /* Buttons & icons ================================== */
 /* ================================================== */
 /* ================================================== */
@@ -127,6 +123,7 @@ html {
 	position: fixed;
 	bottom: 0;
 	left: 0;
+	backface-visibility: hidden;
 
 	@media @mobile {
 		display: none;
@@ -174,23 +171,7 @@ html {
 /* ================================================== */
 /* ================================================== */
 
-.wrapper {
-	position: relative;
-	height: 600%;
-
-
-
-	@media @mobile {
-		height: auto;
-		// -o-transition: none;
-		// -moz-transition: none;
-		// -webkit-transition: none;
-		// transition: none;
-	}
-}
-
 body {
-
 	-o-transition: background .5s ease-in-out, color .5s ease-in-out;
 	-moz-transition: background .5s ease-in-out, color .5s ease-in-out;
 	-webkit-transition: background .5s ease-in-out, color .5s ease-in-out;
@@ -199,43 +180,21 @@ body {
 	background-attachment: fixed;
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: cover;	
 
-	 &.bg1 {
-		background-image: url("../img/bg1.jpg");
-		.touch & {
-			background: #2C3990;
-		}
 
+	.touch & {
+		background: #ff345c;
 	}
+}
 
-	 &.bg2 {
-		background-image: url("../img/bg2.jpg");
-		.touch & {
-			background: #9F2C5F;
-		}
+.wrapper {
+	position: relative;
+	height: 600%;
+
+	@media @mobile {
+		height: auto;
 	}
-	 &.bg3 {
-		background-image: url("../img/bg3.jpg");
-		.touch & {
-			background: #FF3B5C;
-		}
-	}
-	 &.bg4 {
-		background-image: url("../img/bg4.jpg");
-		.touch & {
-			background: #1F7F84;
-		}
-	}
-	
-	 &.bg5,
-	 &.bg6 {
-		background-image: url("../img/bg5.jpg");
-		color: #fff;
-		.touch & {
-			background: #1F7F84;
-		}
-	}	
 }
 
 /* Video screen ===================================== */
@@ -379,6 +338,7 @@ video::-webkit-media-controls {
 	left: 5%;
 	top: 180px;
 	z-index: (@zIndexTop)-5;
+	backface-visibility: hidden;
 
 	@media @mobile {
 		top: 0;
@@ -391,10 +351,6 @@ video::-webkit-media-controls {
 		transition: opacity 0.5s;
 		-webkit-transition: opacity 0.5s;
 	}
-
-	// &.fixed {
-	// 	position: fixed;
-	// }
 
 	.touch & {
 		@media @mobile {
@@ -567,6 +523,7 @@ video::-webkit-media-controls {
 	-webkit-transition: opacity 0.2s;
 	font-size: 1.3rem;
 	z-index: (@zIndexTop)-7;
+	backface-visibility: hidden;
 
 	.page-section.active & {
 		opacity: 1;
@@ -638,12 +595,23 @@ video::-webkit-media-controls {
 	}	
 }
 
+.main-graphic--carousel { 
+	right: -250px; 
+
+	@media @mobile {
+		right: 0;
+	}
+}
+.main-graphic--tower { 
+	right: 0; 
+}
+
 .page-section--form  {
 	z-index: (@zIndexTop)-6;
 	padding: 140px 17%;
 	opacity: 1;
 	color: #fff;
-	background: rgb(255,52,92);
+	// background: rgb(255,52,92);
 	position: relative;
 
 	
@@ -693,6 +661,7 @@ video::-webkit-media-controls {
 	bottom: 0px;
 	left: 50%;
 	z-index: 99;
+	backface-visibility: hidden;
 	.touch & {
 		display: none;
 	}		
@@ -741,7 +710,8 @@ video::-webkit-media-controls {
 	bottom: 50px;
 	left: 50%;
 	z-index: 99;
-	// display: none;
+	backface-visibility: hidden;
+
 	@media @mobile {
 		display: none;
 	}		
@@ -779,6 +749,8 @@ video::-webkit-media-controls {
 	margin-top: -230px;
 	left: 50%;
 	z-index: 99;
+	backface-visibility: hidden;
+
 	@media @mobile {
 		display: none;
 	}		
@@ -917,7 +889,7 @@ fieldset {
 
 .ticket-includes {
 	border: 6px solid #fff;
-	padding: 60px 40px;
+	padding: 50px 40px;
 	position: relative;
 	display: inline-block;
 
@@ -936,8 +908,8 @@ fieldset {
 .ticket-includes:after,
 .ticket-includes:before {
 	content: "";
-	width: 80px;
-	height: 50px;
+	width: 50px;
+	height: 30px;
 	position: absolute;
 	background: #ff345c;
 	top: -6px;

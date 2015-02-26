@@ -96,14 +96,28 @@ Summeranza.app = (function(window){
 		anim_hands = new TimelineMax({paused: true}),
 		anim_tents = new TimelineMax({paused: true}),		
 		backgroundColors = [
-			"bg1",
-			"bg2",
-			"bg3",
-			"bg4",
-			"bg5",
-			"bg6"
+			"../summeranza/img/bg1.jpg",
+			"../summeranza/img/bg2.jpg",
+			"../summeranza/img/bg3.jpg",
+			"../summeranza/img/bg4.jpg",
+			"../summeranza/img/bg5.jpg",
+			"../summeranza/img/bg6.png"
 		],
+		backgroundColorsMobile = [
+			"../summeranza/img/bg1-mobile.png",
+			"../summeranza/img/bg2-mobile.png",
+			"../summeranza/img/bg3-mobile.png",
+			"../summeranza/img/bg4-mobile.png",
+			"../summeranza/img/bg5-mobile.png",
+			"../summeranza/img/bg6.png"
+		],		
 		$container = $('.header--full-screen-video');		
+
+
+	var images = new Array()
+
+
+
 
 	function init(){
 		adjustVideoPositioning("#mainVideo");
@@ -122,7 +136,16 @@ Summeranza.app = (function(window){
 			}
 		});
 
+		preloadImages();
+
 		createAnimations();
+	}
+
+	function preloadImages() {
+		for (i = 0; i < backgroundColors.length; i++) {
+			images[i] = new Image()
+			images[i].src = backgroundColors[i]
+		}
 	}
 
 	function createAnimations(){
@@ -221,10 +244,8 @@ Summeranza.app = (function(window){
 		$('.page-section--form').waypoint({
 			handler: function(direction) {
 				if(direction === "down"){
-					console.log("form hit down");
 					setActiveSection(5,1);
 				} else {
-					console.log("form hit up");
 					setActiveSection(4,-1);
 				}
 			},
@@ -254,7 +275,7 @@ Summeranza.app = (function(window){
 	}
 
 	function setActiveSection(activeIndex,direction){
-		console.log(activeIndex + ", "+direction);
+		// console.log(activeIndex + ", "+direction);
 		activePanelIndex = activeIndex;
 		// Reset navigation
 		$navigation.find("a").removeClass("active");
@@ -269,8 +290,11 @@ Summeranza.app = (function(window){
 			animateLogo(activeIndex,direction);
 		}
 
-		// Set active section background class on body
-		$("body").removeClass(backgroundColors[activeIndex-direction]).addClass(backgroundColors[activeIndex]);
+		if(!Modernizr.touch){
+			$("body").css("background-image","url("+backgroundColors[activeIndex]+")");
+		} else {
+			// $("body").css("background-image","url("+backgroundColorsMobile[activeIndex]+")");
+		}
 		
 		if(activeIndex > -1 ){
 			$(".page-section:eq('"+(activeIndex-direction)+"') .main-graphic").css("opacity","1").removeClass('animated bounceOutDown bounceInUp').addClass("animated bounceOutDown");	
