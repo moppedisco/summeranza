@@ -7,6 +7,7 @@
 	<link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:700,400&amp;subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic" rel="stylesheet" type="text/css">
 	<link href="css/main.css" rel="stylesheet" type="text/css">
 	<link href="css/animate.css" rel="stylesheet" type="text/css">
+	<link href="css/jquery.fancybox.css" rel="stylesheet" type="text/css">
 	<title>Summeranza 2015</title>
 	<script src="js/modernizr.js"></script>
 </head>
@@ -22,7 +23,7 @@
 		<p class="header__text--tagline">Music and movement</p>
 		<p class="header__text--venue">July 9, 2015 | Kempton Park, UK</p>
 	</article>
-	<button class="button--watch-video"><span>Watch video</span></button>
+	<a class="button--watch-video fancybox-media" href="http://vimeo.com/47480346" rel="media-gallery" >Watch video</a>
 	<button class="button--scrollDown icon icon-down-open"></button>
 </header>	
 <div class="site-navigation">
@@ -212,31 +213,69 @@
 					<input id="female" type="radio" name="Gender" />
 					<label for="female">Female</label>
 				</fieldset>
-				<input type="button" class="form-submit" id="btnRegister" value='Submit'/>
+				<input type="button" class="form-submit" id="btnRegister" value='Submit'/>			
 			</form>				
 		</div><!-- /.right-col -->	
+
 	</article><!-- /.line -->
 	<article class="last-section">
-		<h2>SUMMERANZA: AN EF EVENT</h2>
-		<p>EF is the world leader in international education. Every summer, EF sends thousands of students abroad to learn a language and have the summer of their lives. The Summeranza festival is held exclusively for EF students studying at one of 11 destinations in the UK.</p>
+		<div class="thankupage">
+			<h2>You're going to Summeranza</h2>
+			<p>Thanks for reserving your ticket – we’ll be in touch 
+				shortly with all the details on how you can pick up your ticket.
+				If you have any questions, please contact us at
+				summeranza@ef.com.
+				See you in London.
+			</p>
+		</div><!-- /.thankupage -->				
 		<h4>SHARE THIS FESTIVAL</h4>
 		<div class="social-links">
-			<a class="icon icon-facebook-circled" href=""></a>
-			<a class="icon icon-twitter-circled" href=""></a>
-			<a class="icon icon-pinterest-circled" href=""></a>
-			<a class="icon icon-gplus-circled" href=""></a>
-			<a class="icon icon-mail" href=""></a>
-		</div>
+			<a class="icon icon-facebook-circled" href="javascript:socialmedia_share.facebook('Summeranza 2015', 'http://www.ef.se/Summeranza/img/cover.jpg')"></a>
+			<a class="icon icon-twitter-circled" href="javascript:socialmedia_share.twitter()"></a>
+			<a class="icon icon-pinterest-circled" href="javascript:socialmedia_share.pinterest('Summeranza 2015','http://www.ef.se/Summeranza/img/cover.jpg')"></a>
+			<a class="icon icon-gplus-circled" href="javascript:socialmedia_share.google()"></a>
+			<a target="_blank" class="icon icon-mail" href="mailto:?&subject=Summeranza 2015&body=www.ef.com/campaign/summeranza2015"></a>
+		</div>		
+		<h4>SUMMERANZA: AN EF EVENT</h4>
+		<p>EF is the world leader in international education. Every summer, EF sends thousands of students abroad to learn a language and have the summer of their lives. The Summeranza festival is held exclusively for EF students studying at one of 11 destinations in the UK.</p>
 	</article>				
 </section>
-<img class="wave-level1"  src="img/wave-level1.svg" alt="" onerror="this.src=logo-fallback.png;this.onerror=null;" />
-<img class="wave-level2" data-stellar-ratio="0.02" src="img/wave-level2.svg" alt="" onerror="this.src=logo-fallback.png;this.onerror=null;" />
-<img class="wave-level3" data-stellar-ratio="0.06" src="img/wave-level3.svg" alt="" onerror="this.src=logo-fallback.png;this.onerror=null;" />
+<img class="wave wave-level1"  src="img/wave-level1.svg" alt="" onerror="this.src=logo-fallback.png;this.onerror=null;" />
+<img class="wave wave-level2" data-stellar-ratio="0.02" src="img/wave-level2.svg" alt="" onerror="this.src=logo-fallback.png;this.onerror=null;" />
+<img class="wave wave-level3" data-stellar-ratio="0.06" src="img/wave-level3.svg" alt="" onerror="this.src=logo-fallback.png;this.onerror=null;" />
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script type="text/javascript" src="js/waypoints.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/plugins/ScrollToPlugin.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/TweenMax.min.js"></script>
+<!-- <script type="text/javascript" src="js/jquery.fancybox.js"></script> -->
+<script type="text/javascript" src="js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="js/jquery.fancybox-media.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
+<script>
+socialmedia_share = (function(window){
+
+	var winWidth = 520,
+		winHeight = 350,
+    	winTop = (screen.height / 2) - (winHeight / 2),
+    	winLeft = (screen.width / 2) - (winWidth / 2);
+
+	return {
+	    facebook: function(descr, image) {
+	        window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + document.title + '&p[summary]=' + descr + '&p[url]=' + window.location + '&p[images][0]=' + image, 'facebook share', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+	    },
+	    twitter: function() {
+	        window.open('https://twitter.com/home?status='+window.location+' %23summeranza2015', 'Twitter share', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+	    },
+	    google: function() {
+	        window.open('https://plus.google.com/share?url='+window.location, 'Google share', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+	    },
+		pinterest: function(descr,image) {
+	        window.open('https://pinterest.com/pin/create/button/?url='+window.location+'&media='+image+'description='+descr, 'Google share', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+	    }
+	};
+
+}(window));
+</script>
 <script>
 Summeranza.init();
 </script>

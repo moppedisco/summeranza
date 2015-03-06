@@ -94,7 +94,8 @@ Summeranza.app = (function(window){
 		anim_intro = new TimelineMax({paused: true}),
 		anim_flags = new TimelineMax({paused: true}),
 		anim_hands = new TimelineMax({paused: true}),
-		anim_tents = new TimelineMax({paused: true}),		
+		anim_tents = new TimelineMax({paused: true}),	
+		anim_waves = new TimelineMax({paused: true}),		
 		backgroundColors = [
 			"../summeranza/img/bg1.jpg",
 			"../summeranza/img/bg2.jpg",
@@ -121,10 +122,27 @@ Summeranza.app = (function(window){
 
 	function init(){
 		adjustVideoPositioning("#mainVideo");
-
 		initNavigationButtons();
 		initWaypoints();
 		
+		$('.fancybox-media')
+			.attr('rel', 'media-gallery')
+			.fancybox({
+				openEffect : 'none',
+				closeEffect : 'none',
+				prevEffect : 'none',
+				nextEffect : 'none',
+				width: "100%",
+				height: "100%",
+				padding: "0",
+
+				arrows : false,
+				helpers : {
+					media : {},
+					buttons : {}
+				}
+			});
+
 		if(!Modernizr.touch){
 			reSizeVideoWrapper();
 		}
@@ -182,6 +200,9 @@ Summeranza.app = (function(window){
 		// Flags popup animation
 		anim_tents
 			.staggerFrom(".tent", 0.3, { y: "100%", ease: Back.easeOut.config(1.7)}, -0.1, "stagger"); 
+
+		anim_waves
+			.staggerTo(".wave", 0.3, { y: "100%", ease: Back.easeOut.config(1.7)}, -0.1, "stagger"); 			
 
 	}
 
@@ -244,12 +265,13 @@ Summeranza.app = (function(window){
 		$('.page-section--form').waypoint({
 			handler: function(direction) {
 				if(direction === "down"){
+					console.log("active");
 					setActiveSection(5,1);
 				} else {
 					setActiveSection(4,-1);
 				}
 			},
-			offset: "50%"
+			offset: "100%"
 		});
 
 		$panels.waypoint({
@@ -297,9 +319,14 @@ Summeranza.app = (function(window){
 		}
 		
 		if(activeIndex > -1 ){
-			$(".page-section:eq('"+(activeIndex-direction)+"') .main-graphic").css("opacity","1").removeClass('animated bounceOutDown bounceInUp').addClass("animated bounceOutDown");	
-			$(".page-section:eq('"+(activeIndex)+"') .main-graphic").css("opacity","1").removeClass('animated bounceOutDown bounceInUp').addClass("animated bounceInUp");
-		}
+            if (Modernizr.cssanimations) {
+                $(".page-section:eq('" + (activeIndex - direction) + "') .main-graphic").css("opacity", "1").removeClass('animated bounceOutDown bounceInUp').addClass("animated bounceOutDown");
+                $(".page-section:eq('" + (activeIndex) + "') .main-graphic").css("opacity", "1").removeClass('animated bounceOutDown bounceInUp').addClass("animated bounceInUp");
+            } else {
+                $(".page-section:eq('" + (activeIndex - direction) + "') .main-graphic").css("opacity", "1").hide();
+                $(".page-section:eq('" + (activeIndex) + "') .main-graphic").css("opacity", "1").show();
+            }
+        }
 
 		$(".page-section").removeClass("active");
 		$(".page-section:eq('"+activeIndex+"')").addClass("active");		
